@@ -109,6 +109,7 @@ export function Canvas() {
         type: 'concept',
         position: c.position,
         selected: selectedNodes.includes(c.id),
+        zIndex: 10,
         data: { id: c.id },
       }));
   }, [doc, selectedNodes]);

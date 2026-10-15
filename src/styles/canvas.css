@@ -45,6 +45,44 @@
   background: var(--bg-canvas) !important;
 }
 
+/* Ordem de profundidade (Stacking Context) do Viewport e suporte a camadas de desenho */
+.react-flow__viewport {
+  isolation: isolate;
+}
+
+.react-flow__viewport-portal {
+  z-index: auto !important;
+  pointer-events: none !important;
+}
+
+/* Camada de desenho no fundo: posicionada estritamente abaixo dos nós e arestas */
+.drawing-svg-layer.drawing-underlay {
+  z-index: 1 !important;
+}
+
+/* Conexões (Arestas) */
+.react-flow__edges {
+  z-index: 5 !important;
+}
+
+/* Nós do mapa conceitual: ficam acima do desenho de fundo e abaixo da sobreposição */
+.react-flow__nodes {
+  z-index: 10 !important;
+}
+
+.react-flow__node {
+  z-index: 10 !important;
+}
+
+.react-flow__node.selected {
+  z-index: 1000 !important;
+}
+
+/* Camada de desenho de sobreposição: desenha por cima dos nós e arestas */
+.drawing-svg-layer.drawing-overlay {
+  z-index: 20 !important;
+}
+
 /* React flow controls and attribution styling */
 .react-flow__attribution {
   display: none !important;

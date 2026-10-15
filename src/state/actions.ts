@@ -511,10 +511,10 @@ export function deleteDrawingStrokes(strokeIds: string[]) {
   editor().apply('Apagar traço', (d) => ops.deleteStrokes(d, strokeIds));
 }
 
-export function createDrawingLayer(name?: string) {
+export function createDrawingLayer(name?: string, position?: 'top' | 'bottom') {
   let created: DrawingLayer | null = null;
   editor().apply('Nova camada', (d) => {
-    created = ops.addDrawingLayer(d, name);
+    created = ops.addDrawingLayer(d, name, position);
   });
   if (created) {
     ui().set({ activeLayerId: (created as DrawingLayer).id });

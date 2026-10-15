@@ -415,9 +415,9 @@ describe('8. Sistema de Camadas de Desenho Livre e Subcamadas Vetoriais', () => 
     const layerA = ops.addDrawingLayer(doc, 'Fundo');
     const layerB = ops.addDrawingLayer(doc, 'Sobreposição');
 
-    // Ordem atual: NODES_LAYER_ID, default, layerA, layerB
+    // Ordem atual: bg-layer-1, NODES_LAYER_ID, default, layerA, layerB
     // Mover camada de nós para o meio (entre layerA e layerB)
-    const customOrder = [layerA.id, NODES_LAYER_ID, layerB.id, 'default-layer-1'];
+    const customOrder = ['bg-layer-1', layerA.id, NODES_LAYER_ID, layerB.id, 'default-layer-1'];
     ops.reorderLayers(doc, customOrder);
 
     expect(doc.layerOrder).toEqual(customOrder);

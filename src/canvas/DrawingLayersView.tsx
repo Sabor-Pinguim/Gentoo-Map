@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { ViewportPortal } from '@xyflow/react';
 import { useEditor } from '../state/editorStore';
-import { useUI } from '../state/uiStore';
 import { NODES_LAYER_ID, type DrawingStroke, type DrawingLayer } from '../model/types';
 import { pointsToSvgPath } from './drawingUtils';
 
@@ -12,12 +11,11 @@ interface DrawingLayersViewProps {
 /**
  * Renderiza os traços vetoriais SVG sincronizados na viewport do React Flow.
  * Divide as camadas em:
- *  - Underlay (abaixo dos nós): zIndex 0
- *  - Overlay (acima dos nós): zIndex 10
+ *  - Underlay (abaixo dos nós): zIndex 1
+ *  - Overlay (acima dos nós): zIndex 20
  */
 export function DrawingLayersView({ draftStroke }: DrawingLayersViewProps) {
   const doc = useEditor((s) => s.doc);
-  const activeLayerId = useUI((s) => s.activeLayerId);
 
   const { underlayLayers, overlayLayers, strokesByLayer } = useMemo(() => {
     if (!doc) {
@@ -73,6 +71,7 @@ export function DrawingLayersView({ draftStroke }: DrawingLayersViewProps) {
 
   // Função auxiliar para renderizar uma lista de camadas
   const renderLayerGroup = (layerList: DrawingLayer[], isOverlayGroup: boolean) => {
+    if (layerList.length === 0) return null;
     return (
       <svg
         className={`drawing-svg-layer ${isOverlayGroup ? 'drawing-overlay' : 'drawing-underlay'}`}
@@ -84,13 +83,13 @@ export function DrawingLayersView({ draftStroke }: DrawingLayersViewProps) {
           height: '100%',
           overflow: 'visible',
           pointerEvents: 'none',
-          zIndex: isOverlayGroup ? 10 : 0,
+          zIndex: isOverlayGroup ? 20 : 1,
         }}
       >
         {layerList.map((layer) => {
           if (!layer.visible) return null;
           const strokes = strokesByLayer[layer.id] ?? [];
-          const isCurrentActive = layer.id === (activeLayerId ?? 'default-layer-1');
+          const isDraftForThisLayer = draftStroke ? draftStroke.layerId === layer.id : false;
 
           return (
             <g key={layer.id} className="drawing-layer-group" opacity={layer.opacity}>
@@ -117,7 +116,7 @@ export function DrawingLayersView({ draftStroke }: DrawingLayersViewProps) {
               })}
 
               {/* Traço de rascunho em tempo real da camada ativa */}
-              {isCurrentActive && draftStroke && draftStroke.points.length > 0 && (
+              {isDraftForThisLayer && draftStroke && draftStroke.points.length > 0 && (
                 <path
                   d={pointsToSvgPath(draftStroke.points)}
                   fill="none"

@@ -292,6 +292,14 @@ export function ensureDrawingDoc(doc: MapDoc): {
   strokes: Record<string, DrawingStroke>;
 } {
   if (!doc.drawingLayers || Object.keys(doc.drawingLayers).length === 0) {
+    const bgLayer: DrawingLayer = {
+      id: 'bg-layer-1',
+      name: 'Fundo',
+      visible: true,
+      locked: false,
+      opacity: 1,
+      createdAt: Date.now() - 1000,
+    };
     const defaultLayer: DrawingLayer = {
       id: 'default-layer-1',
       name: 'Anotações',
@@ -300,11 +308,14 @@ export function ensureDrawingDoc(doc: MapDoc): {
       opacity: 1,
       createdAt: Date.now(),
     };
-    doc.drawingLayers = { [defaultLayer.id]: defaultLayer };
+    doc.drawingLayers = {
+      [bgLayer.id]: bgLayer,
+      [defaultLayer.id]: defaultLayer,
+    };
   }
   if (!doc.layerOrder || doc.layerOrder.length === 0) {
-    // Por padrão, 'default-layer-1' fica acima de 'nodes-layer'
-    doc.layerOrder = [NODES_LAYER_ID, Object.keys(doc.drawingLayers)[0]];
+    // Por padrão: Fundo (abaixo dos nós), Nós, Anotações (acima dos nós)
+    doc.layerOrder = ['bg-layer-1', NODES_LAYER_ID, 'default-layer-1'];
   } else if (!doc.layerOrder.includes(NODES_LAYER_ID)) {
     doc.layerOrder.unshift(NODES_LAYER_ID);
   }
@@ -344,7 +355,7 @@ export function deleteStrokes(doc: MapDoc, strokeIds: string[]) {
   if (changed) touch(doc);
 }
 
-export function addDrawingLayer(doc: MapDoc, name?: string): DrawingLayer {
+export function addDrawingLayer(doc: MapDoc, name?: string, position?: 'top' | 'bottom'): DrawingLayer {
   const d = ensureDrawingDoc(doc);
   const layerNum = Object.keys(d.layers).length + 1;
   const layer: DrawingLayer = {
@@ -356,8 +367,11 @@ export function addDrawingLayer(doc: MapDoc, name?: string): DrawingLayer {
     createdAt: Date.now(),
   };
   d.layers[layer.id] = layer;
-  // Insere no topo da pilha (final de layerOrder)
-  d.order.push(layer.id);
+  if (position === 'bottom') {
+    doc.layerOrder = [layer.id, ...(doc.layerOrder ?? [])];
+  } else {
+    doc.layerOrder = [...(doc.layerOrder ?? []), layer.id];
+  }
   touch(doc);
   return layer;
 }

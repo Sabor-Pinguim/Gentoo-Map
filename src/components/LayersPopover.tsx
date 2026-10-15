@@ -408,10 +408,10 @@ export function LayersPopover() {
                           gap: 5,
                         }}
                       >
-                        <span>📌 Conceitos & Ligações</span>
+                        <span>📌 Conceitos & Ligações (Nós)</span>
                       </div>
                       <div style={{ fontSize: 10, color: 'var(--text-3)', marginTop: 1 }}>
-                        Nós do mapa conceitual (Arraste para mover)
+                        Divisória: acima fica na frente; abaixo fica atrás dos nós
                       </div>
                     </div>
                   </div>
@@ -525,7 +525,14 @@ export function LayersPopover() {
                           {layer.name}
                         </div>
                         <div style={{ fontSize: 9.5, color: 'var(--text-3)', display: 'flex', gap: 4 }}>
-                          <span>{isAboveNodes ? 'Sobreposição' : 'Fundo'}</span>
+                          <span
+                            style={{
+                              fontWeight: 600,
+                              color: isAboveNodes ? 'var(--accent)' : 'var(--success)',
+                            }}
+                          >
+                            {isAboveNodes ? 'Frente dos Nós' : 'Atrás dos Nós'}
+                          </span>
                           <span>•</span>
                           <span>{strokeCount} traço{strokeCount === 1 ? '' : 's'}</span>
                         </div>

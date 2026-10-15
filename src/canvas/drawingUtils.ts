@@ -59,3 +59,4 @@ export function isStrokeHit(stroke: DrawingStroke, point: Point, threshold = 16)
 
   return false;
 }
+
