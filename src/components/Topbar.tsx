@@ -26,6 +26,12 @@ import {
   Pen,
   Highlighter,
   Eraser,
+  Image as ImageIcon,
+  FileText,
+  FileCode,
+  FileArchive,
+  FileJson,
+  Upload,
 } from 'lucide-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useEditor } from '../state/editorStore';
@@ -44,6 +50,14 @@ import { IconButton, Tooltip } from './ui';
 import { GentooLogo } from './GentooLogo';
 import { LayersPopover } from './LayersPopover';
 import { DrawingStylePopover } from './DrawingStylePopover';
+import {
+  exportMapPng,
+  exportMapPdf,
+  exportMapSvg,
+  exportBackupZip,
+  exportMapJson,
+} from '../io/export';
+import { getFlowContainer } from '../canvas/flowApi';
 
 export function Topbar() {
   const doc = useEditor((s) => s.doc);
@@ -414,12 +428,94 @@ export function Topbar() {
           <Search size={16} />
         </IconButton>
 
-        <IconButton
-          label="Exportar e Importar (JSON, ZIP, Imagem, PDF)"
-          onClick={() => openDialog('export')}
-        >
-          <Download size={16} />
-        </IconButton>
+        {/* Menu de Exportação Rápida e Backup */}
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button
+              type="button"
+              className="icon-btn"
+              title="Exportar Imagem PNG, PDF ou Backup"
+              aria-label="Exportar mapa"
+            >
+              <Download size={16} />
+            </button>
+          </DropdownMenu.Trigger>
+
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className="menu" align="end" sideOffset={6} style={{ minWidth: 230 }}>
+              <DropdownMenu.Item
+                className="menu-item"
+                onSelect={() => {
+                  const container = getFlowContainer();
+                  if (container && doc) {
+                    void exportMapPng(container, doc.name);
+                  }
+                }}
+              >
+                <ImageIcon size={14} style={{ color: 'var(--primary)' }} />
+                <span>Exportar como PNG (Imagem)</span>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Item
+                className="menu-item"
+                onSelect={() => {
+                  const container = getFlowContainer();
+                  if (container && doc) {
+                    void exportMapPdf(container, doc.name);
+                  }
+                }}
+              >
+                <FileText size={14} style={{ color: 'var(--primary)' }} />
+                <span>Exportar como PDF</span>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Item
+                className="menu-item"
+                onSelect={() => {
+                  const container = getFlowContainer();
+                  if (container && doc) {
+                    void exportMapSvg(container, doc.name);
+                  }
+                }}
+              >
+                <FileCode size={14} style={{ color: 'var(--primary)' }} />
+                <span>Exportar como Vetor SVG</span>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="menu-sep" />
+
+              <DropdownMenu.Item
+                className="menu-item"
+                onSelect={() => {
+                  if (doc) exportMapJson(doc);
+                }}
+              >
+                <FileJson size={14} />
+                <span>Salvar Arquivo JSON (.cmap.json)</span>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Item
+                className="menu-item"
+                onSelect={() => {
+                  if (doc) void exportBackupZip(doc);
+                }}
+              >
+                <FileArchive size={14} />
+                <span>Backup Completo (.cmapzip)</span>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="menu-sep" />
+
+              <DropdownMenu.Item
+                className="menu-item"
+                onSelect={() => openDialog('export')}
+              >
+                <Upload size={14} />
+                <span>Mais opções / Importar…</span>
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
 
         <IconButton
           label="Armazenamento Local & Limpeza"

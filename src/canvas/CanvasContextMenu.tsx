@@ -12,6 +12,7 @@ import {
   FolderOpen,
   ArrowLeftRight,
   Sparkles,
+  Image as ImageIcon,
 } from 'lucide-react';
 import {
   addConceptAt,
@@ -30,7 +31,8 @@ import {
 } from '../state/actions';
 import { useEditor } from '../state/editorStore';
 import { useUI } from '../state/uiStore';
-import { getFlow } from './flowApi';
+import { getFlow, getFlowContainer } from './flowApi';
+import { exportMapPng } from '../io/export';
 
 interface CanvasContextMenuProps {
   children: React.ReactNode;
@@ -237,6 +239,21 @@ export function CanvasContextMenu({ children }: CanvasContextMenuProps) {
                 <RotateCw size={14} />
                 <span>Refazer</span>
                 <span className="shortcut">Ctrl+Y</span>
+              </ContextMenu.Item>
+
+              <ContextMenu.Separator className="menu-sep" />
+
+              <ContextMenu.Item
+                className="menu-item"
+                onSelect={() => {
+                  const container = getFlowContainer();
+                  if (container && doc) {
+                    void exportMapPng(container, doc.name);
+                  }
+                }}
+              >
+                <ImageIcon size={14} />
+                <span>Exportar mapa como PNG</span>
               </ContextMenu.Item>
             </>
           )}
