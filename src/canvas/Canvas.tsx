@@ -49,6 +49,25 @@ export function Canvas() {
   const connectMode = useUI((s) => s.connectMode);
   const tool = useUI((s) => s.tool);
 
+  // Monitora se teclas de seleção múltipla (Ctrl / Cmd / Shift) estão pressionadas
+  const isMultiKeyRef = useRef(false);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      isMultiKeyRef.current = e.ctrlKey || e.metaKey || e.shiftKey;
+    };
+    window.addEventListener('keydown', onKey, { capture: true });
+    window.addEventListener('keyup', onKey, { capture: true });
+    const onBlur = () => {
+      isMultiKeyRef.current = false;
+    };
+    window.addEventListener('blur', onBlur);
+    return () => {
+      window.removeEventListener('keydown', onKey, { capture: true });
+      window.removeEventListener('keyup', onKey, { capture: true });
+      window.removeEventListener('blur', onBlur);
+    };
+  }, []);
+
   // Deriva os nós do React Flow a partir do documento (filtrando nós ocultos por ramos recolhidos)
   const nodes: Node[] = useMemo(() => {
     if (!doc) return [];
@@ -105,6 +124,11 @@ export function Canvas() {
             selChanged = true;
           }
         } else {
+          // Se o usuário estiver segurando Ctrl/Shift/Cmd para seleção aditiva,
+          // preserva nós que já estavam selecionados antes!
+          if (isMultiKeyRef.current) {
+            continue;
+          }
           if (nextSelected.has(change.id)) {
             nextSelected.delete(change.id);
             selChanged = true;
@@ -137,6 +161,9 @@ export function Canvas() {
             selChanged = true;
           }
         } else {
+          if (isMultiKeyRef.current) {
+            continue;
+          }
           if (nextSelected.has(change.id)) {
             nextSelected.delete(change.id);
             selChanged = true;
@@ -167,7 +194,7 @@ export function Canvas() {
 
   // Clique no nó
   const onNodeClick = useCallback(
-    (_: React.MouseEvent, node: Node) => {
+    (e: React.MouseEvent, node: Node) => {
       if (connectMode) {
         if (!connectMode.sourceId) {
           useUI.getState().set({ connectMode: { sourceId: node.id } });
@@ -176,6 +203,25 @@ export function Canvas() {
           useUI.getState().set({ connectMode: null });
         }
         return;
+      }
+
+      const isMulti = e.ctrlKey || e.metaKey || e.shiftKey || isMultiKeyRef.current;
+      const current = editor().selectedNodes;
+      if (isMulti) {
+        // Modo aditivo / alternância: se já está selecionado, remove; se não está, adiciona aos já selecionados!
+        const next = new Set(current);
+        if (next.has(node.id)) {
+          next.delete(node.id);
+        } else {
+          next.add(node.id);
+        }
+        editor().setSelection(Array.from(next), editor().selectedEdges);
+      } else {
+        // Clique simples sem Ctrl: se o nó clicado já estiver no grupo selecionado,
+        // não destrói a seleção para permitir arrastar o grupo; caso contrário, seleciona apenas ele
+        if (!current.includes(node.id)) {
+          editor().setSelection([node.id], []);
+        }
       }
 
       // Se autoOpenPanel estiver ativo, abre o painel
