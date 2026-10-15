@@ -43,6 +43,7 @@ import { renameMap, retrySave } from '../state/session';
 import { IconButton, Tooltip } from './ui';
 import { GentooLogo } from './GentooLogo';
 import { LayersPopover } from './LayersPopover';
+import { DrawingStylePopover } from './DrawingStylePopover';
 
 export function Topbar() {
   const doc = useEditor((s) => s.doc);
@@ -278,6 +279,11 @@ export function Topbar() {
           >
             <Eraser size={15} />
           </IconButton>
+
+          <div className="divider-v" style={{ height: 16, margin: '0 2px' }} />
+
+          {/* Seletor direto de Cor e Espessura da Caneta */}
+          <DrawingStylePopover />
         </div>
 
         {/* Gerenciador Expansível de Camadas e Subcamadas */}
