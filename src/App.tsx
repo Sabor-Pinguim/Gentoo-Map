@@ -14,7 +14,7 @@ import { useEditor } from './state/editorStore';
 import { useUI, getLastMapId } from './state/uiStore';
 import { useMaps, openMap, startAutosave } from './state/session';
 import { createRfidPresentationMap } from './model/rfidPresentationMap';
-import { listMaps, saveMap } from './persistence/mapRepo';
+import { listMaps, saveMap, loadMap } from './persistence/mapRepo';
 import { ArrowRight, Loader2, X } from 'lucide-react';
 
 export function App() {
@@ -52,9 +52,13 @@ export function App() {
 
     async function bootstrap() {
       try {
-        // Assegura que o mapa completo da apresentação RFID e NFC esteja disponível no armazenamento local
-        const rfidPresentation = createRfidPresentationMap();
-        await saveMap(rfidPresentation);
+        // Só salva o template padrão inicial se o mapa ainda NÃO existir no armazenamento local,
+        // preservando assim todas as posições e alterações que o usuário fizer manualmente!
+        const existing = await loadMap('map-rfid-nfc-apresentacao');
+        if (!existing) {
+          const rfidPresentation = createRfidPresentationMap();
+          await saveMap(rfidPresentation);
+        }
 
         const maps = await listMaps();
         const lastId = getLastMapId();
@@ -64,7 +68,7 @@ export function App() {
         const targetId =
           lastId && lastId !== 'map_sample_ia' && maps.some((m) => m.id === lastId)
             ? lastId
-            : rfidPresentation.id;
+            : 'map-rfid-nfc-apresentacao';
 
         await openMap(targetId);
         await useMaps.getState().refresh();
