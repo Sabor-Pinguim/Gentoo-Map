@@ -91,7 +91,7 @@ export const linkSchema = z.object({
     .object({
       line: z.enum(['auto', 'solid', 'dashed', 'dotted']).catch('auto'),
       curve: z.enum(['straight', 'curved']).catch('straight'),
-      arrow: z.enum(['end', 'none', 'both']).catch('end'),
+      arrow: z.enum(['end', 'start', 'both', 'none']).catch('end'),
       color,
     })
     .default({ line: 'auto', curve: 'straight', arrow: 'end', color: 'default' }),
@@ -133,7 +133,10 @@ export const mapDocSchema = z.object({
   concepts: z.record(z.string(), conceptSchema),
   links: z.record(z.string(), linkSchema),
   settings: z
-    .object({ layoutDirection: z.enum(['TB', 'LR']).catch('TB') })
+    .object({
+      layoutDirection: z.enum(['TB', 'LR']).catch('TB'),
+      backgroundColor: z.string().max(100).optional().catch(undefined),
+    })
     .default({ layoutDirection: 'TB' }),
   drawings: drawingsSchema.optional(),
   // Campos legados mantidos para tolerar e migrar documentos antigos

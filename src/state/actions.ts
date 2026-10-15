@@ -133,6 +133,13 @@ export function setLinkStyle(ids: string[], patch: Partial<LinkStyle>) {
   });
 }
 
+export function setCanvasBackground(color: string | undefined) {
+  editor().apply('Alterar cor de fundo', (d) => {
+    d.settings.backgroundColor = color ? color : undefined;
+    ops.touch(d);
+  });
+}
+
 export function setLinkLabel(id: string, label: string, coalesceKey?: string) {
   editor().apply('Editar frase de ligação', (d) => ops.updateLink(d, id, { label }), coalesceKey ? { mode: 'coalesce', key: coalesceKey } : undefined);
 }

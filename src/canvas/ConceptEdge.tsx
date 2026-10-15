@@ -2,6 +2,7 @@ import { memo, useState, useEffect, type KeyboardEvent } from 'react';
 import {
   BaseEdge,
   EdgeLabelRenderer,
+  EdgeToolbar,
   getBezierPath,
   getStraightPath,
   type EdgeProps,
@@ -9,6 +10,7 @@ import {
 import { setLinkLabel } from '../state/actions';
 import { useEditor } from '../state/editorStore';
 import { getLinkEdgeColor } from './edgeColors';
+import { EdgeStyleToolbar } from './EdgeStyleToolbar';
 
 export const ConceptEdge = memo(function ConceptEdge({
   id,
@@ -124,6 +126,18 @@ export const ConceptEdge = memo(function ConceptEdge({
           )}
         </div>
       </EdgeLabelRenderer>
+
+      {selected && (
+        <EdgeToolbar
+          edgeId={id}
+          x={labelX}
+          y={labelY - 22}
+          isVisible={selected}
+          alignY="bottom"
+        >
+          <EdgeStyleToolbar link={link} />
+        </EdgeToolbar>
+      )}
     </>
   );
 });

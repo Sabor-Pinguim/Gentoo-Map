@@ -17,3 +17,4 @@ export function getLinkEdgeColor(colorKey?: string): string {
   }
   return 'var(--edge)';
 }
+

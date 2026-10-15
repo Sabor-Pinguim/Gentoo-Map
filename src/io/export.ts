@@ -66,12 +66,12 @@ interface ExportParameters {
 
 /** Calcula os limites visuais e parâmetros de exportação em escala 100% natural com supersampling */
 function calculateExportParameters(container: HTMLElement): ExportParameters {
+  const doc = useEditor.getState().doc;
   const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark';
-  const bg = isDark ? '#15171d' : '#ffffff';
+  const bg = doc?.settings?.backgroundColor || (isDark ? '#15171d' : '#ffffff');
 
   const flow = getFlow();
   const nodes = flow?.getNodes() ?? [];
-  const doc = useEditor.getState().doc;
 
   let minX = Infinity;
   let minY = Infinity;

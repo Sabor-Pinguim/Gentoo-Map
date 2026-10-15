@@ -50,6 +50,7 @@ import { IconButton, Tooltip } from './ui';
 import { GentooLogo } from './GentooLogo';
 import { LayersPopover } from './LayersPopover';
 import { DrawingStylePopover } from './DrawingStylePopover';
+import { CanvasBackgroundPopover } from './CanvasBackgroundPopover';
 import {
   exportMapPng,
   exportMapPdf,
@@ -538,6 +539,8 @@ export function Topbar() {
         >
           {theme === 'dark' ? <Moon size={16} /> : theme === 'light' ? <Sun size={16} /> : <Laptop size={16} />}
         </IconButton>
+
+        <CanvasBackgroundPopover />
 
         <div className="divider-v" />
 

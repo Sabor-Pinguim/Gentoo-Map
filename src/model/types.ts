@@ -126,7 +126,7 @@ export interface Concept {
 export type LinkKind = 'hierarchy' | 'cross';
 export type LineStyle = 'auto' | 'solid' | 'dashed' | 'dotted';
 export type CurveStyle = 'straight' | 'curved';
-export type ArrowStyle = 'end' | 'none' | 'both';
+export type ArrowStyle = 'end' | 'start' | 'both' | 'none';
 
 export interface LinkStyle {
   line: LineStyle;
@@ -150,6 +150,7 @@ export type LayoutDirection = 'TB' | 'LR';
 
 export interface MapSettings {
   layoutDirection: LayoutDirection;
+  backgroundColor?: string;
 }
 
 export const NODES_LAYER_ID = 'nodes-layer';

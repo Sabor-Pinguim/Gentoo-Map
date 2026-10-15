@@ -137,7 +137,7 @@ export function Canvas() {
               }
             : undefined,
         markerStart:
-          l.style.arrow === 'both'
+          l.style.arrow === 'start' || l.style.arrow === 'both'
             ? {
                 type: MarkerType.ArrowClosed,
                 width: 16,
@@ -393,10 +393,15 @@ export function Canvas() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const customBg = doc?.settings?.backgroundColor;
+
   return (
     <div
       ref={containerRef}
       className={`canvas-container tool-${tool} ${connectMode ? 'canvas-connecting' : ''}`}
+      style={{
+        backgroundColor: customBg || undefined,
+      }}
       onDoubleClick={onDoubleClick}
     >
       <CanvasContextMenu>
