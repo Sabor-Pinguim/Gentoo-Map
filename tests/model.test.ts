@@ -9,6 +9,7 @@ import { parseMapDoc } from '../src/model/schema';
 import { validateFile } from '../src/utils/files';
 import { normalizeUrl, detectEmbed, sanitizeNotesHtml } from '../src/utils/url';
 import { resetDBConnection } from '../src/persistence/db';
+import { createRfidPresentationMap } from '../src/model/rfidPresentationMap';
 
 describe('1. Criação, Edição, Movimentação, Duplicação e Exclusão de Nós', () => {
   it('cria e edita nós mantendo integridade', () => {
@@ -315,4 +316,43 @@ describe('6. Herança de Cores e Integridade dos Nós Filhos', () => {
     expect(doc.concepts[neto.id].style.color).toBe('blue');
   });
 });
+
+describe('7. Mapa da Apresentação: RFID e NFC (Estrutura do PDF)', () => {
+  it('gera o mapa completo com ramos lógicos, referências e layout válido', () => {
+    const map = createRfidPresentationMap();
+    expect(map).toBeDefined();
+    expect(map.id).toBe('map-rfid-nfc-apresentacao');
+    expect(Object.keys(map.concepts).length).toBeGreaterThanOrEqual(25);
+    expect(Object.keys(map.links).length).toBeGreaterThanOrEqual(25);
+
+    // Nó raiz existe
+    expect(map.concepts['c_wireless']).toBeDefined();
+    expect(map.concepts['c_wireless'].title).toBe('Sistemas Wireless');
+
+    // Ligações conectam nós existentes
+    for (const link of Object.values(map.links)) {
+      expect(map.concepts[link.source]).toBeDefined();
+      expect(map.concepts[link.target]).toBeDefined();
+    }
+
+    // Ligação cruzada Mifare -> NFC existe conforme solicitado no PDF
+    const mifareCross = map.links['l_mifare_nfc_cross'];
+    expect(mifareCross).toBeDefined();
+    expect(mifareCross.kind).toBe('cross');
+    expect(mifareCross.source).toBe('c_mifare');
+    expect(mifareCross.target).toBe('c_nfc');
+    expect(mifareCross.label).toBe('também afeta cartões lidos por');
+
+    // Todos os nós possuem posições finitas calculadas
+    for (const c of Object.values(map.concepts)) {
+      expect(Number.isFinite(c.position.x)).toBe(true);
+      expect(Number.isFinite(c.position.y)).toBe(true);
+    }
+
+    // Verifica que a árvore hierárquica não tem ciclos
+    const h = getHierarchy(map);
+    expect(h.parentOf.size).toBeGreaterThan(0);
+  });
+});
+
 

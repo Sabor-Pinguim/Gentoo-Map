@@ -13,7 +13,7 @@ import { ConfirmHost, TooltipProvider } from './components/ui';
 import { useEditor } from './state/editorStore';
 import { useUI, getLastMapId } from './state/uiStore';
 import { useMaps, openMap, startAutosave } from './state/session';
-import { createSampleMap } from './model/sampleMap';
+import { createRfidPresentationMap } from './model/rfidPresentationMap';
 import { listMaps, saveMap } from './persistence/mapRepo';
 import { ArrowRight, Loader2, X } from 'lucide-react';
 
@@ -52,17 +52,21 @@ export function App() {
 
     async function bootstrap() {
       try {
+        // Assegura que o mapa completo da apresentação RFID e NFC esteja disponível no armazenamento local
+        const rfidPresentation = createRfidPresentationMap();
+        await saveMap(rfidPresentation);
+
         const maps = await listMaps();
-        if (maps.length === 0) {
-          // Primeiro acesso: inicializa com mapa exemplo detalhado
-          const sample = createSampleMap();
-          await saveMap(sample);
-          await openMap(sample.id);
-        } else {
-          const lastId = getLastMapId();
-          const target = maps.find((m) => m.id === lastId) ?? maps[0];
-          await openMap(target.id);
-        }
+        const lastId = getLastMapId();
+
+        // Se o usuário não tiver navegado para outro mapa específico (ou se estava no mapa exemplo de IA),
+        // abre diretamente o mapa da apresentação RFID/NFC
+        const targetId =
+          lastId && lastId !== 'map_sample_ia' && maps.some((m) => m.id === lastId)
+            ? lastId
+            : rfidPresentation.id;
+
+        await openMap(targetId);
         await useMaps.getState().refresh();
       } catch (err) {
         console.error('Falha ao inicializar banco de dados:', err);
