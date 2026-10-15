@@ -3,7 +3,7 @@
   "id": "map-rfid-nfc-apresentacao",
   "name": "RFID e NFC: Sistemas Wireless, Segurança e Aplicações",
   "createdAt": 1792092375238,
-  "updatedAt": 1792097556059,
+  "updatedAt": 1792097961272,
   "concepts": {
     "c_wireless": {
       "id": "c_wireless",
@@ -449,8 +449,8 @@
       "title": "Controle de Acesso Físico",
       "description": "Crachás e credenciais virtuais em smartphones para abertura de portas e catracas.",
       "position": {
-        "x": 5435,
-        "y": 630.1449725832839
+        "x": 5536.11111111111,
+        "y": 566.8116392499509
       },
       "style": {
         "shape": "rounded",
@@ -1621,8 +1621,8 @@
       "title": "Etiqueta",
       "description": "",
       "position": {
-        "x": 3433.392792383375,
-        "y": 693.8163287927667
+        "x": 3440.0800982690353,
+        "y": 691.5872268308799
       },
       "style": {
         "shape": "rounded",
@@ -1705,8 +1705,8 @@
       "title": "Passiva, Ativa e Semipassiva",
       "description": "",
       "position": {
-        "x": 3340.0032316592124,
-        "y": 884.5489169621416
+        "x": 3342.232333621099,
+        "y": 845.5396326291226
       },
       "style": {
         "shape": "rounded",
@@ -1748,13 +1748,26 @@
         "extra": [],
         "notesHtml": "",
         "links": [],
-        "images": [],
+        "images": [
+          {
+            "id": "img_suCeU_NoblXm",
+            "source": {
+              "type": "file",
+              "fileId": "sha256-eebe21663cbf7c0e484c4de0ba1b7294962493ed0334ada8485ef17a448702c5",
+              "name": "Captura de tela 2026-10-15 175426.png",
+              "mime": "image/png",
+              "size": 23534
+            },
+            "alt": "Captura de tela 2026-10-15 175426.png",
+            "caption": "Captura de tela 2026-10-15 175426.png"
+          }
+        ],
         "media": [],
         "documents": [],
         "references": []
       },
       "createdAt": 1792097063991,
-      "updatedAt": 1792097074512
+      "updatedAt": 1792097691190
     },
     "c_EARQAxkRabll": {
       "id": "c_EARQAxkRabll",

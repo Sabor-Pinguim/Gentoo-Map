@@ -324,8 +324,8 @@ describe('7. Mapa da Apresentação: RFID e NFC (Estrutura do PDF)', () => {
     const map = createRfidPresentationMap();
     expect(map).toBeDefined();
     expect(map.id).toBe('map-rfid-nfc-apresentacao');
-    expect(Object.keys(map.concepts).length).toBeGreaterThanOrEqual(25);
-    expect(Object.keys(map.links).length).toBeGreaterThanOrEqual(25);
+    expect(Object.keys(map.concepts).length).toBe(50);
+    expect(Object.keys(map.links).length).toBe(49);
 
     // Nó raiz existe
     expect(map.concepts['c_wireless']).toBeDefined();
@@ -337,13 +337,13 @@ describe('7. Mapa da Apresentação: RFID e NFC (Estrutura do PDF)', () => {
       expect(map.concepts[link.target]).toBeDefined();
     }
 
-    // Ligação cruzada Mifare -> NFC existe conforme solicitado no PDF
-    const mifareCross = map.links['l_mifare_nfc_cross'];
-    expect(mifareCross).toBeDefined();
-    expect(mifareCross.kind).toBe('cross');
-    expect(mifareCross.source).toBe('c_mifare');
-    expect(mifareCross.target).toBe('c_nfc');
-    expect(mifareCross.label).toBe('também afeta cartões lidos por');
+    // Ligação cruzada RFID -> NFC
+    const rfidCross = map.links['l_rfid_nfc_cross'];
+    expect(rfidCross).toBeDefined();
+    expect(rfidCross.kind).toBe('cross');
+    expect(rfidCross.source).toBe('c_rfid');
+    expect(rfidCross.target).toBe('c_nfc');
+    expect(rfidCross.label).toBe('possui como evolução HF');
 
     // Todos os nós possuem posições finitas calculadas
     for (const c of Object.values(map.concepts)) {

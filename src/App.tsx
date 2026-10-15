@@ -52,21 +52,26 @@ export function App() {
 
     async function bootstrap() {
       try {
-        // Só salva o template padrão inicial se o mapa ainda NÃO existir no armazenamento local,
-        // preservando assim todas as posições e alterações que o usuário fizer manualmente!
+        // Versão do mapa padrão embutido. Ao atualizar esta constante, clientes que já
+        // visitaram o site recebem a nova versão do mapa no IndexedDB automaticamente.
+        const DEFAULT_MAP_VERSION = 'v2_50_concepts_20261015';
+        const currentVersion = localStorage.getItem('gentoo:default_map_version');
         const existing = await loadMap('map-rfid-nfc-apresentacao');
-        if (!existing) {
+
+        const isNewVersion = currentVersion !== DEFAULT_MAP_VERSION;
+        if (!existing || isNewVersion) {
           const rfidPresentation = createRfidPresentationMap();
           await saveMap(rfidPresentation);
+          localStorage.setItem('gentoo:default_map_version', DEFAULT_MAP_VERSION);
         }
 
         const maps = await listMaps();
         const lastId = getLastMapId();
 
-        // Se o usuário não tiver navegado para outro mapa específico (ou se estava no mapa exemplo de IA),
-        // abre diretamente o mapa da apresentação RFID/NFC
+        // Se o usuário não tiver navegado para outro mapa específico (ou se estava no mapa exemplo de IA,
+        // ou se acabou de ser atualizada a versão padrão), abre diretamente o mapa da apresentação RFID/NFC
         const targetId =
-          lastId && lastId !== 'map_sample_ia' && maps.some((m) => m.id === lastId)
+          !isNewVersion && lastId && lastId !== 'map_sample_ia' && maps.some((m) => m.id === lastId)
             ? lastId
             : 'map-rfid-nfc-apresentacao';
 
