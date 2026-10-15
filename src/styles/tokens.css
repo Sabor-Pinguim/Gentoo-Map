@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Tokens de design — tema claro (padrão) e escuro
+   ========================================================================== */
+
+:root {
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  --topbar-h: 52px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-med: 200ms;
+
+  /* Superfícies */
+  --bg-app: #f6f7f9;
+  --bg-canvas: #fbfbfc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f3f4f6;
+  --bg-muted: #eceef2;
+  --bg-hover: #f0f1f4;
+  --bg-active: #e7e9ee;
+  --bg-overlay: rgba(17, 20, 28, 0.42);
+
+  /* Texto */
+  --text: #1c2030;
+  --text-2: #4a5065;
+  --text-3: #6f758a;
+  --text-inverse: #ffffff;
+
+  /* Bordas */
+  --border: #e3e5ea;
+  --border-strong: #cfd3db;
+
+  /* Acento */
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: #eef0ff;
+  --accent-soft-2: #e0e3ff;
+  --accent-text: #3730a3;
+  --focus-ring: 0 0 0 2px var(--bg-surface), 0 0 0 4px rgba(79, 70, 229, 0.55);
+
+  --danger: #c62f3b;
+  --danger-soft: #fdecee;
+  --success: #15803d;
+  --warning: #b45309;
+  --warning-soft: #fff6e5;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.08), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --shadow-lg: 0 16px 40px rgba(16, 24, 40, 0.16), 0 2px 6px rgba(16, 24, 40, 0.08);
+
+  /* Canvas */
+  --grid-dot: #dde0e6;
+  --edge: #8a90a2;
+  --edge-selected: var(--accent);
+  --edge-label-bg: var(--bg-canvas);
+  --node-bg: #ffffff;
+  --node-border: #c9cdd6;
+  --node-text: #1c2030;
+  --search-hit: #f59e0b;
+
+  /* Paleta de conceitos (fundo, borda, texto) */
+  --c-default-bg: #ffffff;   --c-default-bd: #c4c9d3; --c-default-tx: #1c2030;
+  --c-slate-bg: #eef1f5;     --c-slate-bd: #94a0b4;   --c-slate-tx: #1f2937;
+  --c-blue-bg: #e8f1fe;      --c-blue-bd: #6aa1ea;    --c-blue-tx: #123a6b;
+  --c-teal-bg: #e3f6f4;      --c-teal-bd: #4fb3a9;    --c-teal-tx: #0f3f3a;
+  --c-green-bg: #e9f6e9;     --c-green-bd: #6cbf72;   --c-green-tx: #17411b;
+  --c-amber-bg: #fdf4dc;     --c-amber-bd: #e0b043;   --c-amber-tx: #5a3d06;
+  --c-orange-bg: #fdeee3;    --c-orange-bd: #ea9459;  --c-orange-tx: #5e2a0a;
+  --c-red-bg: #fde9ea;       --c-red-bd: #e27a82;     --c-red-tx: #651a20;
+  --c-pink-bg: #fcebf4;      --c-pink-bd: #dc7fb0;    --c-pink-tx: #5e1d3e;
+  --c-violet-bg: #f1ecfd;    --c-violet-bd: #9d85e6;  --c-violet-tx: #33206b;
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg-app: #121419;
+  --bg-canvas: #15171d;
+  --bg-surface: #1b1e25;
+  --bg-subtle: #20242c;
+  --bg-muted: #262a33;
+  --bg-hover: #252932;
+  --bg-active: #2d323c;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text: #e7e9ef;
+  --text-2: #b4b9c6;
+  --text-3: #8b91a1;
+
+  --border: #2c313b;
+  --border-strong: #3a404c;
+
+  --accent: #8b85ff;
+  --accent-hover: #a29dff;
+  --accent-soft: #25264a;
+  --accent-soft-2: #2f3160;
+  --accent-text: #c7c4ff;
+  --focus-ring: 0 0 0 2px var(--bg-surface), 0 0 0 4px rgba(139, 133, 255, 0.7);
+
+  --danger: #f2777f;
+  --danger-soft: #3a1d22;
+  --success: #4ade80;
+  --warning: #f5b454;
+  --warning-soft: #3a2c14;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.55);
+
+  --grid-dot: #2a2e37;
+  --edge: #737a8c;
+  --node-bg: #20232b;
+  --node-border: #444a57;
+  --node-text: #e7e9ef;
+
+  --c-default-bg: #20232b;   --c-default-bd: #4a505d; --c-default-tx: #e7e9ef;
+  --c-slate-bg: #262b34;     --c-slate-bd: #6b7587;   --c-slate-tx: #dfe3ea;
+  --c-blue-bg: #18263b;      --c-blue-bd: #4c7fc4;    --c-blue-tx: #cfe2ff;
+  --c-teal-bg: #142b2a;      --c-teal-bd: #3f9b92;    --c-teal-tx: #c6f0eb;
+  --c-green-bg: #172a19;     --c-green-bd: #4f9d56;   --c-green-tx: #cdeccf;
+  --c-amber-bg: #2d2513;     --c-amber-bd: #b88b2b;   --c-amber-tx: #f5e3b5;
+  --c-orange-bg: #2f2015;    --c-orange-bd: #c0713a;  --c-orange-tx: #f8d6be;
+  --c-red-bg: #311a1d;       --c-red-bd: #b9545d;     --c-red-tx: #f8cdd1;
+  --c-pink-bg: #2f1a26;      --c-pink-bd: #b45c8b;    --c-pink-tx: #f6cfe3;
+  --c-violet-bg: #231d38;    --c-violet-bd: #7b66c4;  --c-violet-tx: #ddd3ff;
+
+  color-scheme: dark;
+}
+

@@ -1,0 +1,402 @@
+/* ==========================================================================
+   Estilos do Canvas e Nós do React Flow
+   ========================================================================== */
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--bg-canvas);
+  overflow: hidden;
+}
+
+.react-flow {
+  background: var(--bg-canvas) !important;
+}
+
+/* React flow controls and attribution styling */
+.react-flow__attribution {
+  display: none !important;
+}
+
+/* Custom Node Styles */
+.concept-node {
+  position: relative;
+  padding: 12px 22px;
+  background: var(--node-bg);
+  border: 1.5px solid var(--node-border);
+  border-radius: var(--radius-md);
+  color: var(--node-text);
+  box-shadow: var(--shadow-sm);
+  cursor: grab;
+  user-select: none;
+  min-width: 150px;
+  max-width: 360px;
+  text-align: center;
+  transition: box-shadow var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast);
+}
+
+.concept-node:active {
+  cursor: grabbing;
+}
+
+.concept-node.selected {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2.5px var(--accent-soft-2), var(--shadow-md) !important;
+}
+
+.concept-node.search-hit {
+  box-shadow: 0 0 0 3px var(--search-hit), var(--shadow-md) !important;
+}
+
+/* Shapes */
+.concept-node.shape-rounded {
+  border-radius: var(--radius-md);
+}
+
+.concept-node.shape-rectangle {
+  border-radius: 2px;
+}
+
+.concept-node.shape-pill {
+  border-radius: 9999px;
+  padding: 8px 22px;
+}
+
+.concept-node.shape-ellipse {
+  border-radius: 50%;
+  padding: 18px 22px;
+  text-align: center;
+}
+
+/* Font sizes */
+.concept-node.font-sm .node-title {
+  font-size: 15px;
+}
+.concept-node.font-md .node-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.concept-node.font-lg .node-title {
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+.concept-node.font-xl .node-title {
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+/* Color palettes */
+.concept-node.color-default {
+  background: var(--c-default-bg);
+  border-color: var(--c-default-bd);
+  color: var(--c-default-tx);
+}
+.concept-node.color-slate {
+  background: var(--c-slate-bg);
+  border-color: var(--c-slate-bd);
+  color: var(--c-slate-tx);
+}
+.concept-node.color-blue {
+  background: var(--c-blue-bg);
+  border-color: var(--c-blue-bd);
+  color: var(--c-blue-tx);
+}
+.concept-node.color-teal {
+  background: var(--c-teal-bg);
+  border-color: var(--c-teal-bd);
+  color: var(--c-teal-tx);
+}
+.concept-node.color-green {
+  background: var(--c-green-bg);
+  border-color: var(--c-green-bd);
+  color: var(--c-green-tx);
+}
+.concept-node.color-amber {
+  background: var(--c-amber-bg);
+  border-color: var(--c-amber-bd);
+  color: var(--c-amber-tx);
+}
+.concept-node.color-orange {
+  background: var(--c-orange-bg);
+  border-color: var(--c-orange-bd);
+  color: var(--c-orange-tx);
+}
+.concept-node.color-red {
+  background: var(--c-red-bg);
+  border-color: var(--c-red-bd);
+  color: var(--c-red-tx);
+}
+.concept-node.color-pink {
+  background: var(--c-pink-bg);
+  border-color: var(--c-pink-bd);
+  color: var(--c-pink-tx);
+}
+.concept-node.color-violet {
+  background: var(--c-violet-bg);
+  border-color: var(--c-violet-bd);
+  color: var(--c-violet-tx);
+}
+
+.node-content-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.node-title {
+  font-weight: 500;
+  line-height: 1.35;
+  word-break: break-word;
+  outline: none;
+}
+.node-title.is-bold {
+  font-weight: 700;
+}
+.node-title-placeholder {
+  color: var(--text-3);
+  font-style: italic;
+}
+
+.node-desc {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--text-2);
+  opacity: 0.85;
+  word-break: break-word;
+}
+
+/* Material badge & indicators */
+.node-badges {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 5;
+}
+
+.node-material-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 18px;
+  padding: 0 5px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  border: 1.5px solid var(--bg-surface);
+}
+
+/* Collapse/Expand button */
+.node-collapse-btn {
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-2);
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 6;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--dur-fast);
+}
+
+.node-collapse-btn:hover {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-color: var(--accent);
+  transform: translateX(-50%) scale(1.06);
+}
+
+.node-collapse-btn.is-collapsed {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+/* Connection Handles */
+.concept-node .react-flow__handle {
+  width: 9px;
+  height: 9px;
+  background: var(--bg-surface);
+  border: 2px solid var(--text-3);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity var(--dur-fast), transform var(--dur-fast), background var(--dur-fast), border-color var(--dur-fast);
+  z-index: 10;
+}
+
+.concept-node:hover .react-flow__handle,
+.concept-node.selected .react-flow__handle,
+.canvas-connecting .react-flow__handle {
+  opacity: 1;
+}
+
+.concept-node .react-flow__handle:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.3);
+}
+
+/* Custom Edge & Label */
+.concept-edge-label-container {
+  pointer-events: all;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.concept-edge-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-size: 14.5px;
+  font-weight: 550;
+  line-height: 1.35;
+  box-shadow: var(--shadow-sm);
+  max-width: 260px;
+  text-align: center;
+  word-break: break-word;
+  transition: all var(--dur-fast);
+}
+
+.concept-edge-label:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+  background: var(--bg-surface);
+}
+
+.concept-edge-label.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  box-shadow: 0 0 0 2px var(--accent-soft-2);
+}
+
+.concept-edge-label-input {
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+  font-size: 14.5px;
+  font-weight: 550;
+  background: var(--bg-surface);
+  color: var(--text);
+  outline: none;
+  min-width: 90px;
+  box-shadow: 0 0 0 2px var(--accent-soft-2);
+}
+
+/* Path styles */
+.react-flow__edge-path {
+  stroke-width: 1.8;
+  transition: stroke var(--dur-fast), stroke-width var(--dur-fast);
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--accent) !important;
+  stroke-width: 2.4 !important;
+}
+
+.edge-cross {
+  stroke-dasharray: 4 3;
+}
+
+/* Quick Add Node Handle */
+.quick-add-handle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
+  z-index: 8;
+  box-shadow: var(--shadow-sm);
+}
+.concept-node:hover .quick-add-handle {
+  opacity: 0.85;
+}
+.quick-add-handle:hover {
+  opacity: 1 !important;
+  transform: scale(1.15);
+}
+.quick-add-bottom {
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.quick-add-right {
+  right: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Canvas Empty State Overlay */
+.canvas-empty-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.canvas-empty-card {
+  pointer-events: all;
+  max-width: 400px;
+  padding: 32px 28px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.canvas-empty-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.canvas-empty-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
