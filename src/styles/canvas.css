@@ -20,6 +20,11 @@
 .canvas-container.tool-hand:active {
   cursor: grabbing;
 }
+.canvas-container.tool-pen,
+.canvas-container.tool-highlighter,
+.canvas-container.tool-eraser {
+  cursor: crosshair;
+}
 
 /* Retângulo da área de seleção (Marquee Selection) */
 .react-flow__selection {

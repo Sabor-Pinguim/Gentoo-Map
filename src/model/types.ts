@@ -152,6 +152,30 @@ export interface MapSettings {
   layoutDirection: LayoutDirection;
 }
 
+export const NODES_LAYER_ID = 'nodes-layer';
+
+export type DrawingToolType = 'pen' | 'highlighter';
+
+export interface DrawingLayer {
+  id: string;
+  name: string;
+  visible: boolean;
+  locked: boolean;
+  opacity: number;
+  createdAt: number;
+}
+
+export interface DrawingStroke {
+  id: string;
+  layerId: string;
+  tool: DrawingToolType;
+  color: string;
+  width: number;
+  opacity: number;
+  points: Point[];
+  createdAt: number;
+}
+
 export interface MapDoc {
   schemaVersion: number;
   id: string;
@@ -161,6 +185,9 @@ export interface MapDoc {
   concepts: Record<string, Concept>;
   links: Record<string, Link>;
   settings: MapSettings;
+  drawingLayers?: Record<string, DrawingLayer>;
+  layerOrder?: string[];
+  strokes?: Record<string, DrawingStroke>;
 }
 
 /** Resumo leve de um mapa usado na listagem. */

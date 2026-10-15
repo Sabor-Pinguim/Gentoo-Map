@@ -3,7 +3,7 @@ import { create } from 'zustand';
 /** Estado de interface (não faz parte do documento nem do histórico). */
 
 export type Theme = 'light' | 'dark' | 'system';
-export type Tool = 'select' | 'hand';
+export type Tool = 'select' | 'hand' | 'pen' | 'highlighter' | 'eraser';
 export type PanelTab = 'overview' | 'notes' | 'links' | 'images' | 'media' | 'files' | 'refs';
 export type DialogName = 'maps' | 'storage' | 'shortcuts' | 'export' | null;
 
@@ -55,6 +55,13 @@ export interface UIState extends Prefs {
   dialog: DialogName;
   busy: string | null;
 
+  // Estado de desenho
+  activeLayerId: string | null;
+  drawingColor: string;
+  penWidth: number;
+  highlighterWidth: number;
+  layersMenuOpen: boolean;
+
   set: (patch: Partial<UIState>) => void;
   setPref: <K extends keyof Prefs>(key: K, value: Prefs[K]) => void;
   openDialog: (d: DialogName) => void;
@@ -71,6 +78,12 @@ export const useUI = create<UIState>()((set, get) => ({
   searchQuery: '',
   dialog: null,
   busy: null,
+
+  activeLayerId: null,
+  drawingColor: '#ea580c',
+  penWidth: 3,
+  highlighterWidth: 22,
+  layersMenuOpen: false,
 
   set: (patch) => set(patch),
   setPref: (key, value) => {

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "map-rfid-nfc-apresentacao",
   "name": "RFID e NFC: Sistemas Wireless, Segurança e Aplicações",
-  "createdAt": 1792070406576,
-  "updatedAt": 1792070406576,
+  "createdAt": 1792086572044,
+  "updatedAt": 1792086572044,
   "concepts": {
     "c_wireless": {
       "id": "c_wireless",
@@ -60,8 +60,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_aplicacoes": {
       "id": "c_aplicacoes",
@@ -99,8 +99,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_rfid": {
       "id": "c_app_rfid",
@@ -138,8 +138,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_varejo": {
       "id": "c_app_varejo",
@@ -185,8 +185,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_transporte": {
       "id": "c_app_transporte",
@@ -226,8 +226,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_agro": {
       "id": "c_app_agro",
@@ -267,8 +267,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_industria": {
       "id": "c_app_industria",
@@ -308,8 +308,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_nfc": {
       "id": "c_app_nfc",
@@ -347,8 +347,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_pix": {
       "id": "c_app_pix",
@@ -400,8 +400,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_bilhetagem": {
       "id": "c_app_bilhetagem",
@@ -441,8 +441,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_app_acesso": {
       "id": "c_app_acesso",
@@ -482,8 +482,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_rfid": {
       "id": "c_rfid",
@@ -521,8 +521,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_rfid_freq": {
       "id": "c_rfid_freq",
@@ -568,8 +568,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_freq_lf": {
       "id": "c_freq_lf",
@@ -602,8 +602,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_freq_hf": {
       "id": "c_freq_hf",
@@ -636,8 +636,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_freq_uhf": {
       "id": "c_freq_uhf",
@@ -677,8 +677,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_rfid_comp": {
       "id": "c_rfid_comp",
@@ -727,8 +727,8 @@
           }
         ]
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc": {
       "id": "c_nfc",
@@ -774,8 +774,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_origem": {
       "id": "c_nfc_origem",
@@ -808,8 +808,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_funcionamento": {
       "id": "c_nfc_funcionamento",
@@ -842,8 +842,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_modos": {
       "id": "c_nfc_modos",
@@ -883,8 +883,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_limitacoes": {
       "id": "c_nfc_limitacoes",
@@ -917,8 +917,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_vs_qr": {
       "id": "c_nfc_vs_qr",
@@ -976,8 +976,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_seguranca": {
       "id": "c_seguranca",
@@ -1034,8 +1034,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_vuln_rfid": {
       "id": "c_vuln_rfid",
@@ -1073,8 +1073,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_mifare": {
       "id": "c_mifare",
@@ -1132,8 +1132,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_rfid_ameacas": {
       "id": "c_rfid_ameacas",
@@ -1173,8 +1173,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_rfid_defesas": {
       "id": "c_rfid_defesas",
@@ -1220,8 +1220,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_vuln_nfc": {
       "id": "c_vuln_nfc",
@@ -1259,8 +1259,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_mecanismos_seg": {
       "id": "c_nfc_mecanismos_seg",
@@ -1293,8 +1293,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_interceptacao": {
       "id": "c_nfc_interceptacao",
@@ -1334,8 +1334,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_clonagem": {
       "id": "c_nfc_clonagem",
@@ -1368,8 +1368,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_relay": {
       "id": "c_nfc_relay",
@@ -1421,8 +1421,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_nfc_falhas_so": {
       "id": "c_nfc_falhas_so",
@@ -1468,8 +1468,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_noticias": {
       "id": "c_noticias",
@@ -1507,8 +1507,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_ngate": {
       "id": "c_ngate",
@@ -1578,8 +1578,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_kaspersky": {
       "id": "c_kaspersky",
@@ -1619,8 +1619,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_regulacao": {
       "id": "c_regulacao",
@@ -1658,8 +1658,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_normas_iso": {
       "id": "c_normas_iso",
@@ -1705,8 +1705,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_entidades_ind": {
       "id": "c_entidades_ind",
@@ -1752,8 +1752,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     },
     "c_orgaos_espectro": {
       "id": "c_orgaos_espectro",
@@ -1811,8 +1811,8 @@
         "documents": [],
         "references": []
       },
-      "createdAt": 1792070406576,
-      "updatedAt": 1792070406576
+      "createdAt": 1792086572044,
+      "updatedAt": 1792086572044
     }
   },
   "links": {
@@ -1828,7 +1828,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_app_rfid": {
       "id": "l_app_rfid",
@@ -1842,7 +1842,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_varejo": {
       "id": "l_rfid_varejo",
@@ -1856,7 +1856,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_transp": {
       "id": "l_rfid_transp",
@@ -1870,7 +1870,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_agro": {
       "id": "l_rfid_agro",
@@ -1884,7 +1884,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_ind": {
       "id": "l_rfid_ind",
@@ -1898,7 +1898,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_app_nfc": {
       "id": "l_app_nfc",
@@ -1912,7 +1912,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_pix": {
       "id": "l_nfc_pix",
@@ -1926,7 +1926,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_bilh": {
       "id": "l_nfc_bilh",
@@ -1940,7 +1940,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_acesso": {
       "id": "l_nfc_acesso",
@@ -1954,7 +1954,7 @@
         "arrow": "end",
         "color": "green"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_w_rfid": {
       "id": "l_w_rfid",
@@ -1968,7 +1968,7 @@
         "arrow": "end",
         "color": "blue"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_freq": {
       "id": "l_rfid_freq",
@@ -1982,7 +1982,7 @@
         "arrow": "end",
         "color": "blue"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_freq_lf": {
       "id": "l_freq_lf",
@@ -1996,7 +1996,7 @@
         "arrow": "end",
         "color": "blue"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_freq_hf": {
       "id": "l_freq_hf",
@@ -2010,7 +2010,7 @@
         "arrow": "end",
         "color": "blue"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_freq_uhf": {
       "id": "l_freq_uhf",
@@ -2024,7 +2024,7 @@
         "arrow": "end",
         "color": "blue"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_comp": {
       "id": "l_rfid_comp",
@@ -2038,7 +2038,7 @@
         "arrow": "end",
         "color": "blue"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_nfc_cross": {
       "id": "l_rfid_nfc_cross",
@@ -2052,7 +2052,7 @@
         "arrow": "end",
         "color": "teal"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_origem": {
       "id": "l_nfc_origem",
@@ -2066,7 +2066,7 @@
         "arrow": "end",
         "color": "teal"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_func": {
       "id": "l_nfc_func",
@@ -2080,7 +2080,7 @@
         "arrow": "end",
         "color": "teal"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_modos": {
       "id": "l_nfc_modos",
@@ -2094,7 +2094,7 @@
         "arrow": "end",
         "color": "teal"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_limit": {
       "id": "l_nfc_limit",
@@ -2108,7 +2108,7 @@
         "arrow": "end",
         "color": "teal"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_qr": {
       "id": "l_nfc_qr",
@@ -2122,7 +2122,7 @@
         "arrow": "end",
         "color": "teal"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_w_sec": {
       "id": "l_w_sec",
@@ -2136,7 +2136,7 @@
         "arrow": "end",
         "color": "amber"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_sec_rfid": {
       "id": "l_sec_rfid",
@@ -2150,7 +2150,7 @@
         "arrow": "end",
         "color": "amber"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_mifare": {
       "id": "l_rfid_mifare",
@@ -2164,7 +2164,7 @@
         "arrow": "end",
         "color": "amber"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_mifare_nfc_cross": {
       "id": "l_mifare_nfc_cross",
@@ -2178,7 +2178,7 @@
         "arrow": "end",
         "color": "amber"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_ameacas": {
       "id": "l_rfid_ameacas",
@@ -2192,7 +2192,7 @@
         "arrow": "end",
         "color": "amber"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_rfid_defesas": {
       "id": "l_rfid_defesas",
@@ -2206,7 +2206,7 @@
         "arrow": "end",
         "color": "amber"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_sec_nfc": {
       "id": "l_sec_nfc",
@@ -2220,7 +2220,7 @@
         "arrow": "end",
         "color": "orange"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_mecanismos": {
       "id": "l_nfc_mecanismos",
@@ -2234,7 +2234,7 @@
         "arrow": "end",
         "color": "orange"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_intercep": {
       "id": "l_nfc_intercep",
@@ -2248,7 +2248,7 @@
         "arrow": "end",
         "color": "orange"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_clona": {
       "id": "l_nfc_clona",
@@ -2262,7 +2262,7 @@
         "arrow": "end",
         "color": "orange"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_relay": {
       "id": "l_nfc_relay",
@@ -2276,7 +2276,7 @@
         "arrow": "end",
         "color": "orange"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_nfc_so": {
       "id": "l_nfc_so",
@@ -2290,7 +2290,7 @@
         "arrow": "end",
         "color": "orange"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_sec_noticias": {
       "id": "l_sec_noticias",
@@ -2304,7 +2304,7 @@
         "arrow": "end",
         "color": "pink"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_not_ngate": {
       "id": "l_not_ngate",
@@ -2318,7 +2318,7 @@
         "arrow": "end",
         "color": "pink"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_not_kasp": {
       "id": "l_not_kasp",
@@ -2332,7 +2332,7 @@
         "arrow": "end",
         "color": "pink"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_w_reg": {
       "id": "l_w_reg",
@@ -2346,7 +2346,7 @@
         "arrow": "end",
         "color": "slate"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_reg_iso": {
       "id": "l_reg_iso",
@@ -2360,7 +2360,7 @@
         "arrow": "end",
         "color": "slate"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_reg_ind": {
       "id": "l_reg_ind",
@@ -2374,7 +2374,7 @@
         "arrow": "end",
         "color": "slate"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     },
     "l_reg_espectro": {
       "id": "l_reg_espectro",
@@ -2388,7 +2388,7 @@
         "arrow": "end",
         "color": "slate"
       },
-      "createdAt": 1792070406576
+      "createdAt": 1792086572044
     }
   },
   "settings": {

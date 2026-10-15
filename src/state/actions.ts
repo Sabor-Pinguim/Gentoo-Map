@@ -3,7 +3,16 @@ import { getFlow, prefersReducedMotion, viewportCenter } from '../canvas/flowApi
 import { createConcept } from '../model/factory';
 import { descendantsOf, getHierarchy, getVisibility } from '../model/hierarchy';
 import * as ops from '../model/ops';
-import type { Concept, ConceptStyle, LinkKind, LinkStyle, MapDoc, Point } from '../model/types';
+import type {
+  Concept,
+  ConceptStyle,
+  DrawingLayer,
+  DrawingStroke,
+  LinkKind,
+  LinkStyle,
+  MapDoc,
+  Point,
+} from '../model/types';
 import { branchSet, computeHierarchicalLayout, DEFAULT_NODE_SIZE, type Size } from '../layout/hierarchicalLayout';
 import { editor } from './editorStore';
 import { ui } from './uiStore';
@@ -484,4 +493,56 @@ export function registerConfirmHandler(h: ConfirmHandler) {
 
 export function confirmAction(o: ConfirmOptions) {
   return confirmHandler(o);
+}
+
+/* ------------------------------------------------------------------ */
+/* Ações de Desenho Livre e Camadas                                   */
+/* ------------------------------------------------------------------ */
+
+export function addDrawingStroke(stroke: DrawingStroke) {
+  editor().apply(
+    stroke.tool === 'highlighter' ? 'Destacar' : 'Desenhar',
+    (d) => ops.addStroke(d, stroke)
+  );
+}
+
+export function deleteDrawingStrokes(strokeIds: string[]) {
+  if (!strokeIds.length) return;
+  editor().apply('Apagar traço', (d) => ops.deleteStrokes(d, strokeIds));
+}
+
+export function createDrawingLayer(name?: string) {
+  let created: DrawingLayer | null = null;
+  editor().apply('Nova camada', (d) => {
+    created = ops.addDrawingLayer(d, name);
+  });
+  if (created) {
+    ui().set({ activeLayerId: (created as DrawingLayer).id });
+    toast.success(`Camada "${(created as DrawingLayer).name}" criada!`);
+  }
+}
+
+export function updateDrawingLayer(id: string, patch: Partial<DrawingLayer>) {
+  editor().apply('Atualizar camada', (d) => ops.updateDrawingLayer(d, id, patch));
+}
+
+export function removeDrawingLayer(id: string) {
+  const d = doc();
+  if (!d?.drawingLayers?.[id]) return;
+  const name = d.drawingLayers[id].name;
+  editor().apply('Excluir camada', (draft) => ops.deleteDrawingLayer(draft, id));
+  const remaining = Object.keys(doc()?.drawingLayers ?? {});
+  if (ui().activeLayerId === id && remaining.length > 0) {
+    ui().set({ activeLayerId: remaining[0] });
+  }
+  toast(`Camada "${name}" excluída.`);
+}
+
+export function reorderDrawingLayers(newOrder: string[]) {
+  editor().apply('Reordenar camadas', (d) => ops.reorderLayers(d, newOrder));
+}
+
+export function clearDrawingLayer(id: string) {
+  editor().apply('Limpar camada', (d) => ops.clearLayerStrokes(d, id));
+  toast('Traços da camada removidos.');
 }

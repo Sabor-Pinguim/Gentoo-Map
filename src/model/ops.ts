@@ -1,6 +1,15 @@
 import { createConcept, createLink, newId } from './factory';
 import { ancestorsOf, canBeHierarchy, descendantsOf, getHierarchy, getVisibility } from './hierarchy';
-import type { Concept, Link, LinkKind, MapDoc, Point } from './types';
+import {
+  type Concept,
+  type DrawingLayer,
+  type DrawingStroke,
+  type Link,
+  type LinkKind,
+  type MapDoc,
+  type Point,
+  NODES_LAYER_ID,
+} from './types';
 
 /**
  * Operações puras sobre o documento. Recebem um rascunho (immer draft) e o modificam.
@@ -274,4 +283,130 @@ export function repairIntegrity(doc: MapDoc) {
   for (const l of hier) {
     if (canBeHierarchy(doc, l.source, l.target).ok) l.kind = 'hierarchy';
   }
+}
+
+/** Garante que o documento tenha drawingLayers, layerOrder e strokes inicializados. */
+export function ensureDrawingDoc(doc: MapDoc): {
+  layers: Record<string, DrawingLayer>;
+  order: string[];
+  strokes: Record<string, DrawingStroke>;
+} {
+  if (!doc.drawingLayers || Object.keys(doc.drawingLayers).length === 0) {
+    const defaultLayer: DrawingLayer = {
+      id: 'default-layer-1',
+      name: 'Anotações',
+      visible: true,
+      locked: false,
+      opacity: 1,
+      createdAt: Date.now(),
+    };
+    doc.drawingLayers = { [defaultLayer.id]: defaultLayer };
+  }
+  if (!doc.layerOrder || doc.layerOrder.length === 0) {
+    // Por padrão, 'default-layer-1' fica acima de 'nodes-layer'
+    doc.layerOrder = [NODES_LAYER_ID, Object.keys(doc.drawingLayers)[0]];
+  } else if (!doc.layerOrder.includes(NODES_LAYER_ID)) {
+    doc.layerOrder.unshift(NODES_LAYER_ID);
+  }
+  if (!doc.strokes) {
+    doc.strokes = {};
+  }
+  return {
+    layers: doc.drawingLayers,
+    order: doc.layerOrder,
+    strokes: doc.strokes,
+  };
+}
+
+export function addStroke(doc: MapDoc, stroke: DrawingStroke) {
+  const d = ensureDrawingDoc(doc);
+  d.strokes[stroke.id] = stroke;
+  touch(doc);
+}
+
+export function deleteStroke(doc: MapDoc, strokeId: string) {
+  const d = ensureDrawingDoc(doc);
+  if (d.strokes[strokeId]) {
+    delete d.strokes[strokeId];
+    touch(doc);
+  }
+}
+
+export function deleteStrokes(doc: MapDoc, strokeIds: string[]) {
+  const d = ensureDrawingDoc(doc);
+  let changed = false;
+  for (const id of strokeIds) {
+    if (d.strokes[id]) {
+      delete d.strokes[id];
+      changed = true;
+    }
+  }
+  if (changed) touch(doc);
+}
+
+export function addDrawingLayer(doc: MapDoc, name?: string): DrawingLayer {
+  const d = ensureDrawingDoc(doc);
+  const layerNum = Object.keys(d.layers).length + 1;
+  const layer: DrawingLayer = {
+    id: newId('layer'),
+    name: name?.trim() || `Camada ${layerNum}`,
+    visible: true,
+    locked: false,
+    opacity: 1,
+    createdAt: Date.now(),
+  };
+  d.layers[layer.id] = layer;
+  // Insere no topo da pilha (final de layerOrder)
+  d.order.push(layer.id);
+  touch(doc);
+  return layer;
+}
+
+export function updateDrawingLayer(doc: MapDoc, layerId: string, patch: Partial<DrawingLayer>) {
+  const d = ensureDrawingDoc(doc);
+  const layer = d.layers[layerId];
+  if (!layer) return;
+  Object.assign(layer, patch);
+  touch(doc);
+}
+
+export function deleteDrawingLayer(doc: MapDoc, layerId: string) {
+  const d = ensureDrawingDoc(doc);
+  const drawingLayerCount = Object.keys(d.layers).length;
+  // Preserva pelo menos 1 camada de desenho
+  if (drawingLayerCount <= 1) return;
+
+  delete d.layers[layerId];
+  doc.layerOrder = (doc.layerOrder ?? []).filter((id) => id !== layerId);
+
+  // Remove também todos os traços associados a essa camada
+  for (const [sId, stroke] of Object.entries(d.strokes)) {
+    if (stroke.layerId === layerId) {
+      delete d.strokes[sId];
+    }
+  }
+  touch(doc);
+}
+
+export function reorderLayers(doc: MapDoc, newOrder: string[]) {
+  const d = ensureDrawingDoc(doc);
+  const currentSet = new Set(d.order);
+  const validNew = newOrder.filter((id) => currentSet.has(id));
+  for (const id of d.order) {
+    if (!validNew.includes(id)) validNew.push(id);
+  }
+  doc.layerOrder = validNew;
+  touch(doc);
+}
+
+export function clearLayerStrokes(doc: MapDoc, layerId: string) {
+  const d = ensureDrawingDoc(doc);
+  let changed = false;
+  for (const [sId, stroke] of Object.entries(d.strokes)) {
+    if (stroke.layerId === layerId) {
+      delete d.strokes[sId];
+      changed = true;
+    }
+  }
+  if (changed) touch(doc);
 }

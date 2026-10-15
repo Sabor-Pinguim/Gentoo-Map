@@ -10,6 +10,8 @@ import { validateFile } from '../src/utils/files';
 import { normalizeUrl, detectEmbed, sanitizeNotesHtml } from '../src/utils/url';
 import { resetDBConnection } from '../src/persistence/db';
 import { createRfidPresentationMap } from '../src/model/rfidPresentationMap';
+import { NODES_LAYER_ID, type DrawingStroke } from '../src/model/types';
+import { pointsToSvgPath, isStrokeHit } from '../src/canvas/drawingUtils';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -381,6 +383,132 @@ describe('7. Mapa da Apresentação: RFID e NFC (Estrutura do PDF)', () => {
     expect(readBack.length).toBeGreaterThan(5000);
   });
 });
+
+describe('8. Sistema de Camadas de Desenho Livre e Subcamadas Vetoriais', () => {
+  it('inicializa documento com estrutura de desenho padrão e camada de nós', () => {
+    const doc = createMap('Mapa Desenho');
+    const drawing = ops.ensureDrawingDoc(doc);
+
+    expect(drawing.order).toContain(NODES_LAYER_ID);
+    expect(drawing.order).toContain('default-layer-1');
+    expect(drawing.layers['default-layer-1']).toBeDefined();
+    expect(drawing.layers['default-layer-1'].name).toBe('Anotações');
+    expect(drawing.layers['default-layer-1'].visible).toBe(true);
+    expect(drawing.layers['default-layer-1'].locked).toBe(false);
+  });
+
+  it('permite criar novas camadas e posicioná-las no topo da pilha', () => {
+    const doc = createMap('Mapa Camadas');
+    const layer1 = ops.addDrawingLayer(doc, 'Esboço');
+    const layer2 = ops.addDrawingLayer(doc, 'Destaques');
+
+    expect(doc.drawingLayers![layer1.id]).toBeDefined();
+    expect(doc.drawingLayers![layer1.id].name).toBe('Esboço');
+    expect(doc.drawingLayers![layer2.id].name).toBe('Destaques');
+
+    // A última criada vai para o final de layerOrder (topo visual)
+    expect(doc.layerOrder![doc.layerOrder!.length - 1]).toBe(layer2.id);
+  });
+
+  it('permite reordenar a camada de nós para cima ou para baixo das camadas de desenho', () => {
+    const doc = createMap('Mapa Reordenação');
+    const layerA = ops.addDrawingLayer(doc, 'Fundo');
+    const layerB = ops.addDrawingLayer(doc, 'Sobreposição');
+
+    // Ordem atual: NODES_LAYER_ID, default, layerA, layerB
+    // Mover camada de nós para o meio (entre layerA e layerB)
+    const customOrder = [layerA.id, NODES_LAYER_ID, layerB.id, 'default-layer-1'];
+    ops.reorderLayers(doc, customOrder);
+
+    expect(doc.layerOrder).toEqual(customOrder);
+    expect(doc.layerOrder!.indexOf(layerA.id)).toBeLessThan(doc.layerOrder!.indexOf(NODES_LAYER_ID));
+    expect(doc.layerOrder!.indexOf(layerB.id)).toBeGreaterThan(doc.layerOrder!.indexOf(NODES_LAYER_ID));
+  });
+
+  it('adiciona e apaga traços vetoriais associados a uma camada', () => {
+    const doc = createMap('Mapa Traços');
+    const layer = ops.addDrawingLayer(doc, 'Camada Caneta');
+
+    const stroke1: DrawingStroke = {
+      id: 'stroke-1',
+      layerId: layer.id,
+      tool: 'pen',
+      color: '#ea580c',
+      width: 4,
+      opacity: 1,
+      points: [{ x: 10, y: 10 }, { x: 20, y: 20 }, { x: 30, y: 30 }],
+      createdAt: 1000,
+    };
+
+    ops.addStroke(doc, stroke1);
+    expect(doc.strokes!['stroke-1']).toBeDefined();
+    expect(doc.strokes!['stroke-1'].color).toBe('#ea580c');
+
+    ops.deleteStroke(doc, 'stroke-1');
+    expect(doc.strokes!['stroke-1']).toBeUndefined();
+  });
+
+  it('ao excluir uma camada, seus traços são removidos automaticamente', () => {
+    const doc = createMap('Mapa Exclusão');
+    const layer = ops.addDrawingLayer(doc, 'Camada Temporária');
+
+    ops.addStroke(doc, {
+      id: 'stroke-temp-1',
+      layerId: layer.id,
+      tool: 'highlighter',
+      color: '#f59e0b',
+      width: 22,
+      opacity: 0.38,
+      points: [{ x: 0, y: 0 }, { x: 50, y: 50 }],
+      createdAt: 1000,
+    });
+
+    expect(doc.strokes!['stroke-temp-1']).toBeDefined();
+
+    ops.deleteDrawingLayer(doc, layer.id);
+
+    expect(doc.drawingLayers![layer.id]).toBeUndefined();
+    expect(doc.strokes!['stroke-temp-1']).toBeUndefined();
+    expect(doc.layerOrder).not.toContain(layer.id);
+  });
+
+  it('converte pontos em SVG path suavizado e testa detecção de colisão para borracha', () => {
+    // 0 pontos
+    expect(pointsToSvgPath([])).toBe('');
+
+    // 1 ponto
+    const single = pointsToSvgPath([{ x: 10, y: 10 }]);
+    expect(single).toContain('M 10 10 L 10.1 10.1');
+
+    // Múltiplos pontos geram curvas bezier quadráticas (Q)
+    const curve = pointsToSvgPath([
+      { x: 0, y: 0 },
+      { x: 10, y: 20 },
+      { x: 30, y: 40 },
+    ]);
+    expect(curve).toContain('M 0 0');
+    expect(curve).toContain('Q');
+
+    // Teste de colisão do traço para a ferramenta borracha
+    const testStroke: DrawingStroke = {
+      id: 's-hit',
+      layerId: 'layer-1',
+      tool: 'pen',
+      color: '#000',
+      width: 4,
+      opacity: 1,
+      points: [{ x: 0, y: 0 }, { x: 100, y: 0 }],
+      createdAt: 0,
+    };
+
+    // Ponto próximo à linha (y = 5, dentro do raio de tolerância 15)
+    expect(isStrokeHit(testStroke, { x: 50, y: 5 }, 15)).toBe(true);
+
+    // Ponto distante da linha (y = 50, fora da tolerância de 15)
+    expect(isStrokeHit(testStroke, { x: 50, y: 50 }, 15)).toBe(false);
+  });
+});
+
 
 
 

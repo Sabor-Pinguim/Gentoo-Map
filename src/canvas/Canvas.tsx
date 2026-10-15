@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Plus, Sparkles } from 'lucide-react';
 import {
   ReactFlow,
@@ -19,6 +19,9 @@ import { ConceptNode } from './ConceptNode';
 import { ConceptEdge } from './ConceptEdge';
 import { CanvasContextMenu } from './CanvasContextMenu';
 import { setFlowInstance } from './flowApi';
+import { DrawingLayersView } from './DrawingLayersView';
+import { DrawingInteractionOverlay } from './DrawingInteractionOverlay';
+import type { DrawingStroke } from '../model/types';
 import {
   addConceptAt,
   addChild,
@@ -48,6 +51,10 @@ export function Canvas() {
   const showMinimap = useUI((s) => s.showMinimap);
   const connectMode = useUI((s) => s.connectMode);
   const tool = useUI((s) => s.tool);
+
+  // Estados de desenho livre sincronizados com o canvas
+  const [draftStroke, setDraftStroke] = useState<DrawingStroke | null>(null);
+  const [flowInstance, setFlowInstanceLocal] = useState<ReactFlowInstance | null>(null);
 
   // Monitora se teclas de seleção múltipla (Ctrl / Cmd / Shift) estão pressionadas
   const isMultiKeyRef = useRef(false);
@@ -236,9 +243,12 @@ export function Canvas() {
     [connectMode]
   );
 
-  // Duplo clique no canvas cria um novo conceito naquele ponto
+  // Duplo clique no canvas cria um novo conceito naquele ponto (exceto com ferramentas de desenho ativas)
   const onDoubleClick = useCallback(
     (e: React.MouseEvent) => {
+      if (tool === 'pen' || tool === 'highlighter' || tool === 'eraser') {
+        return;
+      }
       const target = e.target as HTMLElement;
       if (target.closest('.react-flow__node') || target.closest('.concept-edge-label-container')) {
         return;
@@ -255,7 +265,7 @@ export function Canvas() {
         addConceptAt();
       }
     },
-    []
+    [tool]
   );
 
   // Inicialização do React Flow
@@ -263,6 +273,7 @@ export function Canvas() {
     (inst: ReactFlowInstance) => {
       (window as unknown as { __flowInstance?: ReactFlowInstance }).__flowInstance = inst;
       setFlowInstance(inst, containerRef.current);
+      setFlowInstanceLocal(inst);
 
       if (doc) {
         const savedVp = loadViewport(doc.id);
@@ -358,6 +369,12 @@ export function Canvas() {
         useUI.getState().set({ tool: 'select' });
       } else if (!mod && e.key.toLowerCase() === 'h') {
         useUI.getState().set({ tool: 'hand' });
+      } else if (!mod && e.key.toLowerCase() === 'p') {
+        useUI.getState().set({ tool: 'pen' });
+      } else if (!mod && e.key.toLowerCase() === 'm') {
+        useUI.getState().set({ tool: 'highlighter' });
+      } else if (!mod && e.key.toLowerCase() === 'e') {
+        useUI.getState().set({ tool: 'eraser' });
       }
     };
 
@@ -401,6 +418,9 @@ export function Canvas() {
             deleteKeyCode={null}
           >
             <Background gap={24} size={1.2} color="var(--grid-dot)" />
+            {/* Visualização vetorial das camadas de desenho (Underlay e Overlay) */}
+            <DrawingLayersView draftStroke={draftStroke} />
+
             {showMinimap && (
               <MiniMap
                 position="bottom-left"
@@ -416,6 +436,13 @@ export function Canvas() {
               />
             )}
           </ReactFlow>
+
+          {/* Camada interativa de desenho livre (Caneta, Marca-texto, Borracha) */}
+          <DrawingInteractionOverlay
+            containerRef={containerRef}
+            flowInstance={flowInstance}
+            onDraftChange={setDraftStroke}
+          />
 
           {nodes.length === 0 && (
             <div className="canvas-empty-overlay">

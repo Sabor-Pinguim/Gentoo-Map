@@ -23,6 +23,9 @@ import {
   ChevronDown,
   MousePointer,
   Hand,
+  Pen,
+  Highlighter,
+  Eraser,
 } from 'lucide-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useEditor } from '../state/editorStore';
@@ -39,6 +42,7 @@ import {
 import { renameMap, retrySave } from '../state/session';
 import { IconButton, Tooltip } from './ui';
 import { GentooLogo } from './GentooLogo';
+import { LayersPopover } from './LayersPopover';
 
 export function Topbar() {
   const doc = useEditor((s) => s.doc);
@@ -52,6 +56,7 @@ export function Topbar() {
   const theme = useUI((s) => s.theme);
   const connectMode = useUI((s) => s.connectMode);
   const tool = useUI((s) => s.tool);
+  const drawingColor = useUI((s) => s.drawingColor);
   const setUI = useUI((s) => s.set);
   const setPref = useUI((s) => s.setPref);
   const openDialog = useUI((s) => s.openDialog);
@@ -182,7 +187,7 @@ export function Topbar() {
         </div>
       </div>
 
-      {/* Centro: Ferramentas de Seleção e Edição */}
+      {/* Centro: Ferramentas de Seleção, Desenho Livre e Edição */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
         <div
           style={{
@@ -193,7 +198,7 @@ export function Topbar() {
             borderRadius: 'var(--radius-sm)',
             padding: 2,
             gap: 2,
-            marginRight: 4,
+            marginRight: 2,
           }}
         >
           <IconButton
@@ -212,7 +217,71 @@ export function Topbar() {
           >
             <Hand size={15} />
           </IconButton>
+
+          <div className="divider-v" style={{ height: 16, margin: '0 2px' }} />
+
+          <IconButton
+            label="Caneta (Desenho livre vetorial no mapa)"
+            shortcut="P"
+            active={tool === 'pen'}
+            onClick={() => setUI({ tool: 'pen' })}
+          >
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <Pen size={15} />
+              {tool === 'pen' && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    bottom: -3,
+                    right: -3,
+                    width: 6,
+                    height: 6,
+                    borderRadius: '50%',
+                    backgroundColor: drawingColor,
+                    border: '1px solid var(--bg-surface)',
+                  }}
+                />
+              )}
+            </div>
+          </IconButton>
+
+          <IconButton
+            label="Marca-texto (Traço translúcido de destaque)"
+            shortcut="M"
+            active={tool === 'highlighter'}
+            onClick={() => setUI({ tool: 'highlighter' })}
+          >
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <Highlighter size={15} />
+              {tool === 'highlighter' && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    bottom: -3,
+                    right: -3,
+                    width: 6,
+                    height: 6,
+                    borderRadius: '50%',
+                    backgroundColor: drawingColor,
+                    border: '1px solid var(--bg-surface)',
+                  }}
+                />
+              )}
+            </div>
+          </IconButton>
+
+          <IconButton
+            label="Borracha (Apaga traços inteiros ao clicar ou arrastar por cima)"
+            shortcut="E"
+            active={tool === 'eraser'}
+            onClick={() => setUI({ tool: 'eraser' })}
+          >
+            <Eraser size={15} />
+          </IconButton>
         </div>
+
+        {/* Gerenciador Expansível de Camadas e Subcamadas */}
+        <LayersPopover />
 
         <div className="divider-v" />
 

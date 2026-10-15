@@ -21,6 +21,7 @@ const SHORTCUT_GROUPS = [
     category: 'Hierarquia e Navegação',
     shortcuts: [
       { key: 'V / H', desc: 'Alternar ferramentas: Seleção (V) / Mão Pan (H)' },
+      { key: 'P / M / E', desc: 'Desenho: Caneta (P) / Marca-texto (M) / Borracha (E)' },
       { key: 'Espaço + Arrastar', desc: 'Mover a tela mantendo a seleção ativa' },
       { key: 'Espaço', desc: 'Recolher ou expandir ramo do conceito selecionado' },
       { key: 'Setas direcionais', desc: 'Navegar para o conceito mais próximo' },
