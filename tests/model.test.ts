@@ -507,6 +507,104 @@ describe('8. Sistema de Camadas de Desenho Livre e Subcamadas Vetoriais', () => 
     // Ponto distante da linha (y = 50, fora da tolerância de 15)
     expect(isStrokeHit(testStroke, { x: 50, y: 50 }, 15)).toBe(false);
   });
+
+  it('preserva camadas e traços de desenho ao persistir e recarregar do IndexedDB', async () => {
+    const doc = createMap('Mapa Desenho Persistente');
+    const layer = ops.addDrawingLayer(doc, 'Camada Caneta Persistente');
+    const stroke: DrawingStroke = {
+      id: 'stroke-persisted-1',
+      layerId: layer.id,
+      tool: 'pen',
+      color: '#10b981',
+      width: 5,
+      opacity: 1,
+      points: [{ x: 15, y: 25 }, { x: 45, y: 85 }],
+      createdAt: 5000,
+    };
+    ops.addStroke(doc, stroke);
+
+    await saveMap(doc);
+    const loaded = await loadMap(doc.id);
+
+    expect(loaded).toBeDefined();
+    expect(loaded?.drawings).toBeDefined();
+    expect(loaded?.drawings?.layers[layer.id]).toBeDefined();
+    expect(loaded?.drawings?.layers[layer.id].name).toBe('Camada Caneta Persistente');
+    expect(loaded?.drawings?.strokes['stroke-persisted-1']).toBeDefined();
+    expect(loaded?.drawings?.strokes['stroke-persisted-1'].points).toEqual([
+      { x: 15, y: 25 },
+      { x: 45, y: 85 },
+    ]);
+  });
+
+  it('garante retrocompatibilidade total com versões anteriores de JSON sem campo drawings', () => {
+    // Simula um JSON de versão anterior sem a seção drawings
+    const legacyDoc = {
+      schemaVersion: 1,
+      id: 'legacy-map-1',
+      name: 'Mapa de Versão Anterior',
+      createdAt: 1000,
+      updatedAt: 1000,
+      concepts: {},
+      links: {},
+      settings: { layoutDirection: 'TB' },
+    };
+
+    const res = parseMapDoc(legacyDoc);
+    expect(res.ok).toBe(true);
+    if (!res.ok) throw new Error(res.errors.join('; '));
+
+    // Deve inicializar transparentemente a seção drawings com estrutura padrão sem corromper
+    expect(res.doc.drawings).toBeDefined();
+    expect(res.doc.drawings?.layers['default-layer-1']).toBeDefined();
+    expect(res.doc.drawings?.layerOrder).toContain(NODES_LAYER_ID);
+    expect(res.doc.drawings?.strokes).toEqual({});
+  });
+
+  it('migra documentos com drawingLayers legados na raiz para a estrutura drawings unificada', () => {
+    const transitionalDoc = {
+      schemaVersion: 1,
+      id: 'transitional-map-1',
+      name: 'Mapa de Transição',
+      createdAt: 2000,
+      updatedAt: 2000,
+      concepts: {},
+      links: {},
+      settings: { layoutDirection: 'TB' },
+      drawingLayers: {
+        'custom-1': {
+          id: 'custom-1',
+          name: 'Camada Legada',
+          visible: true,
+          locked: false,
+          opacity: 0.8,
+          createdAt: 2000,
+        },
+      },
+      layerOrder: ['custom-1', NODES_LAYER_ID],
+      strokes: {
+        'str-1': {
+          id: 'str-1',
+          layerId: 'custom-1',
+          tool: 'pen',
+          color: '#3b82f6',
+          width: 3,
+          opacity: 1,
+          points: [{ x: 5, y: 5 }],
+          createdAt: 2000,
+        },
+      },
+    };
+
+    const res = parseMapDoc(transitionalDoc);
+    expect(res.ok).toBe(true);
+    if (!res.ok) throw new Error(res.errors.join('; '));
+
+    expect(res.doc.drawings).toBeDefined();
+    expect(res.doc.drawings?.layers['custom-1']).toBeDefined();
+    expect(res.doc.drawings?.layers['custom-1'].name).toBe('Camada Legada');
+    expect(res.doc.drawings?.strokes['str-1']).toBeDefined();
+  });
 });
 
 

@@ -22,7 +22,8 @@ export function DrawingLayersView({ draftStroke }: DrawingLayersViewProps) {
       return { underlayLayers: [], overlayLayers: [], strokesByLayer: {} };
     }
 
-    const layers = doc.drawingLayers ?? {
+    const drawings = doc.drawings;
+    const layers = drawings?.layers ?? doc.drawingLayers ?? {
       'default-layer-1': {
         id: 'default-layer-1',
         name: 'Anotações',
@@ -33,8 +34,8 @@ export function DrawingLayersView({ draftStroke }: DrawingLayersViewProps) {
       },
     };
 
-    const order = doc.layerOrder ?? [NODES_LAYER_ID, 'default-layer-1'];
-    const strokes = doc.strokes ?? {};
+    const order = drawings?.layerOrder ?? doc.layerOrder ?? [NODES_LAYER_ID, 'default-layer-1'];
+    const strokes = drawings?.strokes ?? doc.strokes ?? {};
 
     // Agrupa os traços por camada
     const byLayer: Record<string, DrawingStroke[]> = {};

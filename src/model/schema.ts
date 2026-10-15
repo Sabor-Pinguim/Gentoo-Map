@@ -98,6 +98,32 @@ export const linkSchema = z.object({
   createdAt: z.number().catch(0),
 });
 
+export const drawingLayerSchema = z.object({
+  id,
+  name: str(500).default('Camada'),
+  visible: z.boolean().catch(true),
+  locked: z.boolean().catch(false),
+  opacity: z.number().min(0).max(1).catch(1),
+  createdAt: z.number().catch(() => Date.now()),
+});
+
+export const drawingStrokeSchema = z.object({
+  id,
+  layerId: id,
+  tool: z.enum(['pen', 'highlighter']).catch('pen'),
+  color: z.string().max(100).catch('#3b82f6'),
+  width: z.number().positive().max(100).catch(3),
+  opacity: z.number().min(0).max(1).catch(1),
+  points: z.array(z.object({ x: finite, y: finite })).catch([]),
+  createdAt: z.number().catch(() => Date.now()),
+});
+
+export const drawingsSchema = z.object({
+  layers: z.record(z.string(), drawingLayerSchema).catch({}),
+  layerOrder: z.array(z.string()).catch([]),
+  strokes: z.record(z.string(), drawingStrokeSchema).catch({}),
+});
+
 export const mapDocSchema = z.object({
   schemaVersion: z.number().int().positive(),
   id,
@@ -109,15 +135,28 @@ export const mapDocSchema = z.object({
   settings: z
     .object({ layoutDirection: z.enum(['TB', 'LR']).catch('TB') })
     .default({ layoutDirection: 'TB' }),
+  drawings: drawingsSchema.optional(),
+  // Campos legados mantidos para tolerar e migrar documentos antigos
+  drawingLayers: z.record(z.string(), drawingLayerSchema).optional(),
+  layerOrder: z.array(z.string()).optional(),
+  strokes: z.record(z.string(), drawingStrokeSchema).optional(),
 });
 
-/** Migra documentos de versões anteriores para o esquema atual. */
+/** Migra documentos de versões anteriores para o esquema atual garantindo retrocompatibilidade total. */
 export function migrate(raw: unknown): unknown {
   if (!raw || typeof raw !== 'object') return raw;
-  const doc = raw as { schemaVersion?: number };
-  if (typeof doc.schemaVersion !== 'number') return raw;
-  // Versão 1 é a atual. Futuras migrações devem ser encadeadas aqui:
-  // if (doc.schemaVersion === 1) { ...; doc.schemaVersion = 2; }
+  const doc = raw as Record<string, unknown>;
+
+  // Retrocompatibilidade: se o arquivo tem drawingLayers na raiz mas não tem o bloco 'drawings',
+  // empacota automaticamente na nova estrutura 'drawings'
+  if (!doc.drawings && (doc.drawingLayers || doc.layerOrder || doc.strokes)) {
+    doc.drawings = {
+      layers: doc.drawingLayers ?? {},
+      layerOrder: doc.layerOrder ?? [],
+      strokes: doc.strokes ?? {},
+    };
+  }
+
   return doc;
 }
 
@@ -144,6 +183,43 @@ export function parseMapDoc(raw: unknown): ParseResult {
   // Garante consistência entre chaves e ids.
   for (const [k, c] of Object.entries(doc.concepts)) if (c.id !== k) return { ok: false, errors: [`Conceito com id inconsistente: ${k}`] };
   for (const [k, l] of Object.entries(doc.links)) if (l.id !== k) return { ok: false, errors: [`Conexão com id inconsistente: ${k}`] };
+
+  // Se drawings não existia no JSON (ex.: mapas criados em versões anteriores da aplicação),
+  // inicializa com estrutura padrão válida garantindo retrocompatibilidade transparente!
+  if (!doc.drawings || !doc.drawings.layers || Object.keys(doc.drawings.layers).length === 0) {
+    const bgLayer = {
+      id: 'bg-layer-1',
+      name: 'Fundo',
+      visible: true,
+      locked: false,
+      opacity: 1,
+      createdAt: Date.now() - 1000,
+    };
+    const defaultLayer = {
+      id: 'default-layer-1',
+      name: 'Anotações',
+      visible: true,
+      locked: false,
+      opacity: 1,
+      createdAt: Date.now(),
+    };
+    doc.drawings = {
+      layers: {
+        [bgLayer.id]: bgLayer,
+        [defaultLayer.id]: defaultLayer,
+      },
+      layerOrder: ['bg-layer-1', 'nodes-layer', 'default-layer-1'],
+      strokes: doc.drawings?.strokes ?? {},
+    };
+  } else if (!doc.drawings.layerOrder.includes('nodes-layer')) {
+    doc.drawings.layerOrder.unshift('nodes-layer');
+  }
+
+  // Preenche aliases em tempo de execução para manter compatibilidade
+  doc.drawingLayers = doc.drawings.layers;
+  doc.layerOrder = doc.drawings.layerOrder;
+  doc.strokes = doc.drawings.strokes;
+
   doc.schemaVersion = SCHEMA_VERSION;
   return { ok: true, doc };
 }

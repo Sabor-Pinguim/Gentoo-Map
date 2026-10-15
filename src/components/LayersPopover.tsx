@@ -53,9 +53,10 @@ export function LayersPopover() {
 
   if (!doc) return null;
 
-  const layers = doc.drawingLayers ?? {};
-  const order = doc.layerOrder ?? [NODES_LAYER_ID, 'default-layer-1'];
-  const strokes = doc.strokes ?? {};
+  const drawings = doc.drawings;
+  const layers = drawings?.layers ?? doc.drawingLayers ?? {};
+  const order = drawings?.layerOrder ?? doc.layerOrder ?? [NODES_LAYER_ID, 'default-layer-1'];
+  const strokes = drawings?.strokes ?? doc.strokes ?? {};
 
   // Contagem de traços por camada
   const strokeCounts: Record<string, number> = {};

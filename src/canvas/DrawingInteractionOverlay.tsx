@@ -9,13 +9,12 @@ import type { DrawingStroke, Point } from '../model/types';
 import { isStrokeHit } from './drawingUtils';
 
 interface DrawingInteractionOverlayProps {
-  containerRef: React.RefObject<HTMLDivElement | null>;
+  containerRef?: React.RefObject<HTMLDivElement | null>;
   flowInstance: ReactFlowInstance | null;
   onDraftChange: (stroke: DrawingStroke | null) => void;
 }
 
 export function DrawingInteractionOverlay({
-  containerRef,
   flowInstance,
   onDraftChange,
 }: DrawingInteractionOverlayProps) {
@@ -64,19 +63,21 @@ export function DrawingInteractionOverlay({
   // Determina a camada ativa de desenho
   const targetLayerId =
     activeLayerIdFromStore ??
+    (doc?.drawings?.layers && Object.keys(doc.drawings.layers)[0]) ??
     (doc?.drawingLayers && Object.keys(doc.drawingLayers)[0]) ??
     'default-layer-1';
 
   const toFlowCoordinates = useCallback(
     (e: React.PointerEvent): Point | null => {
-      if (!flowInstance || !containerRef.current) return null;
-      const bounds = containerRef.current.getBoundingClientRect();
+      if (!flowInstance) return null;
+      // screenToFlowPosition espera clientPosition diretamente (clientX, clientY),
+      // pois desconta internamente o boundingClientRect do container do React Flow.
       return flowInstance.screenToFlowPosition({
-        x: e.clientX - bounds.left,
-        y: e.clientY - bounds.top,
+        x: e.clientX,
+        y: e.clientY,
       });
     },
-    [flowInstance, containerRef]
+    [flowInstance]
   );
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -84,7 +85,7 @@ export function DrawingInteractionOverlay({
     if (e.button !== 0 || isSpaceHeld) return;
 
     // Verifica se a camada ativa está bloqueada
-    const currentLayer = doc?.drawingLayers?.[targetLayerId];
+    const currentLayer = doc?.drawings?.layers?.[targetLayerId] ?? doc?.drawingLayers?.[targetLayerId];
     if (currentLayer && currentLayer.locked && tool !== 'eraser') {
       toast.warning(`A camada "${currentLayer.name}" está bloqueada para edição.`);
       return;
@@ -182,12 +183,14 @@ export function DrawingInteractionOverlay({
 
   // Testa colisão da borracha com traços de camadas visíveis e desbloqueadas
   const checkEraserHit = (flowPos: Point) => {
-    if (!doc?.strokes || !doc?.drawingLayers) return;
+    const strokes = doc?.drawings?.strokes ?? doc?.strokes;
+    const layers = doc?.drawings?.layers ?? doc?.drawingLayers;
+    if (!strokes || !layers) return;
 
     const toDelete: string[] = [];
-    for (const stroke of Object.values(doc.strokes)) {
+    for (const stroke of Object.values(strokes)) {
       if (erasedStrokeIdsRef.current.has(stroke.id)) continue;
-      const layer = doc.drawingLayers[stroke.layerId];
+      const layer = layers[stroke.layerId];
       // Ignora camadas ocultas ou bloqueadas
       if (layer && (!layer.visible || layer.locked)) continue;
 

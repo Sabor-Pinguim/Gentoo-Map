@@ -176,6 +176,12 @@ export interface DrawingStroke {
   createdAt: number;
 }
 
+export interface DrawingsData {
+  layers: Record<string, DrawingLayer>;
+  layerOrder: string[];
+  strokes: Record<string, DrawingStroke>;
+}
+
 export interface MapDoc {
   schemaVersion: number;
   id: string;
@@ -185,8 +191,12 @@ export interface MapDoc {
   concepts: Record<string, Concept>;
   links: Record<string, Link>;
   settings: MapSettings;
+  drawings?: DrawingsData;
+  /** @deprecated Mantido para retrocompatibilidade em tempo de execução */
   drawingLayers?: Record<string, DrawingLayer>;
+  /** @deprecated Mantido para retrocompatibilidade em tempo de execução */
   layerOrder?: string[];
+  /** @deprecated Mantido para retrocompatibilidade em tempo de execução */
   strokes?: Record<string, DrawingStroke>;
 }
 

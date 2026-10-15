@@ -255,11 +255,10 @@ export function Canvas() {
         return;
       }
       const flow = (window as unknown as { __flowInstance?: ReactFlowInstance }).__flowInstance;
-      if (flow && containerRef.current) {
-        const bounds = containerRef.current.getBoundingClientRect();
+      if (flow) {
         const flowPos = flow.screenToFlowPosition({
-          x: e.clientX - bounds.left,
-          y: e.clientY - bounds.top,
+          x: e.clientX,
+          y: e.clientY,
         });
         addConceptAt(flowPos);
       } else {

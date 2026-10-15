@@ -285,13 +285,23 @@ export function repairIntegrity(doc: MapDoc) {
   }
 }
 
-/** Garante que o documento tenha drawingLayers, layerOrder e strokes inicializados. */
+/** Garante que o documento tenha a estrutura `drawings` inicializada. */
 export function ensureDrawingDoc(doc: MapDoc): {
   layers: Record<string, DrawingLayer>;
   order: string[];
   strokes: Record<string, DrawingStroke>;
 } {
-  if (!doc.drawingLayers || Object.keys(doc.drawingLayers).length === 0) {
+  if (!doc.drawings) {
+    doc.drawings = {
+      layers: doc.drawingLayers ?? {},
+      layerOrder: doc.layerOrder ?? [],
+      strokes: doc.strokes ?? {},
+    };
+  }
+
+  const d = doc.drawings;
+
+  if (!d.layers || Object.keys(d.layers).length === 0) {
     const bgLayer: DrawingLayer = {
       id: 'bg-layer-1',
       name: 'Fundo',
@@ -308,24 +318,30 @@ export function ensureDrawingDoc(doc: MapDoc): {
       opacity: 1,
       createdAt: Date.now(),
     };
-    doc.drawingLayers = {
+    d.layers = {
       [bgLayer.id]: bgLayer,
       [defaultLayer.id]: defaultLayer,
     };
   }
-  if (!doc.layerOrder || doc.layerOrder.length === 0) {
+  if (!d.layerOrder || d.layerOrder.length === 0) {
     // Por padrão: Fundo (abaixo dos nós), Nós, Anotações (acima dos nós)
-    doc.layerOrder = ['bg-layer-1', NODES_LAYER_ID, 'default-layer-1'];
-  } else if (!doc.layerOrder.includes(NODES_LAYER_ID)) {
-    doc.layerOrder.unshift(NODES_LAYER_ID);
+    d.layerOrder = ['bg-layer-1', NODES_LAYER_ID, 'default-layer-1'];
+  } else if (!d.layerOrder.includes(NODES_LAYER_ID)) {
+    d.layerOrder.unshift(NODES_LAYER_ID);
   }
-  if (!doc.strokes) {
-    doc.strokes = {};
+  if (!d.strokes) {
+    d.strokes = {};
   }
+
+  // Sincroniza referências legadas para retrocompatibilidade
+  doc.drawingLayers = d.layers;
+  doc.layerOrder = d.layerOrder;
+  doc.strokes = d.strokes;
+
   return {
-    layers: doc.drawingLayers,
-    order: doc.layerOrder,
-    strokes: doc.strokes,
+    layers: d.layers,
+    order: d.layerOrder,
+    strokes: d.strokes,
   };
 }
 
@@ -368,10 +384,12 @@ export function addDrawingLayer(doc: MapDoc, name?: string, position?: 'top' | '
   };
   d.layers[layer.id] = layer;
   if (position === 'bottom') {
-    doc.layerOrder = [layer.id, ...(doc.layerOrder ?? [])];
+    d.order.unshift(layer.id);
   } else {
-    doc.layerOrder = [...(doc.layerOrder ?? []), layer.id];
+    d.order.push(layer.id);
   }
+  doc.drawings!.layerOrder = d.order;
+  doc.layerOrder = d.order;
   touch(doc);
   return layer;
 }
@@ -391,7 +409,10 @@ export function deleteDrawingLayer(doc: MapDoc, layerId: string) {
   if (drawingLayerCount <= 1) return;
 
   delete d.layers[layerId];
-  doc.layerOrder = (doc.layerOrder ?? []).filter((id) => id !== layerId);
+  const newOrder = d.order.filter((id) => id !== layerId);
+  d.order = newOrder;
+  doc.drawings!.layerOrder = newOrder;
+  doc.layerOrder = newOrder;
 
   // Remove também todos os traços associados a essa camada
   for (const [sId, stroke] of Object.entries(d.strokes)) {
@@ -409,6 +430,8 @@ export function reorderLayers(doc: MapDoc, newOrder: string[]) {
   for (const id of d.order) {
     if (!validNew.includes(id)) validNew.push(id);
   }
+  d.order = validNew;
+  doc.drawings!.layerOrder = validNew;
   doc.layerOrder = validNew;
   touch(doc);
 }

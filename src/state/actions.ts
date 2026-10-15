@@ -528,10 +528,11 @@ export function updateDrawingLayer(id: string, patch: Partial<DrawingLayer>) {
 
 export function removeDrawingLayer(id: string) {
   const d = doc();
-  if (!d?.drawingLayers?.[id]) return;
-  const name = d.drawingLayers[id].name;
+  const layers = d?.drawings?.layers ?? d?.drawingLayers;
+  if (!layers?.[id]) return;
+  const name = layers[id].name;
   editor().apply('Excluir camada', (draft) => ops.deleteDrawingLayer(draft, id));
-  const remaining = Object.keys(doc()?.drawingLayers ?? {});
+  const remaining = Object.keys(doc()?.drawings?.layers ?? doc()?.drawingLayers ?? {});
   if (ui().activeLayerId === id && remaining.length > 0) {
     ui().set({ activeLayerId: remaining[0] });
   }

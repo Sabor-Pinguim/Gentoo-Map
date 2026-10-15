@@ -1,9 +1,11 @@
 import { nanoid } from 'nanoid';
 import {
   SCHEMA_VERSION,
+  NODES_LAYER_ID,
   type Concept,
   type ConceptContent,
   type ConceptStyle,
+  type DrawingsData,
   type Link,
   type LinkKind,
   type LinkStyle,
@@ -78,8 +80,37 @@ export function createLink(
   };
 }
 
+export function defaultDrawings(): DrawingsData {
+  const now = Date.now();
+  const bgLayer = {
+    id: 'bg-layer-1',
+    name: 'Fundo',
+    visible: true,
+    locked: false,
+    opacity: 1,
+    createdAt: now - 1000,
+  };
+  const defaultLayer = {
+    id: 'default-layer-1',
+    name: 'Anotações',
+    visible: true,
+    locked: false,
+    opacity: 1,
+    createdAt: now,
+  };
+  return {
+    layers: {
+      [bgLayer.id]: bgLayer,
+      [defaultLayer.id]: defaultLayer,
+    },
+    layerOrder: ['bg-layer-1', NODES_LAYER_ID, 'default-layer-1'],
+    strokes: {},
+  };
+}
+
 export function createMap(name = 'Novo mapa'): MapDoc {
   const now = Date.now();
+  const drawings = defaultDrawings();
   return {
     schemaVersion: SCHEMA_VERSION,
     id: newId('map'),
@@ -89,6 +120,10 @@ export function createMap(name = 'Novo mapa'): MapDoc {
     concepts: {},
     links: {},
     settings: { layoutDirection: 'TB' },
+    drawings,
+    drawingLayers: drawings.layers,
+    layerOrder: drawings.layerOrder,
+    strokes: drawings.strokes,
   };
 }
 
