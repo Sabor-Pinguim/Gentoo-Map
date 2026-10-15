@@ -62,11 +62,29 @@
 
 /* Conexões (Arestas) */
 .react-flow__edges {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
   z-index: 5 !important;
+}
+
+.react-flow__edges svg {
+  overflow: visible !important;
+  position: absolute;
+  pointer-events: none;
 }
 
 /* Nós do mapa conceitual: ficam acima do desenho de fundo e abaixo da sobreposição */
 .react-flow__nodes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   z-index: 10 !important;
 }
 
@@ -383,17 +401,20 @@
 
 /* Path styles */
 .react-flow__edge-path {
-  stroke-width: 1.8;
+  stroke: var(--edge);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   transition: stroke var(--dur-fast), stroke-width var(--dur-fast);
 }
 
 .react-flow__edge.selected .react-flow__edge-path {
   stroke: var(--accent) !important;
-  stroke-width: 2.4 !important;
+  stroke-width: 2.8px !important;
 }
 
 .edge-cross {
-  stroke-dasharray: 4 3;
+  stroke-dasharray: 6 4;
 }
 
 /* Quick Add Node Handle */

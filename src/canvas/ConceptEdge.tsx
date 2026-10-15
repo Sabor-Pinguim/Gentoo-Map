@@ -8,6 +8,7 @@ import {
 } from '@xyflow/react';
 import { setLinkLabel } from '../state/actions';
 import { useEditor } from '../state/editorStore';
+import { getLinkEdgeColor } from './edgeColors';
 
 export const ConceptEdge = memo(function ConceptEdge({
   id,
@@ -65,6 +66,7 @@ export const ConceptEdge = memo(function ConceptEdge({
   const isCross = link.kind === 'cross';
   const isDashed = link.style.line === 'dashed' || (link.style.line === 'auto' && isCross);
   const isDotted = link.style.line === 'dotted';
+  const strokeColor = selected ? 'var(--accent)' : getLinkEdgeColor(link.style.color);
 
   return (
     <>
@@ -75,9 +77,11 @@ export const ConceptEdge = memo(function ConceptEdge({
         markerStart={markerStart}
         className={`${isCross ? 'edge-cross' : ''}`}
         style={{
-          strokeDasharray: isDotted ? '2,3' : isDashed ? '5,4' : undefined,
-          stroke: selected ? 'var(--accent)' : undefined,
-          strokeWidth: selected ? 2.5 : 1.8,
+          strokeDasharray: isDotted ? '3,4' : isDashed ? '6,5' : undefined,
+          stroke: strokeColor,
+          strokeWidth: selected ? 2.8 : 2.2,
+          strokeLinecap: 'round',
+          strokeLinejoin: 'round',
         }}
       />
       <EdgeLabelRenderer>

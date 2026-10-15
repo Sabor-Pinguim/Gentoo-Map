@@ -21,6 +21,7 @@ import { CanvasContextMenu } from './CanvasContextMenu';
 import { setFlowInstance } from './flowApi';
 import { DrawingLayersView } from './DrawingLayersView';
 import { DrawingInteractionOverlay } from './DrawingInteractionOverlay';
+import { getLinkEdgeColor } from './edgeColors';
 import type { DrawingStroke } from '../model/types';
 import {
   addConceptAt,
@@ -128,11 +129,21 @@ export function Canvas() {
         selected: selectedEdges.includes(l.id),
         markerEnd:
           l.style.arrow === 'end' || l.style.arrow === 'both'
-            ? { type: MarkerType.ArrowClosed, width: 14, height: 14, color: 'var(--edge)' }
+            ? {
+                type: MarkerType.ArrowClosed,
+                width: 16,
+                height: 16,
+                color: getLinkEdgeColor(l.style.color),
+              }
             : undefined,
         markerStart:
           l.style.arrow === 'both'
-            ? { type: MarkerType.ArrowClosed, width: 14, height: 14, color: 'var(--edge)' }
+            ? {
+                type: MarkerType.ArrowClosed,
+                width: 16,
+                height: 16,
+                color: getLinkEdgeColor(l.style.color),
+              }
             : undefined,
         data: { id: l.id },
       }));

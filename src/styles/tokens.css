@@ -63,7 +63,7 @@
 
   /* Canvas */
   --grid-dot: #dde0e6;
-  --edge: #8a90a2;
+  --edge: #475569;
   --edge-selected: var(--accent);
   --edge-label-bg: var(--bg-canvas);
   --node-bg: #ffffff;
@@ -121,7 +121,7 @@
   --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.55);
 
   --grid-dot: #2a2e37;
-  --edge: #737a8c;
+  --edge: #94a3b8;
   --node-bg: #20232b;
   --node-border: #444a57;
   --node-text: #e7e9ef;
