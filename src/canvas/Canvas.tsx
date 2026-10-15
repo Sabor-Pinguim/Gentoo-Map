@@ -11,6 +11,7 @@ import {
   type EdgeChange,
   type ReactFlowInstance,
   MarkerType,
+  SelectionMode,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
@@ -46,6 +47,7 @@ export function Canvas() {
   const selectedEdges = useEditor((s) => s.selectedEdges);
   const showMinimap = useUI((s) => s.showMinimap);
   const connectMode = useUI((s) => s.connectMode);
+  const tool = useUI((s) => s.tool);
 
   // Deriva os nós do React Flow a partir do documento (filtrando nós ocultos por ramos recolhidos)
   const nodes: Node[] = useMemo(() => {
@@ -86,14 +88,29 @@ export function Canvas() {
       }));
   }, [doc, selectedEdges]);
 
-  // Handler para movimentação de nós
+  // Handler para movimentação e seleção de nós
   const onNodesChange = useCallback((changes: NodeChange[]) => {
     const moves: Record<string, { x: number; y: number }> = {};
+    let selChanged = false;
+    const nextSelected = new Set(editor().selectedNodes);
+
     for (const change of changes) {
       if (change.type === 'position' && change.position) {
         moves[change.id] = change.position;
+      } else if (change.type === 'select') {
+        selChanged = true;
+        if (change.selected) {
+          nextSelected.add(change.id);
+        } else {
+          nextSelected.delete(change.id);
+        }
       }
     }
+
+    if (selChanged) {
+      editor().setSelection(Array.from(nextSelected), editor().selectedEdges);
+    }
+
     if (Object.keys(moves).length > 0) {
       editor().apply('Mover conceitos', (d) => ops.moveConcepts(d, moves), {
         mode: 'coalesce',
@@ -102,8 +119,28 @@ export function Canvas() {
     }
   }, []);
 
-  const onEdgesChange = useCallback((_changes: EdgeChange[]) => {
-    // Arestas acompanham nós automaticamente; exclusão direta é tratada pelas ações
+  const onEdgesChange = useCallback((changes: EdgeChange[]) => {
+    let selChanged = false;
+    const nextSelected = new Set(editor().selectedEdges);
+    for (const change of changes) {
+      if (change.type === 'select') {
+        selChanged = true;
+        if (change.selected) nextSelected.add(change.id);
+        else nextSelected.delete(change.id);
+      }
+    }
+    if (selChanged) {
+      editor().setSelection(editor().selectedNodes, Array.from(nextSelected));
+    }
+  }, []);
+
+  // Clique no fundo limpa a seleção e cancela modos transitórios
+  const onPaneClick = useCallback(() => {
+    editor().setSelection([], []);
+    editor().setEditing(null);
+    if (useUI.getState().connectMode) {
+      useUI.getState().set({ connectMode: null });
+    }
   }, []);
 
   // Criação de conexão ao soltar handle
@@ -261,6 +298,10 @@ export function Canvas() {
           e.preventDefault();
           editor().setEditing({ type: 'node', id: sel[0] });
         }
+      } else if (!mod && e.key.toLowerCase() === 'v') {
+        useUI.getState().set({ tool: 'select' });
+      } else if (!mod && e.key.toLowerCase() === 'h') {
+        useUI.getState().set({ tool: 'hand' });
       }
     };
 
@@ -271,7 +312,7 @@ export function Canvas() {
   return (
     <div
       ref={containerRef}
-      className={`canvas-container ${connectMode ? 'canvas-connecting' : ''}`}
+      className={`canvas-container tool-${tool} ${connectMode ? 'canvas-connecting' : ''}`}
       onDoubleClick={onDoubleClick}
     >
       <CanvasContextMenu>
@@ -286,12 +327,16 @@ export function Canvas() {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onNodeClick={onNodeClick}
+            onPaneClick={onPaneClick}
             onInit={onInit}
             onMoveEnd={onMoveEnd}
             onSelectionChange={onSelectionChange}
+            selectionMode={SelectionMode.Partial}
+            selectionKeyCode={['Shift', 'Control', 'Meta']}
             multiSelectionKeyCode={['Control', 'Meta', 'Shift']}
-            selectionOnDrag={false}
-            panOnDrag={[1, 2]}
+            selectionOnDrag={tool === 'select'}
+            panOnDrag={tool === 'select' ? [1, 2] : [0, 1, 2]}
+            panActivationKeyCode="Space"
             panOnScroll={false}
             zoomOnScroll
             minZoom={0.15}

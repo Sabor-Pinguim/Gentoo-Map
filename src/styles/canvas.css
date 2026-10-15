@@ -10,6 +10,32 @@
   overflow: hidden;
 }
 
+/* Ferramentas do Canvas: cursores */
+.canvas-container.tool-select {
+  cursor: default;
+}
+.canvas-container.tool-hand {
+  cursor: grab;
+}
+.canvas-container.tool-hand:active {
+  cursor: grabbing;
+}
+
+/* Retângulo da área de seleção (Marquee Selection) */
+.react-flow__selection {
+  background: var(--accent-soft-2) !important;
+  border: 1.5px dashed var(--accent) !important;
+  border-radius: var(--radius-xs);
+  z-index: 1000 !important;
+  pointer-events: none;
+}
+
+.react-flow__nodesselection-rect {
+  border: 1.5px dashed var(--accent-soft) !important;
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+}
+
 .react-flow {
   background: var(--bg-canvas) !important;
 }

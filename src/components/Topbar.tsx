@@ -21,6 +21,8 @@ import {
   Sparkles,
   ArrowRight,
   ChevronDown,
+  MousePointer,
+  Hand,
 } from 'lucide-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useEditor } from '../state/editorStore';
@@ -48,6 +50,7 @@ export function Topbar() {
   const panelOpen = useUI((s) => s.panelOpen);
   const theme = useUI((s) => s.theme);
   const connectMode = useUI((s) => s.connectMode);
+  const tool = useUI((s) => s.tool);
   const setUI = useUI((s) => s.set);
   const setPref = useUI((s) => s.setPref);
   const openDialog = useUI((s) => s.openDialog);
@@ -176,8 +179,40 @@ export function Topbar() {
         </div>
       </div>
 
-      {/* Centro: Ferramentas Rápidas de Edição */}
+      {/* Centro: Ferramentas de Seleção e Edição */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            background: 'var(--bg-subtle)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-sm)',
+            padding: 2,
+            gap: 2,
+            marginRight: 4,
+          }}
+        >
+          <IconButton
+            label="Ferramenta Seleção (Arrastar no fundo cria área de seleção retangular)"
+            shortcut="V"
+            active={tool === 'select'}
+            onClick={() => setUI({ tool: 'select' })}
+          >
+            <MousePointer size={15} />
+          </IconButton>
+          <IconButton
+            label="Ferramenta Mão (Arrastar com botão esquerdo move a tela)"
+            shortcut="H"
+            active={tool === 'hand'}
+            onClick={() => setUI({ tool: 'hand' })}
+          >
+            <Hand size={15} />
+          </IconButton>
+        </div>
+
+        <div className="divider-v" />
+
         <IconButton
           label="Desfazer"
           shortcut="Ctrl+Z"
@@ -262,6 +297,25 @@ export function Topbar() {
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
         </DropdownMenu.Root>
+
+        {selectedNodes.length > 1 && (
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              padding: '2px 8px',
+              borderRadius: 'var(--radius-sm)',
+              background: 'var(--accent-soft-2)',
+              color: 'var(--accent)',
+              border: '1px solid var(--accent)',
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            <span>{selectedNodes.length} selecionados</span>
+          </div>
+        )}
       </div>
 
       {/* Lado Direito: Navegação, Exportação e Preferências */}

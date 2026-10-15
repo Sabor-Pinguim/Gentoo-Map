@@ -6,6 +6,8 @@ const SHORTCUT_GROUPS = [
     category: 'Edição e Criação',
     shortcuts: [
       { key: 'Clique Duplo', desc: 'Criar novo conceito no ponto clicado' },
+      { key: 'Ctrl + Clique', desc: 'Selecionar múltiplos nós individualmente' },
+      { key: 'Arrastar na tela', desc: 'Área de seleção para múltiplos nós' },
       { key: 'Tab', desc: 'Criar conceito filho conectado ao selecionado' },
       { key: 'Enter', desc: 'Criar conceito irmão do mesmo nível' },
       { key: 'F2', desc: 'Editar título do conceito ou frase de ligação' },
@@ -18,6 +20,8 @@ const SHORTCUT_GROUPS = [
   {
     category: 'Hierarquia e Navegação',
     shortcuts: [
+      { key: 'V / H', desc: 'Alternar ferramentas: Seleção (V) / Mão Pan (H)' },
+      { key: 'Espaço + Arrastar', desc: 'Mover a tela mantendo a seleção ativa' },
       { key: 'Espaço', desc: 'Recolher ou expandir ramo do conceito selecionado' },
       { key: 'Setas direcionais', desc: 'Navegar para o conceito mais próximo' },
       { key: 'Ctrl + A', desc: 'Selecionar todos os conceitos visíveis' },
