@@ -52,15 +52,16 @@ export function App() {
 
     async function bootstrap() {
       try {
-        // Versão do mapa padrão embutido. Ao atualizar esta constante, clientes que já
-        // visitaram o site recebem a nova versão do mapa no IndexedDB automaticamente.
-        const DEFAULT_MAP_VERSION = 'v2_50_concepts_20261015';
+        const rfidPresentation = createRfidPresentationMap();
+        // Identificador de versão baseado no updatedAt do mapa.
+        // Assim, sempre que o arquivo JSON for substituído, a nova versão é detectada
+        // e atualizada no IndexedDB de todos os usuários automaticamente!
+        const DEFAULT_MAP_VERSION = `v_${rfidPresentation.updatedAt || rfidPresentation.createdAt || '1'}`;
         const currentVersion = localStorage.getItem('gentoo:default_map_version');
         const existing = await loadMap('map-rfid-nfc-apresentacao');
 
         const isNewVersion = currentVersion !== DEFAULT_MAP_VERSION;
         if (!existing || isNewVersion) {
-          const rfidPresentation = createRfidPresentationMap();
           await saveMap(rfidPresentation);
           localStorage.setItem('gentoo:default_map_version', DEFAULT_MAP_VERSION);
         }
