@@ -24,6 +24,34 @@ export const ConceptNode = memo(function ConceptNode({ id, selected }: NodeProps
   const nodeRef = useRef<HTMLDivElement>(null);
   const [inlineTitle, setInlineTitle] = useState(concept?.title ?? '');
 
+  const hasChildren = useEditor((s) => {
+    if (!s.doc) return false;
+    for (const l of Object.values(s.doc.links)) {
+      if (l.kind === 'hierarchy' && l.source === id) return true;
+    }
+    return false;
+  });
+
+  const hiddenCount = useEditor((s) => {
+    const c = s.doc?.concepts[id];
+    if (!c?.collapsed || !s.doc) return 0;
+    // calcula quantos descendentes estão ocultos
+    let count = 0;
+    const stack = [id];
+    const visited = new Set<string>();
+    while (stack.length > 0) {
+      const curr = stack.pop()!;
+      for (const l of Object.values(s.doc.links)) {
+        if (l.kind === 'hierarchy' && l.source === curr && !visited.has(l.target)) {
+          visited.add(l.target);
+          count++;
+          stack.push(l.target);
+        }
+      }
+    }
+    return count;
+  });
+
   // Atualiza medição do nó para algoritmos de layout
   useEffect(() => {
     if (!nodeRef.current) return;
@@ -51,33 +79,6 @@ export const ConceptNode = memo(function ConceptNode({ id, selected }: NodeProps
       concept.description.toLowerCase().includes(searchQuery) ||
       concept.content.summary.toLowerCase().includes(searchQuery) ||
       concept.content.notesHtml.toLowerCase().includes(searchQuery));
-
-  const hasChildren = useEditor((s) => {
-    if (!s.doc) return false;
-    for (const l of Object.values(s.doc.links)) {
-      if (l.kind === 'hierarchy' && l.source === id) return true;
-    }
-    return false;
-  });
-
-  const hiddenCount = useEditor((s) => {
-    if (!concept.collapsed || !s.doc) return 0;
-    // calcula quantos descendentes estão ocultos
-    let count = 0;
-    const stack = [id];
-    const visited = new Set<string>();
-    while (stack.length > 0) {
-      const curr = stack.pop()!;
-      for (const l of Object.values(s.doc.links)) {
-        if (l.kind === 'hierarchy' && l.source === curr && !visited.has(l.target)) {
-          visited.add(l.target);
-          count++;
-          stack.push(l.target);
-        }
-      }
-    }
-    return count;
-  });
 
   const handleFinishEditing = () => {
     setEditing(null);
