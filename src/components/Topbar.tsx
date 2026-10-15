@@ -38,6 +38,7 @@ import {
 } from '../state/actions';
 import { renameMap, retrySave } from '../state/session';
 import { IconButton, Tooltip } from './ui';
+import { GentooLogo } from './GentooLogo';
 
 export function Topbar() {
   const doc = useEditor((s) => s.doc);
@@ -84,8 +85,10 @@ export function Topbar() {
         flexShrink: 0,
       }}
     >
-      {/* Lado Esquerdo: Seletor de Mapa e Nome */}
+      {/* Lado Esquerdo: Mascote Pinguim Gentoo, Seletor de Mapa e Nome */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+        <GentooLogo size={32} />
+
         <button
           type="button"
           className="btn btn-sm btn-ghost"

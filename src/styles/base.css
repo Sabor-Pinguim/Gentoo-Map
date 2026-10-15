@@ -559,6 +559,133 @@ a {
   }
 }
 
+/* Logo do Pinguim Gentoo e Easter Egg */
+.gentoo-logo-wrap {
+  position: relative;
+  border-radius: var(--radius-sm);
+  padding: 3px 6px;
+  transition: transform var(--dur-fast), background var(--dur-fast);
+}
+
+.gentoo-logo-wrap:hover {
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+}
+
+.gentoo-logo-wrap:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.gentoo-logo-wrap.is-waddling svg {
+  animation: gentoo-waddle 0.75s ease-in-out;
+  transform-origin: bottom center;
+}
+
+@keyframes gentoo-waddle {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-15deg) translateY(-2px); }
+  40% { transform: rotate(13deg) translateY(-1px); }
+  60% { transform: rotate(-9deg); }
+  80% { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Pose Absolute Cinema do Pinguim Gentoo */
+@keyframes gentoo-cinema-hand-left {
+  0% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-16deg) translateY(-2px);
+  }
+  100% {
+    transform: rotate(-10deg) translateY(0);
+  }
+}
+
+@keyframes gentoo-cinema-hand-right {
+  0% {
+    transform: scaleX(-1) rotate(-10deg) translateY(0);
+  }
+  50% {
+    transform: scaleX(-1) rotate(-16deg) translateY(-2px);
+  }
+  100% {
+    transform: scaleX(-1) rotate(-10deg) translateY(0);
+  }
+}
+
+@keyframes gentoo-eye-flame {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9) rotate(-5deg);
+    filter: drop-shadow(0 0 1px #f97316);
+  }
+  50% {
+    transform: translate(-50%, -52%) scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 2px #ea580c);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.9) rotate(-5deg);
+    filter: drop-shadow(0 0 1px #f97316);
+  }
+}
+
+@keyframes gentoo-cinema-float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* Efeito de Explosão do Easter Egg Sabobor 67 */
+.sabobor-overlay.is-active {
+  animation: sabobor-fade-in 0.25s ease-out forwards;
+}
+
+.sabobor-overlay.is-fading {
+  opacity: 0 !important;
+}
+
+@keyframes sabobor-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sabobor-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.4) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+@keyframes sabobor-pop {
+  0% {
+    transform: scale(0.2) rotate(-10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

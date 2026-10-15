@@ -51,6 +51,11 @@ export function Canvas() {
 
   // Monitora se teclas de seleção múltipla (Ctrl / Cmd / Shift) estão pressionadas
   const isMultiKeyRef = useRef(false);
+  // Rastreia se uma seleção por área retangular está ativa
+  const isBoxSelectingRef = useRef(false);
+  const additiveBaselineNodesRef = useRef<Set<string>>(new Set());
+  const additiveBaselineEdgesRef = useRef<Set<string>>(new Set());
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       isMultiKeyRef.current = e.ctrlKey || e.metaKey || e.shiftKey;
@@ -66,6 +71,24 @@ export function Canvas() {
       window.removeEventListener('keyup', onKey, { capture: true });
       window.removeEventListener('blur', onBlur);
     };
+  }, []);
+
+  const onSelectionStart = useCallback((e?: React.MouseEvent) => {
+    isBoxSelectingRef.current = true;
+    const isMulti = Boolean(e && (e.ctrlKey || e.metaKey || e.shiftKey)) || isMultiKeyRef.current;
+    if (isMulti) {
+      additiveBaselineNodesRef.current = new Set(editor().selectedNodes);
+      additiveBaselineEdgesRef.current = new Set(editor().selectedEdges);
+    } else {
+      additiveBaselineNodesRef.current = new Set();
+      additiveBaselineEdgesRef.current = new Set();
+    }
+  }, []);
+
+  const onSelectionEnd = useCallback(() => {
+    isBoxSelectingRef.current = false;
+    additiveBaselineNodesRef.current = new Set();
+    additiveBaselineEdgesRef.current = new Set();
   }, []);
 
   // Deriva os nós do React Flow a partir do documento (filtrando nós ocultos por ramos recolhidos)
@@ -124,9 +147,9 @@ export function Canvas() {
             selChanged = true;
           }
         } else {
-          // Se o usuário estiver segurando Ctrl/Shift/Cmd para seleção aditiva,
-          // preserva nós que já estavam selecionados antes!
-          if (isMultiKeyRef.current) {
+          // Se estamos arrastando uma caixa de seleção com Ctrl/Shift,
+          // preserva os nós que já estavam selecionados antes dessa caixa iniciar!
+          if (isBoxSelectingRef.current && additiveBaselineNodesRef.current.has(change.id)) {
             continue;
           }
           if (nextSelected.has(change.id)) {
@@ -161,7 +184,7 @@ export function Canvas() {
             selChanged = true;
           }
         } else {
-          if (isMultiKeyRef.current) {
+          if (isBoxSelectingRef.current && additiveBaselineEdgesRef.current.has(change.id)) {
             continue;
           }
           if (nextSelected.has(change.id)) {
@@ -194,7 +217,7 @@ export function Canvas() {
 
   // Clique no nó
   const onNodeClick = useCallback(
-    (e: React.MouseEvent, node: Node) => {
+    (_e: React.MouseEvent, node: Node) => {
       if (connectMode) {
         if (!connectMode.sourceId) {
           useUI.getState().set({ connectMode: { sourceId: node.id } });
@@ -203,25 +226,6 @@ export function Canvas() {
           useUI.getState().set({ connectMode: null });
         }
         return;
-      }
-
-      const isMulti = e.ctrlKey || e.metaKey || e.shiftKey || isMultiKeyRef.current;
-      const current = editor().selectedNodes;
-      if (isMulti) {
-        // Modo aditivo / alternância: se já está selecionado, remove; se não está, adiciona aos já selecionados!
-        const next = new Set(current);
-        if (next.has(node.id)) {
-          next.delete(node.id);
-        } else {
-          next.add(node.id);
-        }
-        editor().setSelection(Array.from(next), editor().selectedEdges);
-      } else {
-        // Clique simples sem Ctrl: se o nó clicado já estiver no grupo selecionado,
-        // não destrói a seleção para permitir arrastar o grupo; caso contrário, seleciona apenas ele
-        if (!current.includes(node.id)) {
-          editor().setSelection([node.id], []);
-        }
       }
 
       // Se autoOpenPanel estiver ativo, abre o painel
@@ -382,6 +386,8 @@ export function Canvas() {
             onPaneClick={onPaneClick}
             onInit={onInit}
             onMoveEnd={onMoveEnd}
+            onSelectionStart={onSelectionStart}
+            onSelectionEnd={onSelectionEnd}
             selectionMode={SelectionMode.Partial}
             selectionKeyCode={['Shift', 'Control', 'Meta']}
             multiSelectionKeyCode={['Control', 'Meta', 'Shift']}

@@ -1,2 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#4f46e5"/><circle cx="10" cy="11" r="4" fill="#fff"/><circle cx="22" cy="11" r="4" fill="#fff" opacity=".85"/><circle cx="16" cy="23" r="4" fill="#fff" opacity=".7"/><path d="M10 11 16 23 22 11" stroke="#fff" stroke-width="1.6" fill="none" opacity=".6"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Fundo do ícone do app -->
+  <rect width="32" height="32" rx="7" fill="#0f172a"/>
+  
+  <!-- Cauda em cunha (Pygoscelis papua) -->
+  <path d="M14.6 25L16 29L17.4 25Z" fill="#020617"/>
 
+  <!-- Pés alaranjados com membranas -->
+  <ellipse cx="12.2" cy="27" rx="3.1" ry="1.5" fill="#f97316"/>
+  <ellipse cx="19.8" cy="27" rx="3.1" ry="1.5" fill="#f97316"/>
+
+  <!-- Corpo e Cabeça (Preto / Ardósia característico do Gentoo) -->
+  <path
+    d="M16 3.8C10.8 3.8 8.8 9.5 8.8 17.5C8.8 24 10.6 26.5 16 26.5C21.4 26.5 23.2 24 23.2 17.5C23.2 9.5 21.2 3.8 16 3.8Z"
+    fill="#1e293b"
+  />
+
+  <!-- Asas / Nadadeiras com borda branca interna -->
+  <path d="M8.8 14.5C7.2 17.5 6.4 21.5 8.2 24C9 22.8 9.6 19.5 9.4 16Z" fill="#090d16"/>
+  <path d="M8.2 23.8C8.8 22.6 9.4 19.5 9.3 16.2" stroke="#ffffff" stroke-width="0.65" stroke-linecap="round" opacity="0.85"/>
+
+  <path d="M23.2 14.5C24.8 17.5 25.6 21.5 23.8 24C23 22.8 22.4 19.5 22.6 16Z" fill="#090d16"/>
+  <path d="M23.8 23.8C23.2 22.6 22.6 19.5 22.7 16.2" stroke="#ffffff" stroke-width="0.65" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Faixa Branca 'Bonnet' no Topo da Cabeça (Assinatura Exclusiva do Pinguim Gentoo) -->
+  <path
+    d="M9.6 11.2C9.4 7.8 12.2 4.6 16 4.6C19.8 4.6 22.6 7.8 22.4 11.2C21.2 9.2 18.6 7.8 16 7.8C13.4 7.8 10.8 9.2 9.6 11.2Z"
+    fill="#ffffff"
+  />
+  <path d="M9.6 11.2C10.6 9.5 12.5 9.5 13.5 11.2C12.4 11.8 10.6 11.8 9.6 11.2Z" fill="#ffffff"/>
+  <path d="M22.4 11.2C21.4 9.5 19.5 9.5 18.5 11.2C19.6 11.8 21.4 11.8 22.4 11.2Z" fill="#ffffff"/>
+
+  <!-- Barriga Branca (Tuxedo) -->
+  <path
+    d="M16 13.8C12.8 13.8 11.2 17.2 11.2 21.8C11.2 25.2 13 26.2 16 26.2C19 26.2 20.8 25.2 20.8 21.8C20.8 17.2 19.2 13.8 16 13.8Z"
+    fill="#ffffff"
+  />
+
+  <!-- Anel orbital branco ao redor dos olhos -->
+  <circle cx="12.8" cy="10.8" r="1.35" fill="#ffffff"/>
+  <circle cx="19.2" cy="10.8" r="1.35" fill="#ffffff"/>
+
+  <!-- Olhos do Pinguim com brilho -->
+  <circle cx="12.8" cy="10.8" r="0.85" fill="#0f172a"/>
+  <circle cx="19.2" cy="10.8" r="0.85" fill="#0f172a"/>
+  <circle cx="12.5" cy="10.5" r="0.28" fill="#ffffff"/>
+  <circle cx="18.9" cy="10.5" r="0.28" fill="#ffffff"/>
+
+  <!-- Bico Vermelho-Alaranjado Marcante do Gentoo -->
+  <path
+    d="M13.6 11.6C13.6 11.6 15.2 16 16 16.3C16.8 16 18.4 11.6 18.4 11.6C17.2 12 14.8 12 13.6 11.6Z"
+    fill="#ea580c"
+  />
+  <path d="M14 11.8L16 15.8L15 11.9Z" fill="#f97316"/>
+  <path d="M18 11.8L16 15.8L17 11.9Z" fill="#f97316"/>
+  <path d="M15.5 11.6H16.5L16.2 16.2H15.8Z" fill="#0f172a" opacity="0.65"/>
+</svg>
