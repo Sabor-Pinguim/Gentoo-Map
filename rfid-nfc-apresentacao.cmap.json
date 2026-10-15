@@ -1,0 +1,2397 @@
+{
+  "schemaVersion": 1,
+  "id": "map-rfid-nfc-apresentacao",
+  "name": "RFID e NFC: Sistemas Wireless, Segurança e Aplicações",
+  "createdAt": 1792070406576,
+  "updatedAt": 1792070406576,
+  "concepts": {
+    "c_wireless": {
+      "id": "c_wireless",
+      "title": "Sistemas Wireless",
+      "description": "Fundamento comum de RFID e NFC baseado na propagação de campos eletromagnéticos.",
+      "position": {
+        "x": 3275,
+        "y": 50
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "violet",
+        "fontSize": "xl",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Comunicação sem fio por radiofrequência para identificação, sensoriamento e troca de dados sem contato físico direto.",
+        "extra": [
+          {
+            "id": "ext_spk_c_wireless",
+            "key": "Apresentador(a)",
+            "value": "Abertura Geral (Todos)"
+          },
+          {
+            "id": "ext_min_c_wireless",
+            "key": "Tempo de Fala",
+            "value": "Visão Geral (30 min totais)"
+          }
+        ],
+        "notesHtml": "\n          <h2>Sistemas Wireless: RFID e NFC</h2>\n          <p>Visão geral de RFID e NFC como tecnologias sem fio complementares para identificação, rastreabilidade e transações por aproximação.</p>\n          <h3>Cronograma da Apresentação (30 minutos):</h3>\n          <ol>\n            <li><strong>Bruna (4,8 min):</strong> Abertura e Aplicações Práticas</li>\n            <li><strong>Gabriel (5,1 min):</strong> RFID vs NFC, Comunicação e NFC vs QR Code</li>\n            <li><strong>Anna (4,0 min):</strong> Vulnerabilidades do RFID (Mifare Classic, Crypto1)</li>\n            <li><strong>Integrante de NFC (4,2 min):</strong> Vulnerabilidades do NFC (Interceptação, Clonagem, Relay, AES)</li>\n            <li><strong>Júlio (5,1 min):</strong> Normas, Órgãos Reguladores e Instituições</li>\n            <li><strong>João W. (5,8 min):</strong> Notícias, Casos Reais (NGate) e Encerramento</li>\n          </ol>\n        ",
+        "links": [
+          {
+            "id": "l_r37",
+            "url": "https://www.atlasrfidstore.com/rfid-insider/rfid-vs-nfc",
+            "title": "Atlas RFID Store: RFID versus NFC",
+            "description": "Comparativo técnico entre frequências, alcance e modos de operação."
+          },
+          {
+            "id": "l_r39",
+            "url": "https://www.rfwireless-world.com/terminology/rfid-vs-nfc-differences",
+            "title": "RF Wireless World: RFID vs NFC Differences",
+            "description": "Tabela comparativa de frequência, alcance e taxas de transferência."
+          },
+          {
+            "id": "l_r44",
+            "url": "https://en.wikipedia.org/wiki/Near-field_communication",
+            "title": "Wikipedia: Near-field communication (Apoio)",
+            "description": "Visão geral enciclopédica com fontes primárias."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_aplicacoes": {
+      "id": "c_aplicacoes",
+      "title": "Aplicações no Mundo Real",
+      "description": "Cenários práticos de uso e impacto no setor produtivo, financeiro e serviços.",
+      "position": {
+        "x": 5295,
+        "y": 238
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "lg",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Adoção massiva de RFID e NFC no varejo, transportes, agronegócio e pagamentos digitais.",
+        "extra": [
+          {
+            "id": "ext_spk_c_aplicacoes",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          },
+          {
+            "id": "ext_min_c_aplicacoes",
+            "key": "Tempo de Fala",
+            "value": "4,8 minutos"
+          }
+        ],
+        "notesHtml": "\n          <h2>Abertura e Aplicações Práticas</h2>\n          <p><strong>Apresentadora:</strong> Bruna (4,8 min)</p>\n          <p>Abertura dinâmica situando onde o público encontra essas tecnologias diariamente: etiquetas inteligentes de roupas, pedágios automáticos, crachás e o Pix por aproximação no celular.</p>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_rfid": {
+      "id": "c_app_rfid",
+      "title": "Aplicações RFID",
+      "description": "Rastreabilidade, logística e automação em larga escala.",
+      "position": {
+        "x": 4935,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Uso de tags passivas e leitores para controle em massa de itens físicos sem linha de visada.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_rfid",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          },
+          {
+            "id": "ext_min_c_app_rfid",
+            "key": "Tempo de Fala",
+            "value": "2,4 minutos"
+          }
+        ],
+        "notesHtml": "",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_varejo": {
+      "id": "c_app_varejo",
+      "title": "Varejo e Logística",
+      "description": "Controle de estoque em tempo real e inventários rápidos.",
+      "position": {
+        "x": 5185,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Pesquisa ILOS: RFID está presente na rotina de 42% das empresas brasileiras que rastreiam produtos.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_varejo",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          }
+        ],
+        "notesHtml": "<p>Casos em supermercados e lojas de vestuário com redução de perdas e contagem de centenas de itens por segundo via leitores portáteis UHF.</p>",
+        "links": [
+          {
+            "id": "l_r32",
+            "url": "https://supervarejo.com.br/varejo/tecnologia-rfid-facilita-operacao-e-se-torna-aliada-dos-supermercados-entenda-o-que-e",
+            "title": "Supervarejo: Tecnologia RFID facilita operação em supermercados",
+            "description": "Pesquisa ILOS destacando 42% das empresas rastreadoras."
+          },
+          {
+            "id": "l_r36",
+            "url": "https://ilhadigital.florianopolis.ifsc.edu.br/index.php/ilhadigital/article/download/103/85/369",
+            "title": "Romero e Bonho: Estudo de viabilidade de leitor RFID UHF portátil (Ilha Digital)",
+            "description": "Contexto brasileiro de adoção de UHF no varejo."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_transporte": {
+      "id": "c_app_transporte",
+      "title": "Transportes e Pedágios",
+      "description": "Cobrança automática em praças de pedágio e identificação de veículos.",
+      "position": {
+        "x": 4935,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Sistemas Sem Parar e Projeto Brasil ID (Centro Wernher von Braun e ENCAT) para rastreio fiscal e logístico.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_transporte",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r33",
+            "url": "https://www.contabeis.com.br/noticias/37777/tecnologia-a-servico-da-sociedade-conheca-o-rfid/",
+            "title": "Contábeis: Tecnologia a serviço da sociedade (Projeto Brasil ID)",
+            "description": "Menciona Sem Parar e infraestrutura de tags automotivas."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_agro": {
+      "id": "c_app_agro",
+      "title": "Pecuária e Rastreio Bovino",
+      "description": "Identificação individual de rebanhos via brincos eletrônicos de baixa frequência (LF).",
+      "position": {
+        "x": 4685,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Atendimento a exigências sanitárias e de exportação de carne bovina no Brasil.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_agro",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r34",
+            "url": "https://sol.sbc.org.br/index.php/erbase/article/download/33897/33688",
+            "title": "Santana et al.: Identificação e Registro de Bovinos via RFID (SBC)",
+            "description": "Artigo científico sobre pecuária de precisão no Brasil."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_industria": {
+      "id": "c_app_industria",
+      "title": "Indústria e Mineração",
+      "description": "Automação pesada e rastreamento de ativos sob condições severas.",
+      "position": {
+        "x": 4435,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Integração com projetos nacionais como o SINIAV e monitoramento de vagões/peças metálicas.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_industria",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r35",
+            "url": "https://abmproceedings.com.br/en/article/download-pdf/automacao-na-industria-metalurgica-e-de-mineracao-com-rfid-uma-revisao-integrativa",
+            "title": "Pereira et al.: Automação na indústria metalúrgica e de mineração com RFID (ABM)",
+            "description": "Menciona SINIAV e faixas de frequências de RFID no Brasil."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_nfc": {
+      "id": "c_app_nfc",
+      "title": "Aplicações NFC",
+      "description": "Interações rápidas de curtíssimo alcance focadas na experiência do usuário.",
+      "position": {
+        "x": 5810,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Pagamentos por aproximação, bilhetes eletrônicos, controle de acesso e leitura de etiquetas inteligentes.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_nfc",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          },
+          {
+            "id": "ext_min_c_app_nfc",
+            "key": "Tempo de Fala",
+            "value": "2,4 minutos"
+          }
+        ],
+        "notesHtml": "",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_pix": {
+      "id": "c_app_pix",
+      "title": "Pix por Aproximação e Carteiras",
+      "description": "Inovação do Banco Central para pagamentos instantâneos contactless via smartphone e smartwatch.",
+      "position": {
+        "x": 5935,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Lançado para carteiras digitais (Google Pay / Apple Pay) com estudos para pagamentos no modo offline sem internet.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_pix",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r30",
+            "url": "https://www.poder360.com.br/poder-tech/banco-central-lanca-pix-por-aproximacao-para-google-pay",
+            "title": "Poder360: Banco Central lança Pix por aproximação para Google Pay",
+            "description": ""
+          },
+          {
+            "id": "l_r31",
+            "url": "https://opovo.com.br/trends/pix-sem-internet-esta-nos-planos-do-banco-central-mas-funcionalidade-ainda-nao-esta-liberada-para-uso-geral/",
+            "title": "O Povo: Pix sem internet está nos planos do Banco Central",
+            "description": ""
+          },
+          {
+            "id": "l_r50",
+            "url": "https://www.spacemoney.com.br/economia/pix-por-aproximacao-passa-a-valer-na-proxima-semana-veja-o-que-muda/",
+            "title": "Space Money: Pix por aproximação passa a valer",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_bilhetagem": {
+      "id": "c_app_bilhetagem",
+      "title": "Bilhetagem de Transporte",
+      "description": "Acesso instantâneo a catracas de metrô, ônibus e trens metropolitanos.",
+      "position": {
+        "x": 5685,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Casos globais clássicos: Oyster Card (Londres), OV-chipkaart (Holanda) e Charlie Card (Boston). Ideia já prevista desde 2006.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_bilhetagem",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r4",
+            "url": "https://www.secureidnews.com/?p=11011",
+            "title": "Secure ID News: Pesquisadores publicam hack do Mifare em transportes",
+            "description": "Lista os grandes sistemas de transporte que adotaram a tecnologia."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_app_acesso": {
+      "id": "c_app_acesso",
+      "title": "Controle de Acesso Físico",
+      "description": "Crachás e credenciais virtuais em smartphones para abertura de portas e catracas.",
+      "position": {
+        "x": 5435,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "green",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Substituição de chaves físicas por autenticação por proximidade em empresas e universidades.",
+        "extra": [
+          {
+            "id": "ext_spk_c_app_acesso",
+            "key": "Apresentador(a)",
+            "value": "Bruna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r1",
+            "url": "https://sos.cs.ru.nl/applications/rfid/main.html",
+            "title": "Radboud University: Falha de segurança no controle de acesso Mifare Classic",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_rfid": {
+      "id": "c_rfid",
+      "title": "Tecnologia RFID",
+      "description": "Identificação por Radiofrequência: princípios físicos, bandas de frequência e componentes.",
+      "position": {
+        "x": 4170,
+        "y": 238
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "blue",
+        "fontSize": "lg",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Tecnologia genérica para identificação de objetos via ondas de rádio em distâncias de centímetros a metros.",
+        "extra": [
+          {
+            "id": "ext_spk_c_rfid",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          },
+          {
+            "id": "ext_min_c_rfid",
+            "key": "Tempo de Fala",
+            "value": "5,1 minutos (com NFC)"
+          }
+        ],
+        "notesHtml": "\n          <h2>Diferenças, Comunicação e NFC vs QR Code</h2>\n          <p><strong>Apresentador:</strong> Gabriel (5,1 min)</p>\n          <p>Apresentar a base física do RFID: o leitor energiza a tag por campo indutivo ou eletromagnético e lê seu identificador único. Explicar as três faixas (LF, HF, UHF) e demonstrar que o NFC é uma especialização de HF a 13.56 MHz.</p>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_rfid_freq": {
+      "id": "c_rfid_freq",
+      "title": "Faixas de Frequência RFID",
+      "description": "Diferenciação por bandas do espectro de radiofrequência.",
+      "position": {
+        "x": 4060,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "blue",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "LF (125-134 kHz), HF (13.56 MHz) e UHF (860-960 MHz), cada uma com comportamentos físicos e alcances distintos.",
+        "extra": [
+          {
+            "id": "ext_spk_c_rfid_freq",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r37_freq",
+            "url": "https://www.atlasrfidstore.com/rfid-insider/rfid-vs-nfc",
+            "title": "Atlas RFID: Frequências LF, HF e UHF",
+            "description": ""
+          },
+          {
+            "id": "l_r39_freq",
+            "url": "https://www.rfwireless-world.com/terminology/rfid-vs-nfc-differences",
+            "title": "RF Wireless World: Tabela Comparativa de Frequências",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_freq_lf": {
+      "id": "c_freq_lf",
+      "title": "LF (125 - 134 kHz)",
+      "description": "Baixa Frequência: curto alcance (~10 cm), imune à atenuação por água e tecidos animais.",
+      "position": {
+        "x": 4185,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "blue",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Ideal para identificação animal (chips subcutâneos e brincos) e imobilizadores automotivos.",
+        "extra": [
+          {
+            "id": "ext_spk_c_freq_lf",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_freq_hf": {
+      "id": "c_freq_hf",
+      "title": "HF (13.56 MHz)",
+      "description": "Alta Frequência: alcance de até 1 metro, base sobre a qual opera o NFC.",
+      "position": {
+        "x": 3935,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "blue",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Utilizado em cartões de biblioteca, bilhetagem de transporte e smartcards.",
+        "extra": [
+          {
+            "id": "ext_spk_c_freq_hf",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_freq_uhf": {
+      "id": "c_freq_uhf",
+      "title": "UHF (860 - 960 MHz)",
+      "description": "Ultra Alta Frequência: longo alcance (até 12 metros) e leitura massiva de centenas de tags por segundo.",
+      "position": {
+        "x": 3685,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "blue",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Padrão da indústria e logística mundial (RAIN RFID / EPC Gen2).",
+        "extra": [
+          {
+            "id": "ext_spk_c_freq_uhf",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r21_uhf",
+            "url": "https://ref.gs1.org/standards/gen2/2.1.0",
+            "title": "GS1 EPC Gen2 UHF RFID Standard",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_rfid_comp": {
+      "id": "c_rfid_comp",
+      "title": "Componentes e Antenas",
+      "description": "Arquitetura física: Etiquetas, Leitores e Acoplamento Eletromagnético.",
+      "position": {
+        "x": 4435,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "blue",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Acoplamento indutivo em campo próximo e retroespalhamento (backscatter) em campo distante.",
+        "extra": [
+          {
+            "id": "ext_spk_c_rfid_comp",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "\n          <p>Conforme Seção 2.3 do NIST SP 800-98 (Tag Characteristics e Tag-Reader Communication) e livro-texto de Klaus Finkenzeller (RFID Handbook):</p>\n          <ul>\n            <li><strong>Tags:</strong> Passivas (sem bateria), Semipassivas (bateria só para sensores) e Ativas (transmissor próprio).</li>\n            <li><strong>Leitores:</strong> Geram a portadora de RF e processam os dados recebidos.</li>\n            <li><strong>Antenas:</strong> Geometria do laço de antena determina o alcance e o acoplamento magnético.</li>\n          </ul>\n        ",
+        "links": [
+          {
+            "id": "l_r6_ant",
+            "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-98.pdf",
+            "title": "NIST SP 800-98: Guidelines for Securing RFID Systems (Seção 2.3)",
+            "description": "Características da etiqueta, comunicação etiqueta-leitor e antenas."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": [
+          {
+            "id": "ref_finkenzeller",
+            "title": "RFID Handbook: Fundamentals and Applications in Contactless Smart Cards and Identification",
+            "author": "Klaus Finkenzeller",
+            "year": "2010",
+            "source": "Wiley (Referência clássica da biblioteca UNISO)",
+            "notes": "Acoplamento indutivo, retroespalhamento e cálculo de antenas."
+          }
+        ]
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc": {
+      "id": "c_nfc",
+      "title": "Tecnologia NFC",
+      "description": "Comunicação por Campo de Proximidade (Near Field Communication): tecnologia sem fio de curto alcance.",
+      "position": {
+        "x": 170,
+        "y": 57
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "teal",
+        "fontSize": "lg",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Opera a 13,56 MHz por acoplamento indutivo a poucos centímetros. Projetada para trocas rápidas por aproximação sem necessidade de procedimentos complexos de conexão.",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "\n          <h2>Conceito de NFC (Near Field Communication)</h2>\n          <p><strong>NFC (Comunicação por Campo de Proximidade)</strong> é uma tecnologia de comunicação sem fio de curto alcance que permite a troca de informações entre dispositivos eletrônicos por meio de campos eletromagnéticos.</p>\n          <ul>\n            <li><strong>Frequência de Operação:</strong> Opera na frequência padrão de <strong>13,56 MHz</strong>.</li>\n            <li><strong>Princípio Físico:</strong> Utiliza o <em>acoplamento indutivo</em> entre bobinas/antenas a poucos centímetros de distância.</li>\n            <li><strong>Diferencial vs Wi-Fi e Bluetooth:</strong> Desenvolvido para conexões instantâneas por simples aproximação física, dispensando procedimentos manuais de pareamento.</li>\n            <li><strong>Dispositivos Passivos:</strong> Suporta comunicação com etiquetas (tags) passivas que não precisam de bateria, sendo energizadas diretamente pelo campo magnético do leitor.</li>\n          </ul>\n        ",
+        "links": [
+          {
+            "id": "l_r24_nfc",
+            "url": "https://www.securetechalliance.org/nokia-philips-and-sony-establish-the-near-field-communication-nfc-forum/",
+            "title": "Nokia, Philips e Sony fundam o NFC Forum (2004)",
+            "description": ""
+          },
+          {
+            "id": "l_r23_sony",
+            "url": "https://www.sony.co.jp/en/Products/felica/NFC",
+            "title": "Sony: About NFC (Normas ISO/IEC 18092, 14443 e FeliCa)",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_origem": {
+      "id": "c_nfc_origem",
+      "title": "Origem e Evolução do NFC",
+      "description": "Histórico da criação nos anos 2000 até a popularização universal nos smartphones.",
+      "position": {
+        "x": 920,
+        "y": 241
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "teal",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "2002 (Início Sony & Philips) -> 2004 (NFC Forum) -> 2006 (Nokia 6131 NFC) -> 2010+ (Carteiras digitais).",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_origem",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "\n          <h3>Linha do Tempo da Origem do NFC</h3>\n          <p>Surgiu no início dos anos 2000 quando <strong>Sony e Philips</strong> buscavam uma maneira simples e rápida de conectar eletrônicos apenas aproximando-os:</p>\n          <ul>\n            <li><strong>2002 — O início:</strong> Sony e Philips iniciam o desenvolvimento conjunto da tecnologia NFC.</li>\n            <li><strong>2004 — Padronização:</strong> Sony, Philips e Nokia fundam o <strong>NFC Forum</strong> para promover a tecnologia e garantir a compatibilidade entre dispositivos.</li>\n            <li><strong>2006 — Primeiros celulares:</strong> O <em>Nokia 6131 NFC</em> se torna um dos primeiros celulares comerciais com a tecnologia integrada. Na época já se previa: pagamentos por aproximação, bilhetes eletrônicos, controle de acesso e leitura de tags.</li>\n            <li><strong>2010 em diante — Popularização:</strong> O NFC ganha espaço nos smartphones e, posteriormente, nos pagamentos por aproximação e carteiras digitais.</li>\n          </ul>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_funcionamento": {
+      "id": "c_nfc_funcionamento",
+      "title": "Princípio de Funcionamento",
+      "description": "Indução eletromagnética fundamentada na Lei de Faraday em 4 etapas bem definidas.",
+      "position": {
+        "x": 670,
+        "y": 241
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "teal",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "1. Geração do campo -> 2. Acoplamento indutivo -> 3. Transferência de energia -> 4. Transmissão por modulação.",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_funcionamento",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "\n          <h3>Funcionamento via Indução Eletromagnética (Lei de Faraday)</h3>\n          <p>O funcionamento está diretamente relacionado à <strong>Lei de Faraday</strong>, que descreve a tensão induzida pela variação do fluxo magnético:</p>\n          <ol>\n            <li><strong>Geração do campo magnético:</strong> Uma corrente alternada circula pela antena do leitor, produzindo um campo magnético variável.</li>\n            <li><strong>Acoplamento indutivo:</strong> O campo magnético interage com a antena do dispositivo ou tag aproximada.</li>\n            <li><strong>Transferência de energia:</strong> A tensão induzida pela variação do fluxo alimenta os circuitos de dispositivos passivos sem necessidade de bateria.</li>\n            <li><strong>Transmissão de dados:</strong> As informações são transmitidas através da modulação da amplitude ou fase do sinal eletromagnético.</li>\n          </ol>\n          <p><em>Divisão de papéis nos smartphones:</em> Bluetooth e Wi-Fi são voltados para arquivos e mídia volumosa; o NFC é dedicado a interações ultrarrápidas de toque, pagamento e identificação.</p>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_modos": {
+      "id": "c_nfc_modos",
+      "title": "Modos de Operação NFC",
+      "description": "Três modos padronizados pelo NFC Forum para diferentes cenários de uso.",
+      "position": {
+        "x": 420,
+        "y": 241
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "teal",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "1. Leitor/Gravador (tags passivas) | 2. Ponto a Ponto (P2P entre dispositivos) | 3. Emulação de Cartão (smartphones virando smartcards).",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_modos",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r45_modos",
+            "url": "https://blog.nortechcontrol.com/rfid-vs-nfc",
+            "title": "Nortech Control: 5 Principais Diferenças e Modos do NFC",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_limitacoes": {
+      "id": "c_nfc_limitacoes",
+      "title": "Limitações da Tecnologia NFC",
+      "description": "Restrições físicas e operacionais detalhadas no documento técnico de NFC.",
+      "position": {
+        "x": 170,
+        "y": 241
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "teal",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Alcance reduzido (< 10 cm), taxas de transmissão convencionais (106, 212 e 424 kbit/s), interferência metálica e necessidade de protocolos compatíveis.",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_limitacoes",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "\n          <h3>Limitações Físicas e Operacionais do NFC</h3>\n          <ul>\n            <li><strong>Alcance Reduzido:</strong> Restrito a poucos centímetros (intencional para segurança física, mas restritivo).</li>\n            <li><strong>Baixa Velocidade de Transmissão:</strong> Taxas convencionais de <strong>106, 212 e 424 kbit/s</strong>, substancialmente inferiores a Bluetooth e Wi-Fi.</li>\n            <li><strong>Compatibilidade Obrigatória:</strong> Ambos os dispositivos devem compartilhar modos de operação e protocolos padronizados.</li>\n            <li><strong>Interferências por Materiais Metálicos:</strong> Superfícies condutoras dissipam as linhas de fluxo magnético, exigindo camadas de ferrite para operar em smartphones ou cartões com partes metálicas.</li>\n            <li><strong>Posicionamento Espacial:</strong> Desalinhamento entre as antenas pode interromper subitamente a transferência.</li>\n          </ul>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_vs_qr": {
+      "id": "c_nfc_vs_qr",
+      "title": "NFC versus QR Code",
+      "description": "Comparativo técnico entre tecnologias concorrentes de interação rápida.",
+      "position": {
+        "x": -80,
+        "y": 241
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "teal",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Linha de visada (QR exige câmera; NFC é por toque), Custo (QR é impresso/grátis; NFC usa chip) e Segurança (Quishing vs Skimming/Relay).",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_vs_qr",
+            "key": "Apresentador(a)",
+            "value": "Gabriel"
+          }
+        ],
+        "notesHtml": "\n          <h3>NFC vs QR Code: Pontos de Destaque</h3>\n          <ul>\n            <li><strong>Linha de Visada:</strong> QR Code exige foco da câmera e iluminação adequada; NFC funciona sem alinhamento visual ou iluminação.</li>\n            <li><strong>Custo Unitário:</strong> QR Code tem custo marginal zero; tag NFC requer chip de silício e antena condutora.</li>\n            <li><strong>Segurança:</strong> Ambos são vulneráveis por padrão sem autenticação. QR Codes sofrem com <em>quishing</em> (adesivos maliciosos sobrepostos) e NFC com interceptação e <em>relay</em>.</li>\n          </ul>\n        ",
+        "links": [
+          {
+            "id": "l_r40_qr",
+            "url": "https://scanapp.org/blog/2026/06/08/nfc-vs-qr-codes-which-should-you-use.html",
+            "title": "ScanApp: NFC vs QR codes - Which should you use?",
+            "description": ""
+          },
+          {
+            "id": "l_r41_scite",
+            "url": "https://scitepress.org/PublishedPapers/2018/90095/pdf/index.html",
+            "title": "SciTePress: NFC vs QR Code em Embarque de Voos (2018)",
+            "description": ""
+          },
+          {
+            "id": "l_r42_atlas",
+            "url": "https://atlasrfidstore.com/rfid-insider/nfc-vs-qr-codes-everything-you-need-to-know",
+            "title": "Atlas RFID: NFC vs QR codes - Tudo o que você precisa saber",
+            "description": ""
+          },
+          {
+            "id": "l_r38_kisi",
+            "url": "https://docs.kisi.io/concepts/nfc_versus_rfid",
+            "title": "Kisi: NFC versus RFID technology",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_seguranca": {
+      "id": "c_seguranca",
+      "title": "Vulnerabilidades e Segurança",
+      "description": "Enquadramento geral de riscos, falhas de criptografia e ataques ao canal de rádio.",
+      "position": {
+        "x": 2420,
+        "y": 238
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "amber",
+        "fontSize": "lg",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "A proximidade física NÃO garante segurança por si só. Vulnerabilidades comprometem confidencialidade, autenticidade e integridade.",
+        "extra": [
+          {
+            "id": "ext_spk_c_seguranca",
+            "key": "Apresentador(a)",
+            "value": "Anna & Integrante de NFC"
+          },
+          {
+            "id": "ext_min_c_seguranca",
+            "key": "Tempo de Fala",
+            "value": "8,2 minutos no total"
+          }
+        ],
+        "notesHtml": "\n          <h2>Segurança em Sistemas de Proximidade</h2>\n          <p>O mito de que o curto alcance físico do RFID/NFC garante segurança por si só é refutado pela literatura científica.</p>\n          <p>Dividido entre vulnerabilidades de hardware/etiquetas em RFID (Anna, 4,0 min) e ataques ao canal e segurança lógica em NFC (Integrante de NFC, 4,2 min).</p>\n        ",
+        "links": [
+          {
+            "id": "l_r6_sec",
+            "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-98.pdf",
+            "title": "NIST SP 800-98: Capítulo 3 - Ameaças e Riscos em RFID",
+            "description": ""
+          },
+          {
+            "id": "l_r9_survey",
+            "url": "https://arxiv.org/pdf/1701.04556",
+            "title": "Survey on Security of Electronic Payment Systems (arXiv 1701.04556, Seção 9.1)",
+            "description": "Organização das vulnerabilidades de interface de rádio e elemento seguro."
+          },
+          {
+            "id": "l_r46_risks",
+            "url": "https://www.itechguides.com/what-are-the-10-biggest-rfid-security-risks/",
+            "title": "iTechGuides: 10 Biggest RFID Security Risks (Resumo NIST)",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_vuln_rfid": {
+      "id": "c_vuln_rfid",
+      "title": "Vulnerabilidades RFID",
+      "description": "Quebra de cifras legadas, clonagem de tags e defesas físicas/lógicas.",
+      "position": {
+        "x": 1560,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "amber",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Ataque histórico ao Mifare Classic (Crypto1), falsificação de identificadores e medidas de mitigação.",
+        "extra": [
+          {
+            "id": "ext_spk_c_vuln_rfid",
+            "key": "Apresentador(a)",
+            "value": "Anna"
+          },
+          {
+            "id": "ext_min_c_vuln_rfid",
+            "key": "Tempo de Fala",
+            "value": "4,0 minutos"
+          }
+        ],
+        "notesHtml": "",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_mifare": {
+      "id": "c_mifare",
+      "title": "Caso Mifare Classic & Crypto1",
+      "description": "A quebra emblemática da cifra proprietária Crypto1 da NXP por pesquisadores holandeses.",
+      "position": {
+        "x": 1685,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "amber",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Pesquisa da Radboud University demonstrou clonagem em segundos de cartões Oyster de Londres e transporte holandês.",
+        "extra": [
+          {
+            "id": "ext_spk_c_mifare",
+            "key": "Apresentador(a)",
+            "value": "Anna"
+          }
+        ],
+        "notesHtml": "\n          <h3>O Marco da Quebra do Mifare Classic (2008)</h3>\n          <p>Garcia et al. (ESORICS 2008) realizaram engenharia reversa do chip e quebraram o gerador pseudoaleatório e a cifra proprietária Crypto1 de 48 bits.</p>\n          <p>Mais de 1 bilhão de cartões em uso tornaram-se vulneráveis a clonagem e manipulação de saldo. A NXP tentou impedir a publicação por via judicial (Secure ID News, jul/2008), mas a justiça holandesa liberou a divulgação em nome da segurança pública. Isso forçou a adoção do <strong>Mifare Plus (AES)</strong> e do <strong>DESFire</strong>.</p>\n        ",
+        "links": [
+          {
+            "id": "l_r1_mif",
+            "url": "https://sos.cs.ru.nl/applications/rfid/main.html",
+            "title": "Radboud University: Demonstração em vídeo do ataque ao Mifare Classic",
+            "description": ""
+          },
+          {
+            "id": "l_r2_paper",
+            "url": "https://sos.cs.ru.nl/applications/rfid/2008-esorics.pdf",
+            "title": "Garcia et al.: Dismantling MIFARE Classic (ESORICS 2008)",
+            "description": ""
+          },
+          {
+            "id": "l_r3_reg",
+            "url": "https://www.theregister.com/2008/10/06/mifare_hack_finally_published/",
+            "title": "The Register: Boffins publish hack for world's most popular smartcard",
+            "description": ""
+          },
+          {
+            "id": "l_r5_nxp",
+            "url": "https://www.secureidnews.com/?p=5480",
+            "title": "Secure ID News: NXP processa pesquisadores para impedir divulgação",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_rfid_ameacas": {
+      "id": "c_rfid_ameacas",
+      "title": "Clonagem e Rastreamento",
+      "description": "Leitura não autorizada de UIDs estáticos, replicação de tags e espionagem de localização.",
+      "position": {
+        "x": 1435,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "amber",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Tags passivas simples transmitem seus dados a qualquer leitor compatível que as energize.",
+        "extra": [
+          {
+            "id": "ext_spk_c_rfid_ameacas",
+            "key": "Apresentador(a)",
+            "value": "Anna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r47_geo",
+            "url": "https://www.geosurge.ai/corpus/gen-4112/radio-frequency-identification/rfid-security-and-privacy-risks-skimming-cloning-and-mitigation-strategies.html",
+            "title": "geosurge: RFID Security and Privacy Risks (Skimming and Cloning)",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_rfid_defesas": {
+      "id": "c_rfid_defesas",
+      "title": "Defesas e Contramedidas RFID",
+      "description": "Técnicas de proteção recomendadas por normas governamentais e acadêmicas.",
+      "position": {
+        "x": 1185,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "amber",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Comandos Kill e Sleep, Gaiola de Faraday (carteiras blindadas), Blocker tags e pseudônimos dinâmicos.",
+        "extra": [
+          {
+            "id": "ext_spk_c_rfid_defesas",
+            "key": "Apresentador(a)",
+            "value": "Anna"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r7_nist",
+            "url": "https://nist.gov/news-events/news/2007/04/nist-issues-guidelines-ensuring-rfid-security",
+            "title": "NIST: Guidelines for Ensuring RFID Security (Blindagem e Auditoria)",
+            "description": ""
+          },
+          {
+            "id": "l_r8_arxiv",
+            "url": "https://arxiv.org/pdf/2110.00094",
+            "title": "RFID Exploitation and Countermeasures (arXiv 2110.00094)",
+            "description": "Catálogo de defesas: kill, sleep, gaiola de Faraday, blocker tags e pseudônimos."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_vuln_nfc": {
+      "id": "c_vuln_nfc",
+      "title": "Segurança e Vulnerabilidades NFC",
+      "description": "Pilares de segurança, interceptação de dados, clonagem de tags e ataques de retransmissão.",
+      "position": {
+        "x": 2685,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "orange",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "A proximidade não garante segurança por si só. Quatro principais ameaças: interceptação, clonagem, retransmissão e falsificação.",
+        "extra": [
+          {
+            "id": "ext_spk_c_vuln_nfc",
+            "key": "Apresentador(a)",
+            "value": "Integrante de NFC"
+          },
+          {
+            "id": "ext_min_c_vuln_nfc",
+            "key": "Tempo de Fala",
+            "value": "4,2 minutos"
+          }
+        ],
+        "notesHtml": "\n          <h2>Segurança e Principais Vulnerabilidades do NFC</h2>\n          <p>Embora opere a curtas distâncias e suporte criptografia, o NFC apresenta vulnerabilidades que comprometem confidencialidade, autenticidade e integridade.</p>\n          <p><strong>Quatro Principais Ameaças:</strong></p>\n          <ol>\n            <li><strong>Interceptação de dados:</strong> Captação dos sinais de RF a distâncias maiores.</li>\n            <li><strong>Clonagem de tags:</strong> Cópia de informações em tags sem criptografia.</li>\n            <li><strong>Ataques de retransmissão:</strong> Repasse em tempo real por dispositivos intermediários.</li>\n            <li><strong>Falsificação (Spoofing / Adulteração):</strong> Alteração de credenciais e dados transmitidos.</li>\n          </ol>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_mecanismos_seg": {
+      "id": "c_nfc_mecanismos_seg",
+      "title": "Mecanismos de Proteção NFC",
+      "description": "Três mecanismos fundamentais utilizados para proteger as informações transmitidas.",
+      "position": {
+        "x": 2935,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "orange",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Autenticação (legitimidade), Criptografia AES (leitura não autorizada) e Integridade (alterações). Limitação: nem todo NFC os utiliza!",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_mecanismos_seg",
+            "key": "Apresentador(a)",
+            "value": "Integrante de NFC"
+          }
+        ],
+        "notesHtml": "\n          <h3>Mecanismos Fundamentais de Segurança no NFC</h3>\n          <ul>\n            <li><strong>Autenticação:</strong> Verifica a identidade ou a legitimidade dos participantes antes da transação.</li>\n            <li><strong>Criptografia:</strong> Protege informações sensíveis contra leitura não autorizada, com destaque para o algoritmo simétrico <strong>AES (Advanced Encryption Standard)</strong>.</li>\n            <li><strong>Integridade:</strong> Permite identificar alterações não autorizadas nos dados transmitidos durante a comunicação.</li>\n            <li><strong>Limitação Importante:</strong> Nem toda comunicação NFC utiliza esses mecanismos de proteção por padrão, tornando essencial a segurança na camada de aplicação.</li>\n          </ul>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_interceptacao": {
+      "id": "c_nfc_interceptacao",
+      "title": "Interceptação de Dados",
+      "description": "Captação indevida dos sinais eletromagnéticos gerados durante a comunicação.",
+      "position": {
+        "x": 2685,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "orange",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Embora projetado para poucos centímetros, antenas direcionais sensíveis conseguem captar sinais a distâncias maiores. Mitigado por criptografia e redução de exposição.",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_interceptacao",
+            "key": "Apresentador(a)",
+            "value": "Integrante de NFC"
+          }
+        ],
+        "notesHtml": "\n          <h3>Interceptação de Dados (Eavesdropping)</h3>\n          <p>Ocorre quando um terceiro utiliza equipamentos capazes de captar os sinais eletromagnéticos gerados durante a comunicação NFC.</p>\n          <p><strong>Exemplo prático:</strong> Uma pessoa utiliza um cartão NFC em um leitor. Um atacante próximo tenta captar os sinais transmitidos para obter informações da comunicação e analisar as mensagens.</p>\n          <p><strong>Proteção:</strong> Criptografia forte (AES), autenticação mútua e redução da exposição desnecessária de dados sensíveis no enlace.</p>\n        ",
+        "links": [
+          {
+            "id": "l_r10_jensen",
+            "url": "https://www.cs.utexas.edu/~ojensen/papers/icdcn16.pdf",
+            "title": "Jensen, Gouda e Qiu: A Secure Credit Card Protocol over NFC (ICDCN 2016)",
+            "description": "Canal NFC opera em texto claro por padrão."
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_clonagem": {
+      "id": "c_nfc_clonagem",
+      "title": "Clonagem de Tags NFC",
+      "description": "Cópia das informações de uma tag NFC para reprodução em outra etiqueta ou dispositivo.",
+      "position": {
+        "x": 2435,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "orange",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Ocorre em sistemas que usam identificadores fixos sem criptografia. Proteção: autenticação criptográfica e identificadores dinâmicos.",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_clonagem",
+            "key": "Apresentador(a)",
+            "value": "Integrante de NFC"
+          }
+        ],
+        "notesHtml": "\n          <h3>Clonagem de Tags NFC</h3>\n          <p>Consiste em copiar as informações armazenadas em uma tag NFC e reproduzi-las em outra etiqueta ou dispositivo compatível. Essa falha ocorre principalmente quando sistemas utilizam identificadores fixos (UIDs) sem proteção criptográfica.</p>\n          <p><strong>Exemplo prático:</strong> Uma empresa utiliza tags NFC simples para controlar o acesso a salas. Um invasor copia os dados da etiqueta e cria um clone para obter acesso não autorizado.</p>\n          <p><strong>Proteção:</strong> Autenticação criptográfica com chaves secretas, identificadores dinâmicos (tokens temporários) e validação pelo servidor central.</p>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_relay": {
+      "id": "c_nfc_relay",
+      "title": "Ataques de Retransmissão (Relay)",
+      "description": "Transmissão em tempo real de mensagens entre equipamentos NFC fisicamente distantes via dispositivos intermediários.",
+      "position": {
+        "x": 2185,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "orange",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Não exige necessariamente a quebra de criptografia, pois as mensagens legítimas são retransmitidas em tempo real.",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_relay",
+            "key": "Apresentador(a)",
+            "value": "Integrante de NFC"
+          }
+        ],
+        "notesHtml": "\n          <h3>Ataques de Retransmissão (Relay Attack)</h3>\n          <p>O invasor utiliza dispositivos intermediários para retransmitir, em tempo real, as mensagens entre dois equipamentos NFC distantes. O sistema interpreta que estão próximos quando não estão.</p>\n          <p><strong>Ponto crítico:</strong> Esse ataque <em>não exige a quebra da criptografia</em>, pois as mensagens legítimas são apenas retransmitidas.</p>\n          <p><strong>Exemplo prático:</strong> Um atacante posiciona um aparelho próximo do cartão da vítima no transporte público e outro cúmplice aproxima seu smartphone de um leitor comercial ou caixa eletrônico.</p>\n          <p><strong>Proteção:</strong> Mecanismos de verificação estrita de proximidade (<em>distance bounding</em>), medição de tempo de resposta em nanossegundos e autenticação biométrica adicional no smartphone.</p>\n        ",
+        "links": [
+          {
+            "id": "l_r11_kent",
+            "url": "https://www.cs.kent.ac.uk/people/staff/ba284/Papers/TR1332.pdf",
+            "title": "Univ. of Kent (TR1332): Ataques a Pagamentos NFC (Skimming, PIN e Relay)",
+            "description": ""
+          },
+          {
+            "id": "l_r13_hitb",
+            "url": "https://archive.conference.hitb.org/hitbsecconf2015ams/wp-content/uploads/2014/12/D1T1-R.-Rodriguez-P.-Vila-Relay-Attacks-in-EMV-Contactless-Cards-with-Android-OTS-Devices.pdf",
+            "title": "Rodriguez e Vila: Relay Attacks in EMV Cards with Android OTS Devices (HITB 2015)",
+            "description": ""
+          },
+          {
+            "id": "l_r14_troop",
+            "url": "https://infocondb.org/con/troopers/troopers18/nfc-payments-the-art-of-relay-replay-attacks",
+            "title": "TROOPERS18: NFC Payments - The Art of Relay & Replay Attacks",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_nfc_falhas_so": {
+      "id": "c_nfc_falhas_so",
+      "title": "Falhas em Smartphones e SO",
+      "description": "Brechas de implementação no subsistema NFC em plataformas móveis.",
+      "position": {
+        "x": 1935,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "orange",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Pesquisa da Univ. de Twente apontando NFC ativo com tela desligada em Android, e ações de trojans bancários.",
+        "extra": [
+          {
+            "id": "ext_spk_c_nfc_falhas_so",
+            "key": "Apresentador(a)",
+            "value": "Integrante de NFC"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r12_twente",
+            "url": "https://purl.utwente.nl/essays/67737",
+            "title": "Kumar (2015): Security Analysis of Mobile Payment Systems (Univ. de Twente)",
+            "description": ""
+          },
+          {
+            "id": "l_r48_defense",
+            "url": "https://www.esecurityplanet.com/threats/news-ngate-malware-poland-atm/",
+            "title": "eSecurity Planet: Medidas de proteção ao usuário contra malwares NFC",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_noticias": {
+      "id": "c_noticias",
+      "title": "Notícias e Casos Reais",
+      "description": "Incidentes cibernéticos recentes, golpes bancários e dados de mercado em 2026.",
+      "position": {
+        "x": 3310,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "pink",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Ameaças emergentes como o trojan NGate no Brasil, alta de ataques em Android e evolução do Pix por aproximação.",
+        "extra": [
+          {
+            "id": "ext_spk_c_noticias",
+            "key": "Apresentador(a)",
+            "value": "João W."
+          },
+          {
+            "id": "ext_min_c_noticias",
+            "key": "Tempo de Fala",
+            "value": "5,8 minutos (Encerramento)"
+          }
+        ],
+        "notesHtml": "\n          <h2>Notícias e Casos Reais: Conexão com o Presente</h2>\n          <p><strong>Apresentador:</strong> João W. (5,8 min)</p>\n          <p>Conectar todo o conteúdo técnico a notícias reais do Brasil e do mundo, mostrando que a vulnerabilidade de relay deixou de ser teórica e virou arma de quadrilhas de malware bancário.</p>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_ngate": {
+      "id": "c_ngate",
+      "title": "Malware NGate no Brasil",
+      "description": "Trojan bancário para Android que usa a ferramenta NFCGate para relay de cartões físicos.",
+      "position": {
+        "x": 3435,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "pink",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Campanha no Brasil disfarçada no app falso HandyPay, com phishing via WhatsApp prometendo raspadinha da Caixa.",
+        "extra": [
+          {
+            "id": "ext_spk_c_ngate",
+            "key": "Apresentador(a)",
+            "value": "João W."
+          }
+        ],
+        "notesHtml": "\n          <h3>A Campanha do NGate no Brasil (2024 - 2026)</h3>\n          <ul>\n            <li>Descoberto pela <strong>ESET Research</strong> na Tchéquia e Polônia, reaparecendo no Brasil.</li>\n            <li>O aplicativo malicioso <em>HandyPay</em> induz a vítima a encostar seu cartão de débito/crédito na traseira do smartphone.</li>\n            <li>O tráfego NFC é interceptado pela biblioteca <strong>NFCGate</strong> e enviado a um criminoso que emula o cartão em um caixa eletrônico (ATM) para efetuar saques.</li>\n            <li>Classificado pelo <strong>MITRE ATT&CK</strong> como software <strong>S9040</strong>.</li>\n          </ul>\n        ",
+        "links": [
+          {
+            "id": "l_r15_eset",
+            "url": "https://www.eset.com/us/about/newsroom/research/eset-research-discovers-ngate-android-malware-which-relays-nfc-traffic-to-steal-victims-cash-from-atms-1/",
+            "title": "ESET Research: Descoberta original do malware NGate",
+            "description": ""
+          },
+          {
+            "id": "l_r16_wls",
+            "url": "https://welivesecurity.com/pt/pesquisas/ngate-reaparece-no-brasil-com-campanha-de-fraude-nfc-por-meio-do-app-handypay",
+            "title": "WeLiveSecurity: NGate reaparece no Brasil com app fraudulento HandyPay",
+            "description": ""
+          },
+          {
+            "id": "l_r17_ai",
+            "url": "https://eset.com/us/about/newsroom/research/eset-research-ngate-hides-nfc-payment-app-ai",
+            "title": "ESET: Novo NGate esconde-se em app de pagamento, indícios de uso de IA generativa",
+            "description": ""
+          },
+          {
+            "id": "l_r18_em",
+            "url": "https://www.em.com.br/mundo-corporativo/2026/04/7404176-nova-versao-do-malware-ngate-atinge-usuarios-no-brasil.html",
+            "title": "Estado de Minas: Nova versão do malware NGate atinge usuários no Brasil",
+            "description": ""
+          },
+          {
+            "id": "l_r19_mitre",
+            "url": "https://attack.mitre.org/software/S9040/",
+            "title": "MITRE ATT&CK: Ficha Técnica do NGate (S9040)",
+            "description": ""
+          },
+          {
+            "id": "l_r49_help",
+            "url": "https://www.helpnetsecurity.com/?p=367016",
+            "title": "Help Net Security: NGate atinge usuários no Brasil",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_kaspersky": {
+      "id": "c_kaspersky",
+      "title": "Salto de 188% em Ataques Android",
+      "description": "Relatório da Kaspersky (maio/2026) apontando disparo nos ataques a módulos NFC em smartphones.",
+      "position": {
+        "x": 3185,
+        "y": 611
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "pink",
+        "fontSize": "sm",
+        "bold": false
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Crescimento exponencial de ferramentas que tentam burlar autenticações biométricas e capturar credenciais.",
+        "extra": [
+          {
+            "id": "ext_spk_c_kaspersky",
+            "key": "Apresentador(a)",
+            "value": "João W."
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r20_kasp",
+            "url": "https://www.malaysianwireless.com/2026/05/kaspersky-android-nfc-attacks-2026/",
+            "title": "Malaysian Wireless: Kaspersky - NFC attacks on Android surged 188%",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_regulacao": {
+      "id": "c_regulacao",
+      "title": "Normas e Instituições",
+      "description": "Três camadas: Protocolos Internacionais, Padronização Industrial e Espectro Governamental.",
+      "position": {
+        "x": 1170,
+        "y": 238
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "slate",
+        "fontSize": "lg",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Estrutura legal e técnica que garante interoperabilidade e limites de potência de radiofrequência.",
+        "extra": [
+          {
+            "id": "ext_spk_c_regulacao",
+            "key": "Apresentador(a)",
+            "value": "Júlio"
+          },
+          {
+            "id": "ext_min_c_regulacao",
+            "key": "Tempo de Fala",
+            "value": "5,1 minutos"
+          }
+        ],
+        "notesHtml": "\n          <h2>Normas, Instituições e Órgãos Reguladores</h2>\n          <p><strong>Apresentador:</strong> Júlio (5,1 min)</p>\n          <p>Apresentar a regulação em 3 camadas claras:</p>\n          <ol>\n            <li><strong>Protocolos de Comunicação:</strong> Famílias ISO/IEC (18000, 14443, 15693, 18092).</li>\n            <li><strong>Padronização de Dados e Indústria:</strong> GS1, RAIN RFID Alliance e NFC Forum (atenção: entidades privadas de padronização, não agências reguladoras estatais).</li>\n            <li><strong>Gestão de Espectro e Potência:</strong> Anatel (Brasil), FCC (EUA), ETSI (UE) e ITU (ONU).</li>\n          </ol>\n        ",
+        "links": [],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_normas_iso": {
+      "id": "c_normas_iso",
+      "title": "Normas ISO/IEC",
+      "description": "Padrões técnicos fundamentais de interface de rádio.",
+      "position": {
+        "x": 810,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "slate",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "ISO 18000-63 (UHF Gen2), ISO 14443 (Smartcards HF), ISO 15693 (Vizinhança) e ISO 18092/21481 (NFCIP).",
+        "extra": [
+          {
+            "id": "ext_spk_c_normas_iso",
+            "key": "Apresentador(a)",
+            "value": "Júlio"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r21_iso",
+            "url": "https://ref.gs1.org/standards/gen2/2.1.0",
+            "title": "GS1: EPC Gen2 harmonizado com ISO/IEC 18000-63",
+            "description": ""
+          },
+          {
+            "id": "l_r23_iso",
+            "url": "https://www.sony.co.jp/en/Products/felica/NFC",
+            "title": "Sony: Visão das Normas ISO/IEC 18092, 21481, 14443 e 15693",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_entidades_ind": {
+      "id": "c_entidades_ind",
+      "title": "Entidades e Alianças",
+      "description": "Organizações globais de padronização setorial e certificação.",
+      "position": {
+        "x": 1060,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "slate",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "GS1 (identificação e EPC), RAIN RFID (marca industrial UHF) e NFC Forum (ecossistema de proximidade).",
+        "extra": [
+          {
+            "id": "ext_spk_c_entidades_ind",
+            "key": "Apresentador(a)",
+            "value": "Júlio"
+          }
+        ],
+        "notesHtml": "<p><em>Observação crítica:</em> Tratam-se de associações da indústria e de padronização técnica, e não de órgãos reguladores estatais com poder de polícia.</p>",
+        "links": [
+          {
+            "id": "l_r22_rain",
+            "url": "https://rainrfid.org/faqs/",
+            "title": "RAIN RFID Alliance FAQ (Marca para UHF Passivo ISO 18000-63)",
+            "description": ""
+          },
+          {
+            "id": "l_r24_forum",
+            "url": "https://www.securetechalliance.org/nokia-philips-and-sony-establish-the-near-field-communication-nfc-forum/",
+            "title": "NFC Forum: Fundação por Sony, Nokia e Philips",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    },
+    "c_orgaos_espectro": {
+      "id": "c_orgaos_espectro",
+      "title": "Órgãos de Espectro",
+      "description": "Agências governamentais responsáveis pela destinação de frequências e homologação de potência.",
+      "position": {
+        "x": 1310,
+        "y": 437
+      },
+      "style": {
+        "shape": "rounded",
+        "color": "slate",
+        "fontSize": "md",
+        "bold": true
+      },
+      "collapsed": false,
+      "content": {
+        "summary": "Anatel (Brasil - 915 a 928 MHz), FCC (EUA - 902 a 928 MHz), ETSI (UE - 865 a 868 MHz) e ITU (ONU).",
+        "extra": [
+          {
+            "id": "ext_spk_c_orgaos_espectro",
+            "key": "Apresentador(a)",
+            "value": "Júlio"
+          }
+        ],
+        "notesHtml": "",
+        "links": [
+          {
+            "id": "l_r28_anatel",
+            "url": "https://ib-lenhardt.com/de/news/technical-requirements-of-restricted-radio-communication-devices",
+            "title": "IB Lenhardt: Requisitos da Anatel (Ato 1379/2019 e Resolução 680/2017)",
+            "description": ""
+          },
+          {
+            "id": "l_r29_homolog",
+            "url": "https://files.pepperl-fuchs.com/webcat/navi/productInfo/cert/cert4842b.pdf",
+            "title": "Certificado de Homologação Anatel (Exemplo Pepperl+Fuchs)",
+            "description": "Ilustração prática da categoria Transceptor de Radiação Restrita."
+          },
+          {
+            "id": "l_r26_etsi",
+            "url": "https://standards.globalspec.com/std/10060367/en-302-208",
+            "title": "ETSI EN 302 208: Regulamentação de RFID na Europa",
+            "description": ""
+          },
+          {
+            "id": "l_r27_fcc",
+            "url": "https://rfid4u.com/rfid-regulations/",
+            "title": "rfid4u: Regulamentações da FCC Parte 15 e ETSI",
+            "description": ""
+          }
+        ],
+        "images": [],
+        "media": [],
+        "documents": [],
+        "references": []
+      },
+      "createdAt": 1792070406576,
+      "updatedAt": 1792070406576
+    }
+  },
+  "links": {
+    "l_w_app": {
+      "id": "l_w_app",
+      "source": "c_wireless",
+      "target": "c_aplicacoes",
+      "label": "onde é usado",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_app_rfid": {
+      "id": "l_app_rfid",
+      "source": "c_aplicacoes",
+      "target": "c_app_rfid",
+      "label": "abrange na indústria e logística",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_varejo": {
+      "id": "l_rfid_varejo",
+      "source": "c_app_rfid",
+      "target": "c_app_varejo",
+      "label": "utilizado em",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_transp": {
+      "id": "l_rfid_transp",
+      "source": "c_app_rfid",
+      "target": "c_app_transporte",
+      "label": "implementado em",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_agro": {
+      "id": "l_rfid_agro",
+      "source": "c_app_rfid",
+      "target": "c_app_agro",
+      "label": "aplicado em",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_ind": {
+      "id": "l_rfid_ind",
+      "source": "c_app_rfid",
+      "target": "c_app_industria",
+      "label": "opera em",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_app_nfc": {
+      "id": "l_app_nfc",
+      "source": "c_aplicacoes",
+      "target": "c_app_nfc",
+      "label": "abrange no uso pessoal",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_pix": {
+      "id": "l_nfc_pix",
+      "source": "c_app_nfc",
+      "target": "c_app_pix",
+      "label": "viabiliza",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_bilh": {
+      "id": "l_nfc_bilh",
+      "source": "c_app_nfc",
+      "target": "c_app_bilhetagem",
+      "label": "gerencia",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_acesso": {
+      "id": "l_nfc_acesso",
+      "source": "c_app_nfc",
+      "target": "c_app_acesso",
+      "label": "controla",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "green"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_w_rfid": {
+      "id": "l_w_rfid",
+      "source": "c_wireless",
+      "target": "c_rfid",
+      "label": "compreende como base",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "blue"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_freq": {
+      "id": "l_rfid_freq",
+      "source": "c_rfid",
+      "target": "c_rfid_freq",
+      "label": "opera nas faixas",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "blue"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_freq_lf": {
+      "id": "l_freq_lf",
+      "source": "c_rfid_freq",
+      "target": "c_freq_lf",
+      "label": "faixa",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "blue"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_freq_hf": {
+      "id": "l_freq_hf",
+      "source": "c_rfid_freq",
+      "target": "c_freq_hf",
+      "label": "faixa",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "blue"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_freq_uhf": {
+      "id": "l_freq_uhf",
+      "source": "c_rfid_freq",
+      "target": "c_freq_uhf",
+      "label": "faixa",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "blue"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_comp": {
+      "id": "l_rfid_comp",
+      "source": "c_rfid",
+      "target": "c_rfid_comp",
+      "label": "composto por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "blue"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_nfc_cross": {
+      "id": "l_rfid_nfc_cross",
+      "source": "c_rfid",
+      "target": "c_nfc",
+      "label": "possui como evolução HF",
+      "kind": "cross",
+      "style": {
+        "line": "dashed",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "teal"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_origem": {
+      "id": "l_nfc_origem",
+      "source": "c_nfc",
+      "target": "c_nfc_origem",
+      "label": "linha do tempo",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "teal"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_func": {
+      "id": "l_nfc_func",
+      "source": "c_nfc",
+      "target": "c_nfc_funcionamento",
+      "label": "opera por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "teal"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_modos": {
+      "id": "l_nfc_modos",
+      "source": "c_nfc",
+      "target": "c_nfc_modos",
+      "label": "opera em 3 modos",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "teal"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_limit": {
+      "id": "l_nfc_limit",
+      "source": "c_nfc",
+      "target": "c_nfc_limitacoes",
+      "label": "possui restrições de",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "teal"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_qr": {
+      "id": "l_nfc_qr",
+      "source": "c_nfc",
+      "target": "c_nfc_vs_qr",
+      "label": "compara-se com",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "teal"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_w_sec": {
+      "id": "l_w_sec",
+      "source": "c_wireless",
+      "target": "c_seguranca",
+      "label": "apresenta riscos de",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "amber"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_sec_rfid": {
+      "id": "l_sec_rfid",
+      "source": "c_seguranca",
+      "target": "c_vuln_rfid",
+      "label": "ameaças em",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "amber"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_mifare": {
+      "id": "l_rfid_mifare",
+      "source": "c_vuln_rfid",
+      "target": "c_mifare",
+      "label": "caso emblemático",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "amber"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_mifare_nfc_cross": {
+      "id": "l_mifare_nfc_cross",
+      "source": "c_mifare",
+      "target": "c_nfc",
+      "label": "também afeta cartões lidos por",
+      "kind": "cross",
+      "style": {
+        "line": "dashed",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "amber"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_ameacas": {
+      "id": "l_rfid_ameacas",
+      "source": "c_vuln_rfid",
+      "target": "c_rfid_ameacas",
+      "label": "inclui riscos de",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "amber"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_rfid_defesas": {
+      "id": "l_rfid_defesas",
+      "source": "c_vuln_rfid",
+      "target": "c_rfid_defesas",
+      "label": "mitigado por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "amber"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_sec_nfc": {
+      "id": "l_sec_nfc",
+      "source": "c_seguranca",
+      "target": "c_vuln_nfc",
+      "label": "ameaças em",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "orange"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_mecanismos": {
+      "id": "l_nfc_mecanismos",
+      "source": "c_vuln_nfc",
+      "target": "c_nfc_mecanismos_seg",
+      "label": "protegido por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "orange"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_intercep": {
+      "id": "l_nfc_intercep",
+      "source": "c_vuln_nfc",
+      "target": "c_nfc_interceptacao",
+      "label": "vulnerável a",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "orange"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_clona": {
+      "id": "l_nfc_clona",
+      "source": "c_vuln_nfc",
+      "target": "c_nfc_clonagem",
+      "label": "vulnerável a",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "orange"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_relay": {
+      "id": "l_nfc_relay",
+      "source": "c_vuln_nfc",
+      "target": "c_nfc_relay",
+      "label": "vulnerável a",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "orange"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_nfc_so": {
+      "id": "l_nfc_so",
+      "source": "c_vuln_nfc",
+      "target": "c_nfc_falhas_so",
+      "label": "agravado por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "orange"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_sec_noticias": {
+      "id": "l_sec_noticias",
+      "source": "c_seguranca",
+      "target": "c_noticias",
+      "label": "casos recentes de",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "pink"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_not_ngate": {
+      "id": "l_not_ngate",
+      "source": "c_noticias",
+      "target": "c_ngate",
+      "label": "destaque",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "pink"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_not_kasp": {
+      "id": "l_not_kasp",
+      "source": "c_noticias",
+      "target": "c_kaspersky",
+      "label": "alerta",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "pink"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_w_reg": {
+      "id": "l_w_reg",
+      "source": "c_wireless",
+      "target": "c_regulacao",
+      "label": "regulamentado por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "slate"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_reg_iso": {
+      "id": "l_reg_iso",
+      "source": "c_regulacao",
+      "target": "c_normas_iso",
+      "label": "define protocolos em",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "slate"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_reg_ind": {
+      "id": "l_reg_ind",
+      "source": "c_regulacao",
+      "target": "c_entidades_ind",
+      "label": "padronizado por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "slate"
+      },
+      "createdAt": 1792070406576
+    },
+    "l_reg_espectro": {
+      "id": "l_reg_espectro",
+      "source": "c_regulacao",
+      "target": "c_orgaos_espectro",
+      "label": "fiscalizado por",
+      "kind": "hierarchy",
+      "style": {
+        "line": "solid",
+        "curve": "straight",
+        "arrow": "end",
+        "color": "slate"
+      },
+      "createdAt": 1792070406576
+    }
+  },
+  "settings": {
+    "layoutDirection": "TB"
+  }
+}

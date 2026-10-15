@@ -3,8 +3,11 @@ import { computeHierarchicalLayout } from '../layout/hierarchicalLayout';
 
 /**
  * Mapa Conceitual Completo: RFID e NFC
- * Estruturado a partir do documento de trabalho (00_referencias_mapa_conceitual_Bru.pdf)
- * com 6 ramos correspondentes aos 6 apresentadores do seminário (30 minutos).
+ * Estruturado a partir de:
+ * 1. Documento de trabalho de referências (00_referencias_mapa_conceitual_Bru.pdf)
+ * 2. Documento conceitual de NFC (Conceito de NFC.docx_20261015_083533_0000.pdf)
+ *
+ * Divisão entre os 6 apresentadores do seminário (30 minutos).
  */
 
 interface NodeOpts {
@@ -126,7 +129,7 @@ export function createRfidPresentationMap(): MapDoc {
       { x: 1200, y: 50 },
       { shape: 'rounded', color: 'violet', fontSize: 'xl', bold: true },
       {
-        description: 'Fundamento comum de RFID e NFC baseado na propagação de ondas eletromagnéticas.',
+        description: 'Fundamento comum de RFID e NFC baseado na propagação de campos eletromagnéticos.',
         summary: 'Comunicação sem fio por radiofrequência para identificação, sensoriamento e troca de dados sem contato físico direto.',
         speaker: 'Abertura Geral (Todos)',
         minutes: 'Visão Geral (30 min totais)',
@@ -138,7 +141,7 @@ export function createRfidPresentationMap(): MapDoc {
             <li><strong>Bruna (4,8 min):</strong> Abertura e Aplicações Práticas</li>
             <li><strong>Gabriel (5,1 min):</strong> RFID vs NFC, Comunicação e NFC vs QR Code</li>
             <li><strong>Anna (4,0 min):</strong> Vulnerabilidades do RFID (Mifare Classic, Crypto1)</li>
-            <li><strong>Integrante de NFC (4,2 min):</strong> Vulnerabilidades do NFC (Relay, Texto Claro)</li>
+            <li><strong>Integrante de NFC (4,2 min):</strong> Vulnerabilidades do NFC (Interceptação, Clonagem, Relay, AES)</li>
             <li><strong>Júlio (5,1 min):</strong> Normas, Órgãos Reguladores e Instituições</li>
             <li><strong>João W. (5,8 min):</strong> Notícias, Casos Reais (NGate) e Encerramento</li>
           </ol>
@@ -316,7 +319,7 @@ export function createRfidPresentationMap(): MapDoc {
       { shape: 'rounded', color: 'green', fontSize: 'md', bold: true },
       {
         description: 'Interações rápidas de curtíssimo alcance focadas na experiência do usuário.',
-        summary: 'Pagamentos contactless, bilhetagem de transporte público e crachás corporativos.',
+        summary: 'Pagamentos por aproximação, bilhetes eletrônicos, controle de acesso e leitura de etiquetas inteligentes.',
         speaker: 'Bruna',
         minutes: '2,4 minutos',
       }
@@ -327,12 +330,12 @@ export function createRfidPresentationMap(): MapDoc {
   add(
     makeConcept(
       'c_app_pix',
-      'Pix por Aproximação',
+      'Pix por Aproximação e Carteiras',
       { x: 480, y: 520 },
       { shape: 'rounded', color: 'green', fontSize: 'sm', bold: false },
       {
-        description: 'Inovação do Banco Central para pagamentos instantâneos contactless via smartphone.',
-        summary: 'Lançado para carteiras digitais (Google Pay) com previsão de operação sem internet (modo offline).',
+        description: 'Inovação do Banco Central para pagamentos instantâneos contactless via smartphone e smartwatch.',
+        summary: 'Lançado para carteiras digitais (Google Pay / Apple Pay) com estudos para pagamentos no modo offline sem internet.',
         speaker: 'Bruna',
         links: [
           {
@@ -364,7 +367,7 @@ export function createRfidPresentationMap(): MapDoc {
       { shape: 'rounded', color: 'green', fontSize: 'sm', bold: false },
       {
         description: 'Acesso instantâneo a catracas de metrô, ônibus e trens metropolitanos.',
-        summary: 'Casos globais clássicos: Oyster Card (Londres), OV-chipkaart (Holanda) e Charlie Card (Boston).',
+        summary: 'Casos globais clássicos: Oyster Card (Londres), OV-chipkaart (Holanda) e Charlie Card (Boston). Ideia já prevista desde 2006.',
         speaker: 'Bruna',
         links: [
           {
@@ -425,7 +428,7 @@ export function createRfidPresentationMap(): MapDoc {
   );
   connect('l_w_rfid', 'c_wireless', 'c_rfid', 'compreende como base', 'hierarchy', 'blue');
 
-  // 2.1 Faixas de Frequência
+  // 2.1 Faixas de Frequência RFID
   add(
     makeConcept(
       'c_rfid_freq',
@@ -547,7 +550,10 @@ export function createRfidPresentationMap(): MapDoc {
   );
   connect('l_rfid_comp', 'c_rfid', 'c_rfid_comp', 'composto por', 'hierarchy', 'blue');
 
-  // 2.3 Tecnologia NFC
+  /* ========================================================================
+   * 2.3 CONCEITO COMPLETO DE NFC (CONFORME NOVO PDF: Conceito de NFC.docx)
+   * Cor: Teal
+   * ======================================================================== */
   add(
     makeConcept(
       'c_nfc',
@@ -555,12 +561,18 @@ export function createRfidPresentationMap(): MapDoc {
       { x: 1450, y: 380 },
       { shape: 'rounded', color: 'teal', fontSize: 'lg', bold: true },
       {
-        description: 'Near Field Communication: evolução especializada do RFID HF operando a 13.56 MHz.',
-        summary: 'Alcance estritamente limitado (< 10 cm) para proporcionar intencionalidade física e segurança por proximidade.',
+        description: 'Comunicação por Campo de Proximidade (Near Field Communication): tecnologia sem fio de curto alcance.',
+        summary: 'Opera a 13,56 MHz por acoplamento indutivo a poucos centímetros. Projetada para trocas rápidas por aproximação sem necessidade de procedimentos complexos de conexão.',
         speaker: 'Gabriel',
         notesHtml: `
-          <h3>Origem e Padronização do NFC</h3>
-          <p>Fundado em março de 2004 por <strong>Sony, Nokia e Philips (NXP)</strong> com a criação do NFC Forum. É compatível com as tecnologias legadas ISO 14443 A, Mifare e FeliCa da Sony.</p>
+          <h2>Conceito de NFC (Near Field Communication)</h2>
+          <p><strong>NFC (Comunicação por Campo de Proximidade)</strong> é uma tecnologia de comunicação sem fio de curto alcance que permite a troca de informações entre dispositivos eletrônicos por meio de campos eletromagnéticos.</p>
+          <ul>
+            <li><strong>Frequência de Operação:</strong> Opera na frequência padrão de <strong>13,56 MHz</strong>.</li>
+            <li><strong>Princípio Físico:</strong> Utiliza o <em>acoplamento indutivo</em> entre bobinas/antenas a poucos centímetros de distância.</li>
+            <li><strong>Diferencial vs Wi-Fi e Bluetooth:</strong> Desenvolvido para conexões instantâneas por simples aproximação física, dispensando procedimentos manuais de pareamento.</li>
+            <li><strong>Dispositivos Passivos:</strong> Suporta comunicação com etiquetas (tags) passivas que não precisam de bateria, sendo energizadas diretamente pelo campo magnético do leitor.</li>
+          </ul>
         `,
         links: [
           {
@@ -579,15 +591,69 @@ export function createRfidPresentationMap(): MapDoc {
   );
   connect('l_rfid_nfc_cross', 'c_rfid', 'c_nfc', 'possui como evolução HF', 'cross', 'teal');
 
+  // 2.3.1 Origem e Linha do Tempo do NFC (novo PDF)
+  add(
+    makeConcept(
+      'c_nfc_origem',
+      'Origem e Evolução do NFC',
+      { x: 1300, y: 520 },
+      { shape: 'rounded', color: 'teal', fontSize: 'sm', bold: false },
+      {
+        description: 'Histórico da criação nos anos 2000 até a popularização universal nos smartphones.',
+        summary: '2002 (Início Sony & Philips) -> 2004 (NFC Forum) -> 2006 (Nokia 6131 NFC) -> 2010+ (Carteiras digitais).',
+        speaker: 'Gabriel',
+        notesHtml: `
+          <h3>Linha do Tempo da Origem do NFC</h3>
+          <p>Surgiu no início dos anos 2000 quando <strong>Sony e Philips</strong> buscavam uma maneira simples e rápida de conectar eletrônicos apenas aproximando-os:</p>
+          <ul>
+            <li><strong>2002 — O início:</strong> Sony e Philips iniciam o desenvolvimento conjunto da tecnologia NFC.</li>
+            <li><strong>2004 — Padronização:</strong> Sony, Philips e Nokia fundam o <strong>NFC Forum</strong> para promover a tecnologia e garantir a compatibilidade entre dispositivos.</li>
+            <li><strong>2006 — Primeiros celulares:</strong> O <em>Nokia 6131 NFC</em> se torna um dos primeiros celulares comerciais com a tecnologia integrada. Na época já se previa: pagamentos por aproximação, bilhetes eletrônicos, controle de acesso e leitura de tags.</li>
+            <li><strong>2010 em diante — Popularização:</strong> O NFC ganha espaço nos smartphones e, posteriormente, nos pagamentos por aproximação e carteiras digitais.</li>
+          </ul>
+        `,
+      }
+    )
+  );
+  connect('l_nfc_origem', 'c_nfc', 'c_nfc_origem', 'linha do tempo', 'hierarchy', 'teal');
+
+  // 2.3.2 Princípio de Funcionamento e Lei de Faraday (novo PDF)
+  add(
+    makeConcept(
+      'c_nfc_funcionamento',
+      'Princípio de Funcionamento',
+      { x: 1420, y: 520 },
+      { shape: 'rounded', color: 'teal', fontSize: 'sm', bold: false },
+      {
+        description: 'Indução eletromagnética fundamentada na Lei de Faraday em 4 etapas bem definidas.',
+        summary: '1. Geração do campo -> 2. Acoplamento indutivo -> 3. Transferência de energia -> 4. Transmissão por modulação.',
+        speaker: 'Gabriel',
+        notesHtml: `
+          <h3>Funcionamento via Indução Eletromagnética (Lei de Faraday)</h3>
+          <p>O funcionamento está diretamente relacionado à <strong>Lei de Faraday</strong>, que descreve a tensão induzida pela variação do fluxo magnético:</p>
+          <ol>
+            <li><strong>Geração do campo magnético:</strong> Uma corrente alternada circula pela antena do leitor, produzindo um campo magnético variável.</li>
+            <li><strong>Acoplamento indutivo:</strong> O campo magnético interage com a antena do dispositivo ou tag aproximada.</li>
+            <li><strong>Transferência de energia:</strong> A tensão induzida pela variação do fluxo alimenta os circuitos de dispositivos passivos sem necessidade de bateria.</li>
+            <li><strong>Transmissão de dados:</strong> As informações são transmitidas através da modulação da amplitude ou fase do sinal eletromagnético.</li>
+          </ol>
+          <p><em>Divisão de papéis nos smartphones:</em> Bluetooth e Wi-Fi são voltados para arquivos e mídia volumosa; o NFC é dedicado a interações ultrarrápidas de toque, pagamento e identificação.</p>
+        `,
+      }
+    )
+  );
+  connect('l_nfc_func', 'c_nfc', 'c_nfc_funcionamento', 'opera por', 'hierarchy', 'teal');
+
+  // 2.3.3 Modos de Operação do NFC
   add(
     makeConcept(
       'c_nfc_modos',
       'Modos de Operação NFC',
-      { x: 1350, y: 520 },
+      { x: 1540, y: 520 },
       { shape: 'rounded', color: 'teal', fontSize: 'sm', bold: false },
       {
-        description: 'Três modos operacionais padronizados pelo NFC Forum.',
-        summary: '1. Leitor/Gravador (tags passivas) | 2. Ponto a Ponto (P2P entre dispositivos) | 3. Emulação de Cartão (smartphones virando cartões).',
+        description: 'Três modos padronizados pelo NFC Forum para diferentes cenários de uso.',
+        summary: '1. Leitor/Gravador (tags passivas) | 2. Ponto a Ponto (P2P entre dispositivos) | 3. Emulação de Cartão (smartphones virando smartcards).',
         speaker: 'Gabriel',
         links: [
           {
@@ -601,44 +667,49 @@ export function createRfidPresentationMap(): MapDoc {
   );
   connect('l_nfc_modos', 'c_nfc', 'c_nfc_modos', 'opera em 3 modos', 'hierarchy', 'teal');
 
+  // 2.3.4 Limitações da Tecnologia NFC (novo PDF)
   add(
     makeConcept(
-      'c_nfc_tags',
-      'Tipos de Etiquetas NFC (1 a 4)',
-      { x: 1470, y: 520 },
+      'c_nfc_limitacoes',
+      'Limitações da Tecnologia NFC',
+      { x: 1660, y: 520 },
       { shape: 'rounded', color: 'teal', fontSize: 'sm', bold: false },
       {
-        description: 'Quatro tipos padronizados de tags baseados em ISO 14443 A/B e Sony FeliCa.',
-        summary: 'Diferem em capacidade de memória (de 96 bytes a 32 KB), velocidade e mecanismos de proteção contra regravação.',
+        description: 'Restrições físicas e operacionais detalhadas no documento técnico de NFC.',
+        summary: 'Alcance reduzido (< 10 cm), taxas de transmissão convencionais (106, 212 e 424 kbit/s), interferência metálica e necessidade de protocolos compatíveis.',
         speaker: 'Gabriel',
-        links: [
-          {
-            id: 'l_r25_tags',
-            title: 'NFC Forum: Especificações dos Quatro Tipos de Tags',
-            url: 'https://www.secureidnews.com/news-item/four-nfc-tags-standardized-by-nfc-forum/',
-          },
-        ],
+        notesHtml: `
+          <h3>Limitações Físicas e Operacionais do NFC</h3>
+          <ul>
+            <li><strong>Alcance Reduzido:</strong> Restrito a poucos centímetros (intencional para segurança física, mas restritivo).</li>
+            <li><strong>Baixa Velocidade de Transmissão:</strong> Taxas convencionais de <strong>106, 212 e 424 kbit/s</strong>, substancialmente inferiores a Bluetooth e Wi-Fi.</li>
+            <li><strong>Compatibilidade Obrigatória:</strong> Ambos os dispositivos devem compartilhar modos de operação e protocolos padronizados.</li>
+            <li><strong>Interferências por Materiais Metálicos:</strong> Superfícies condutoras dissipam as linhas de fluxo magnético, exigindo camadas de ferrite para operar em smartphones ou cartões com partes metálicas.</li>
+            <li><strong>Posicionamento Espacial:</strong> Desalinhamento entre as antenas pode interromper subitamente a transferência.</li>
+          </ul>
+        `,
       }
     )
   );
-  connect('l_nfc_tags', 'c_nfc', 'c_nfc_tags', 'padroniza', 'hierarchy', 'teal');
+  connect('l_nfc_limit', 'c_nfc', 'c_nfc_limitacoes', 'possui restrições de', 'hierarchy', 'teal');
 
+  // 2.3.5 Comparativo NFC vs QR Code
   add(
     makeConcept(
       'c_nfc_vs_qr',
       'NFC versus QR Code',
-      { x: 1600, y: 520 },
+      { x: 1780, y: 520 },
       { shape: 'rounded', color: 'teal', fontSize: 'sm', bold: false },
       {
         description: 'Comparativo técnico entre tecnologias concorrentes de interação rápida.',
-        summary: 'Linha de visada (QR exige câmera; NFC é por toque), Custo (QR é impresso/grátis; NFC usa chip) e Segurança (Quishing vs Skimming).',
+        summary: 'Linha de visada (QR exige câmera; NFC é por toque), Custo (QR é impresso/grátis; NFC usa chip) e Segurança (Quishing vs Skimming/Relay).',
         speaker: 'Gabriel',
         notesHtml: `
           <h3>NFC vs QR Code: Pontos de Destaque</h3>
           <ul>
-            <li><strong>Linha de Visada:</strong> QR Code exige foco da câmera e iluminação; NFC funciona sem alinhamento visual.</li>
-            <li><strong>Custo Unitário:</strong> QR Code tem custo marginal zero; tag NFC custa entre US$ 0,10 e US$ 0,50.</li>
-            <li><strong>Segurança:</strong> Ambos são inseguros por padrão se usados sem criptografia. QR codes sofrem com <em>quishing</em> (adesivos maliciosos por cima) e NFC com <em>skimming</em> e <em>relay</em>.</li>
+            <li><strong>Linha de Visada:</strong> QR Code exige foco da câmera e iluminação adequada; NFC funciona sem alinhamento visual ou iluminação.</li>
+            <li><strong>Custo Unitário:</strong> QR Code tem custo marginal zero; tag NFC requer chip de silício e antena condutora.</li>
+            <li><strong>Segurança:</strong> Ambos são vulneráveis por padrão sem autenticação. QR Codes sofrem com <em>quishing</em> (adesivos maliciosos sobrepostos) e NFC com interceptação e <em>relay</em>.</li>
           </ul>
         `,
         links: [
@@ -675,17 +746,17 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_seguranca',
       'Vulnerabilidades e Segurança',
-      { x: 1950, y: 220 },
+      { x: 2150, y: 220 },
       { shape: 'rounded', color: 'amber', fontSize: 'lg', bold: true },
       {
         description: 'Enquadramento geral de riscos, falhas de criptografia e ataques ao canal de rádio.',
-        summary: 'Baseado no NIST SP 800-98 (Cap. 3) e pesquisas acadêmicas sobre segurança em pagamentos por aproximação.',
+        summary: 'A proximidade física NÃO garante segurança por si só. Vulnerabilidades comprometem confidencialidade, autenticidade e integridade.',
         speaker: 'Anna & Integrante de NFC',
         minutes: '8,2 minutos no total',
         notesHtml: `
           <h2>Segurança em Sistemas de Proximidade</h2>
           <p>O mito de que o curto alcance físico do RFID/NFC garante segurança por si só é refutado pela literatura científica.</p>
-          <p>Dividido entre vulnerabilidades de hardware/etiquetas em RFID (Anna, 4,0 min) e ataques ao canal/software em NFC (Integrante de NFC, 4,2 min).</p>
+          <p>Dividido entre vulnerabilidades de hardware/etiquetas em RFID (Anna, 4,0 min) e ataques ao canal e segurança lógica em NFC (Integrante de NFC, 4,2 min).</p>
         `,
         links: [
           {
@@ -715,7 +786,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_vuln_rfid',
       'Vulnerabilidades RFID',
-      { x: 1820, y: 380 },
+      { x: 1950, y: 380 },
       { shape: 'rounded', color: 'amber', fontSize: 'md', bold: true },
       {
         description: 'Quebra de cifras legadas, clonagem de tags e defesas físicas/lógicas.',
@@ -731,7 +802,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_mifare',
       'Caso Mifare Classic & Crypto1',
-      { x: 1720, y: 520 },
+      { x: 1880, y: 520 },
       { shape: 'rounded', color: 'amber', fontSize: 'sm', bold: false },
       {
         description: 'A quebra emblemática da cifra proprietária Crypto1 da NXP por pesquisadores holandeses.',
@@ -776,7 +847,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_rfid_ameacas',
       'Clonagem e Rastreamento',
-      { x: 1840, y: 520 },
+      { x: 1990, y: 520 },
       { shape: 'rounded', color: 'amber', fontSize: 'sm', bold: false },
       {
         description: 'Leitura não autorizada de UIDs estáticos, replicação de tags e espionagem de localização.',
@@ -798,7 +869,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_rfid_defesas',
       'Defesas e Contramedidas RFID',
-      { x: 1960, y: 520 },
+      { x: 2100, y: 520 },
       { shape: 'rounded', color: 'amber', fontSize: 'sm', bold: false },
       {
         description: 'Técnicas de proteção recomendadas por normas governamentais e acadêmicas.',
@@ -822,44 +893,133 @@ export function createRfidPresentationMap(): MapDoc {
   );
   connect('l_rfid_defesas', 'c_vuln_rfid', 'c_rfid_defesas', 'mitigado por', 'hierarchy', 'amber');
 
-  // 3.2 Vulnerabilidades NFC (Integrante de NFC - 4,2 min)
+  /* ========================================================================
+   * 3.2 SEGURANÇA E VULNERABILIDADES NFC (CONFORME NOVO PDF: Conceito de NFC)
+   * Cor: Laranja
+   * ======================================================================== */
   add(
     makeConcept(
       'c_vuln_nfc',
-      'Vulnerabilidades NFC',
-      { x: 2150, y: 380 },
+      'Segurança e Vulnerabilidades NFC',
+      { x: 2360, y: 380 },
       { shape: 'rounded', color: 'orange', fontSize: 'md', bold: true },
       {
-        description: 'Vulnerabilidades em texto claro, ataques de relay e malware em smartphones.',
-        summary: 'Exploração do canal de radiofrequência e falhas em dispositivos Android com hardware de baixo custo.',
+        description: 'Pilares de segurança, interceptação de dados, clonagem de tags e ataques de retransmissão.',
+        summary: 'A proximidade não garante segurança por si só. Quatro principais ameaças: interceptação, clonagem, retransmissão e falsificação.',
         speaker: 'Integrante de NFC',
         minutes: '4,2 minutos',
+        notesHtml: `
+          <h2>Segurança e Principais Vulnerabilidades do NFC</h2>
+          <p>Embora opere a curtas distâncias e suporte criptografia, o NFC apresenta vulnerabilidades que comprometem confidencialidade, autenticidade e integridade.</p>
+          <p><strong>Quatro Principais Ameaças:</strong></p>
+          <ol>
+            <li><strong>Interceptação de dados:</strong> Captação dos sinais de RF a distâncias maiores.</li>
+            <li><strong>Clonagem de tags:</strong> Cópia de informações em tags sem criptografia.</li>
+            <li><strong>Ataques de retransmissão:</strong> Repasse em tempo real por dispositivos intermediários.</li>
+            <li><strong>Falsificação (Spoofing / Adulteração):</strong> Alteração de credenciais e dados transmitidos.</li>
+          </ol>
+        `,
       }
     )
   );
   connect('l_sec_nfc', 'c_seguranca', 'c_vuln_nfc', 'ameaças em', 'hierarchy', 'orange');
 
+  // 3.2.1 Mecanismos de Proteção NFC (novo PDF)
   add(
     makeConcept(
-      'c_nfc_relay',
-      'Ataques de Relay e Replay',
-      { x: 2090, y: 520 },
+      'c_nfc_mecanismos_seg',
+      'Mecanismos de Proteção NFC',
+      { x: 2220, y: 520 },
       { shape: 'rounded', color: 'orange', fontSize: 'sm', bold: false },
       {
-        description: 'Extensão maliciosa do alcance do NFC através de pontes de comunicação em tempo real.',
-        summary: 'Um cúmplice encosta no cartão da vítima no metrô enquanto outro encosta o celular na maquininha na loja.',
+        description: 'Três mecanismos fundamentais utilizados para proteger as informações transmitidas.',
+        summary: 'Autenticação (legitimidade), Criptografia AES (leitura não autorizada) e Integridade (alterações). Limitação: nem todo NFC os utiliza!',
         speaker: 'Integrante de NFC',
         notesHtml: `
-          <h3>Ataques de Relay com Equipamentos de Baixo Custo</h3>
-          <p>Pesquisas demonstram que kits com custo de <strong>US$ 35 (replay)</strong> a <strong>US$ 70 (relay)</strong> usando dois aparelhos Android conectados via 4G/Wi-Fi conseguem retransmitir as mensagens EMV em tempo hábil para aprovar compras.</p>
+          <h3>Mecanismos Fundamentais de Segurança no NFC</h3>
+          <ul>
+            <li><strong>Autenticação:</strong> Verifica a identidade ou a legitimidade dos participantes antes da transação.</li>
+            <li><strong>Criptografia:</strong> Protege informações sensíveis contra leitura não autorizada, com destaque para o algoritmo simétrico <strong>AES (Advanced Encryption Standard)</strong>.</li>
+            <li><strong>Integridade:</strong> Permite identificar alterações não autorizadas nos dados transmitidos durante a comunicação.</li>
+            <li><strong>Limitação Importante:</strong> Nem toda comunicação NFC utiliza esses mecanismos de proteção por padrão, tornando essencial a segurança na camada de aplicação.</li>
+          </ul>
+        `,
+      }
+    )
+  );
+  connect('l_nfc_mecanismos', 'c_vuln_nfc', 'c_nfc_mecanismos_seg', 'protegido por', 'hierarchy', 'orange');
+
+  // 3.2.2 Interceptação de Dados (novo PDF)
+  add(
+    makeConcept(
+      'c_nfc_interceptacao',
+      'Interceptação de Dados',
+      { x: 2340, y: 520 },
+      { shape: 'rounded', color: 'orange', fontSize: 'sm', bold: false },
+      {
+        description: 'Captação indevida dos sinais eletromagnéticos gerados durante a comunicação.',
+        summary: 'Embora projetado para poucos centímetros, antenas direcionais sensíveis conseguem captar sinais a distâncias maiores. Mitigado por criptografia e redução de exposição.',
+        speaker: 'Integrante de NFC',
+        notesHtml: `
+          <h3>Interceptação de Dados (Eavesdropping)</h3>
+          <p>Ocorre quando um terceiro utiliza equipamentos capazes de captar os sinais eletromagnéticos gerados durante a comunicação NFC.</p>
+          <p><strong>Exemplo prático:</strong> Uma pessoa utiliza um cartão NFC em um leitor. Um atacante próximo tenta captar os sinais transmitidos para obter informações da comunicação e analisar as mensagens.</p>
+          <p><strong>Proteção:</strong> Criptografia forte (AES), autenticação mútua e redução da exposição desnecessária de dados sensíveis no enlace.</p>
         `,
         links: [
           {
             id: 'l_r10_jensen',
             title: 'Jensen, Gouda e Qiu: A Secure Credit Card Protocol over NFC (ICDCN 2016)',
             url: 'https://www.cs.utexas.edu/~ojensen/papers/icdcn16.pdf',
-            description: 'Demonstra que o canal NFC opera em texto claro por padrão.',
+            description: 'Canal NFC opera em texto claro por padrão.',
           },
+        ],
+      }
+    )
+  );
+  connect('l_nfc_intercep', 'c_vuln_nfc', 'c_nfc_interceptacao', 'vulnerável a', 'hierarchy', 'orange');
+
+  // 3.2.3 Clonagem de Tags NFC (novo PDF)
+  add(
+    makeConcept(
+      'c_nfc_clonagem',
+      'Clonagem de Tags NFC',
+      { x: 2460, y: 520 },
+      { shape: 'rounded', color: 'orange', fontSize: 'sm', bold: false },
+      {
+        description: 'Cópia das informações de uma tag NFC para reprodução em outra etiqueta ou dispositivo.',
+        summary: 'Ocorre em sistemas que usam identificadores fixos sem criptografia. Proteção: autenticação criptográfica e identificadores dinâmicos.',
+        speaker: 'Integrante de NFC',
+        notesHtml: `
+          <h3>Clonagem de Tags NFC</h3>
+          <p>Consiste em copiar as informações armazenadas em uma tag NFC e reproduzi-las em outra etiqueta ou dispositivo compatível. Essa falha ocorre principalmente quando sistemas utilizam identificadores fixos (UIDs) sem proteção criptográfica.</p>
+          <p><strong>Exemplo prático:</strong> Uma empresa utiliza tags NFC simples para controlar o acesso a salas. Um invasor copia os dados da etiqueta e cria um clone para obter acesso não autorizado.</p>
+          <p><strong>Proteção:</strong> Autenticação criptográfica com chaves secretas, identificadores dinâmicos (tokens temporários) e validação pelo servidor central.</p>
+        `,
+      }
+    )
+  );
+  connect('l_nfc_clona', 'c_vuln_nfc', 'c_nfc_clonagem', 'vulnerável a', 'hierarchy', 'orange');
+
+  // 3.2.4 Ataques de Retransmissão / Relay (novo PDF)
+  add(
+    makeConcept(
+      'c_nfc_relay',
+      'Ataques de Retransmissão (Relay)',
+      { x: 2580, y: 520 },
+      { shape: 'rounded', color: 'orange', fontSize: 'sm', bold: false },
+      {
+        description: 'Transmissão em tempo real de mensagens entre equipamentos NFC fisicamente distantes via dispositivos intermediários.',
+        summary: 'Não exige necessariamente a quebra de criptografia, pois as mensagens legítimas são retransmitidas em tempo real.',
+        speaker: 'Integrante de NFC',
+        notesHtml: `
+          <h3>Ataques de Retransmissão (Relay Attack)</h3>
+          <p>O invasor utiliza dispositivos intermediários para retransmitir, em tempo real, as mensagens entre dois equipamentos NFC distantes. O sistema interpreta que estão próximos quando não estão.</p>
+          <p><strong>Ponto crítico:</strong> Esse ataque <em>não exige a quebra da criptografia</em>, pois as mensagens legítimas são apenas retransmitidas.</p>
+          <p><strong>Exemplo prático:</strong> Um atacante posiciona um aparelho próximo do cartão da vítima no transporte público e outro cúmplice aproxima seu smartphone de um leitor comercial ou caixa eletrônico.</p>
+          <p><strong>Proteção:</strong> Mecanismos de verificação estrita de proximidade (<em>distance bounding</em>), medição de tempo de resposta em nanossegundos e autenticação biométrica adicional no smartphone.</p>
+        `,
+        links: [
           {
             id: 'l_r11_kent',
             title: 'Univ. of Kent (TR1332): Ataques a Pagamentos NFC (Skimming, PIN e Relay)',
@@ -869,54 +1029,35 @@ export function createRfidPresentationMap(): MapDoc {
             id: 'l_r13_hitb',
             title: 'Rodriguez e Vila: Relay Attacks in EMV Cards with Android OTS Devices (HITB 2015)',
             url: 'https://archive.conference.hitb.org/hitbsecconf2015ams/wp-content/uploads/2014/12/D1T1-R.-Rodriguez-P.-Vila-Relay-Attacks-in-EMV-Contactless-Cards-with-Android-OTS-Devices.pdf',
-            description: 'Apresentação com slides e esquema detalhado do ataque de relay.',
           },
           {
             id: 'l_r14_troop',
             title: 'TROOPERS18: NFC Payments - The Art of Relay & Replay Attacks',
             url: 'https://infocondb.org/con/troopers/troopers18/nfc-payments-the-art-of-relay-replay-attacks',
-            description: 'Detalha custos de hardware entre US$ 35 e US$ 70.',
           },
         ],
       }
     )
   );
-  connect('l_nfc_relay', 'c_vuln_nfc', 'c_nfc_relay', 'permite golpe de', 'hierarchy', 'orange');
+  connect('l_nfc_relay', 'c_vuln_nfc', 'c_nfc_relay', 'vulnerável a', 'hierarchy', 'orange');
 
+  // 3.2.5 Falhas em Smartphones e SO
   add(
     makeConcept(
       'c_nfc_falhas_so',
       'Falhas em Smartphones e SO',
-      { x: 2210, y: 520 },
+      { x: 2700, y: 520 },
       { shape: 'rounded', color: 'orange', fontSize: 'sm', bold: false },
       {
         description: 'Brechas de implementação no subsistema NFC em plataformas móveis.',
-        summary: 'Dissertação de Kumar (2015, Univ. de Twente) apontando que o NFC respondia a comandos mesmo com a tela apagada em certas versões do Android.',
+        summary: 'Pesquisa da Univ. de Twente apontando NFC ativo com tela desligada em Android, e ações de trojans bancários.',
         speaker: 'Integrante de NFC',
         links: [
           {
             id: 'l_r12_twente',
-            title: 'Kumar (2015): Security Analysis of Mobile Payment Systems (Univ. of Twente)',
+            title: 'Kumar (2015): Security Analysis of Mobile Payment Systems (Univ. de Twente)',
             url: 'https://purl.utwente.nl/essays/67737',
-            description: 'Falha no mecanismo Android que mantinha NFC ativo com tela desligada.',
           },
-        ],
-      }
-    )
-  );
-  connect('l_nfc_so', 'c_vuln_nfc', 'c_nfc_falhas_so', 'agravado por', 'hierarchy', 'orange');
-
-  add(
-    makeConcept(
-      'c_nfc_defesas',
-      'Contramedidas para NFC',
-      { x: 2330, y: 520 },
-      { shape: 'rounded', color: 'orange', fontSize: 'sm', bold: false },
-      {
-        description: 'Distance bounding, tokenização bancária e boas práticas do usuário.',
-        summary: 'Protocolos de desafio-resposta em tempo de nanossegundos, tokens dinâmicos EMV e hábito de desativar o NFC quando ocioso.',
-        speaker: 'Integrante de NFC',
-        links: [
           {
             id: 'l_r48_defense',
             title: 'eSecurity Planet: Medidas de proteção ao usuário contra malwares NFC',
@@ -926,7 +1067,7 @@ export function createRfidPresentationMap(): MapDoc {
       }
     )
   );
-  connect('l_nfc_defesas', 'c_vuln_nfc', 'c_nfc_defesas', 'solucionado com', 'hierarchy', 'orange');
+  connect('l_nfc_so', 'c_vuln_nfc', 'c_nfc_falhas_so', 'agravado por', 'hierarchy', 'orange');
 
   /* ========================================================================
    * 4. RAMO NOTÍCIAS E CASOS REAIS (João W. - 5,8 min) - Cor: Rosa
@@ -935,7 +1076,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_noticias',
       'Notícias e Casos Reais',
-      { x: 2500, y: 380 },
+      { x: 2850, y: 380 },
       { shape: 'rounded', color: 'pink', fontSize: 'md', bold: true },
       {
         description: 'Incidentes cibernéticos recentes, golpes bancários e dados de mercado em 2026.',
@@ -956,7 +1097,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_ngate',
       'Malware NGate no Brasil',
-      { x: 2450, y: 520 },
+      { x: 2800, y: 520 },
       { shape: 'rounded', color: 'pink', fontSize: 'sm', bold: false },
       {
         description: 'Trojan bancário para Android que usa a ferramenta NFCGate para relay de cartões físicos.',
@@ -1012,7 +1153,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_kaspersky',
       'Salto de 188% em Ataques Android',
-      { x: 2580, y: 520 },
+      { x: 2920, y: 520 },
       { shape: 'rounded', color: 'pink', fontSize: 'sm', bold: false },
       {
         description: 'Relatório da Kaspersky (maio/2026) apontando disparo nos ataques a módulos NFC em smartphones.',
@@ -1037,7 +1178,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_regulacao',
       'Normas e Instituições',
-      { x: 2900, y: 220 },
+      { x: 3200, y: 220 },
       { shape: 'rounded', color: 'slate', fontSize: 'lg', bold: true },
       {
         description: 'Três camadas: Protocolos Internacionais, Padronização Industrial e Espectro Governamental.',
@@ -1064,7 +1205,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_normas_iso',
       'Normas ISO/IEC',
-      { x: 2750, y: 380 },
+      { x: 3080, y: 380 },
       { shape: 'rounded', color: 'slate', fontSize: 'md', bold: true },
       {
         description: 'Padrões técnicos fundamentais de interface de rádio.',
@@ -1092,7 +1233,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_entidades_ind',
       'Entidades e Alianças',
-      { x: 2900, y: 380 },
+      { x: 3200, y: 380 },
       { shape: 'rounded', color: 'slate', fontSize: 'md', bold: true },
       {
         description: 'Organizações globais de padronização setorial e certificação.',
@@ -1121,7 +1262,7 @@ export function createRfidPresentationMap(): MapDoc {
     makeConcept(
       'c_orgaos_espectro',
       'Órgãos de Espectro',
-      { x: 3050, y: 380 },
+      { x: 3340, y: 380 },
       { shape: 'rounded', color: 'slate', fontSize: 'md', bold: true },
       {
         description: 'Agências governamentais responsáveis pela destinação de frequências e homologação de potência.',
@@ -1198,4 +1339,3 @@ export function createRfidPresentationMap(): MapDoc {
 
   return doc;
 }
-

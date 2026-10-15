@@ -10,6 +10,8 @@ import { validateFile } from '../src/utils/files';
 import { normalizeUrl, detectEmbed, sanitizeNotesHtml } from '../src/utils/url';
 import { resetDBConnection } from '../src/persistence/db';
 import { createRfidPresentationMap } from '../src/model/rfidPresentationMap';
+import fs from 'node:fs';
+import path from 'node:path';
 
 describe('1. Criação, Edição, Movimentação, Duplicação e Exclusão de Nós', () => {
   it('cria e edita nós mantendo integridade', () => {
@@ -353,6 +355,32 @@ describe('7. Mapa da Apresentação: RFID e NFC (Estrutura do PDF)', () => {
     const h = getHierarchy(map);
     expect(h.parentOf.size).toBeGreaterThan(0);
   });
+
+  it('gera e exporta arquivo rfid-nfc-apresentacao.cmap.json válido para importação na aplicação', () => {
+    const map = createRfidPresentationMap();
+    const json = JSON.stringify(map, null, 2);
+
+    // Valida com o esquema Zod de importação
+    const parsed = parseMapDoc(JSON.parse(json));
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) {
+      throw new Error(`Erro de validação: ${parsed.errors.join(', ')}`);
+    }
+
+    // Salva no diretório raiz do projeto e em public/ para importação / download
+    const rootPath = path.resolve(__dirname, '..', 'rfid-nfc-apresentacao.cmap.json');
+    const publicPath = path.resolve(__dirname, '..', 'public', 'rfid-nfc-apresentacao.cmap.json');
+    fs.writeFileSync(rootPath, json, 'utf-8');
+    fs.writeFileSync(publicPath, json, 'utf-8');
+
+    expect(fs.existsSync(rootPath)).toBe(true);
+    expect(fs.existsSync(publicPath)).toBe(true);
+
+    // Valida que o arquivo salvo no disco tem conteúdo
+    const readBack = fs.readFileSync(rootPath, 'utf-8');
+    expect(readBack.length).toBeGreaterThan(5000);
+  });
 });
+
 
 
