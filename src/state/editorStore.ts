@@ -184,7 +184,13 @@ export const useEditor = create<EditorState>()((set, get) => ({
 }));
 
 function sameArr(a: string[], b: string[]) {
-  return a.length === b.length && a.every((v, i) => v === b[i]);
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  const setA = new Set(a);
+  for (let i = 0; i < b.length; i++) {
+    if (!setA.has(b[i])) return false;
+  }
+  return true;
 }
 
 /** Acesso imperativo fora de componentes React. */

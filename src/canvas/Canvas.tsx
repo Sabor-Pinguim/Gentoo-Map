@@ -92,17 +92,23 @@ export function Canvas() {
   const onNodesChange = useCallback((changes: NodeChange[]) => {
     const moves: Record<string, { x: number; y: number }> = {};
     let selChanged = false;
-    const nextSelected = new Set(editor().selectedNodes);
+    const current = editor().selectedNodes;
+    const nextSelected = new Set(current);
 
     for (const change of changes) {
       if (change.type === 'position' && change.position) {
         moves[change.id] = change.position;
       } else if (change.type === 'select') {
-        selChanged = true;
         if (change.selected) {
-          nextSelected.add(change.id);
+          if (!nextSelected.has(change.id)) {
+            nextSelected.add(change.id);
+            selChanged = true;
+          }
         } else {
-          nextSelected.delete(change.id);
+          if (nextSelected.has(change.id)) {
+            nextSelected.delete(change.id);
+            selChanged = true;
+          }
         }
       }
     }
@@ -121,12 +127,21 @@ export function Canvas() {
 
   const onEdgesChange = useCallback((changes: EdgeChange[]) => {
     let selChanged = false;
-    const nextSelected = new Set(editor().selectedEdges);
+    const current = editor().selectedEdges;
+    const nextSelected = new Set(current);
     for (const change of changes) {
       if (change.type === 'select') {
-        selChanged = true;
-        if (change.selected) nextSelected.add(change.id);
-        else nextSelected.delete(change.id);
+        if (change.selected) {
+          if (!nextSelected.has(change.id)) {
+            nextSelected.add(change.id);
+            selChanged = true;
+          }
+        } else {
+          if (nextSelected.has(change.id)) {
+            nextSelected.delete(change.id);
+            selChanged = true;
+          }
+        }
       }
     }
     if (selChanged) {
@@ -222,15 +237,6 @@ export function Canvas() {
     [doc]
   );
 
-  // Sincroniza seleção feita via caixa de seleção do canvas
-  const onSelectionChange = useCallback(
-    (params: { nodes: Node[]; edges: Edge[] }) => {
-      const nodeIds = params.nodes.map((n) => n.id);
-      const edgeIds = params.edges.map((e) => e.id);
-      editor().setSelection(nodeIds, edgeIds);
-    },
-    []
-  );
 
   // Atalhos de teclado globais do canvas
   useEffect(() => {
@@ -330,7 +336,6 @@ export function Canvas() {
             onPaneClick={onPaneClick}
             onInit={onInit}
             onMoveEnd={onMoveEnd}
-            onSelectionChange={onSelectionChange}
             selectionMode={SelectionMode.Partial}
             selectionKeyCode={['Shift', 'Control', 'Meta']}
             multiSelectionKeyCode={['Control', 'Meta', 'Shift']}
